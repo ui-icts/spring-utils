@@ -58,8 +58,8 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public void setSessionFactory( SessionFactory sessionFactory ) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	public SessionFactory getSessionFactory(){
+
+	public SessionFactory getSessionFactory() {
 		return this.sessionFactory;
 	}
 
@@ -400,7 +400,9 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public List<Type> list( GenericDaoListOptions options ) {
 		List<Type> list;
 		try {
-			list = criteria( options ).list();
+			Criteria criteria = criteria( options );
+			addSorts( criteria, options );
+			list = criteria.list();
 		} catch ( Exception e ) {
 			log.error( "Error getting List with options", e );
 			log.debug( "options: " + options.toString() );
@@ -429,20 +431,18 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			if ( options.getLimit() != null && options.getLimit() != -1 ) { // datatable sets iDisplayLength = -1 when bPaginate = false
 				criteria.setMaxResults( options.getLimit() );
 			}
-			
+
 			processAliases( criteria, options );
 
 			addIndividualEquals( criteria, options );
-			
+
 			addJunctions( criteria, options );
-			
+
 			addLikeCriteria( criteria, options, classMetaData, dialect );
-			
+
 			addNotEquals( criteria, options );
 
 			addSearchCriteria( criteria, options, classMetaData, dialect );
-			
-			addSorts( criteria, options );
 
 		} catch ( ClassNotFoundException e ) {
 			log.error( "error listing " + domainName, e );
