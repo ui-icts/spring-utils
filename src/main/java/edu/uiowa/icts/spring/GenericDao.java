@@ -275,10 +275,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			return getSession().createCriteria( Class.forName( getDomainName() ) ).list();
 		} catch ( HibernateException e ) {
 			log.error( "error Class.forName for " + getDomainName(), e );
+			throw e;
 		} catch ( ClassNotFoundException e ) {
 			log.error( "error Class.forName for " + getDomainName(), e );
+			return null;
 		}
-		return null;
 	}
 
 	@SuppressWarnings( "unchecked" )
