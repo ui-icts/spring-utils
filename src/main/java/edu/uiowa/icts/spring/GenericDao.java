@@ -409,7 +409,6 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			if ( options.getLimit() != null && options.getLimit() != -1 ) { // datatable sets iDisplayLength = -1 when bPaginate = false
 				criteria.setMaxResults( options.getLimit() );
 			}
-
 			list = criteria.list();
 		} catch ( Exception e ) {
 			log.error( "Error getting List with options", e );
@@ -433,7 +432,6 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			Dialect dialect = ( (SessionFactoryImplementor) getSessionFactory() ).getDialect();
 			ClassMetadata classMetaData = getSessionFactory().getClassMetadata( Class.forName( domainName ) );
 
-			
 			processAliases( criteria, options );
 
 			addIndividualEquals( criteria, options );
