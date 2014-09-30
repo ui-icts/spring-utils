@@ -7,14 +7,14 @@
 	<name>spring-utils</name>
 	<groupId>edu.uiowa.icts.spring</groupId>
 	<artifactId>spring-utils</artifactId>
-	<version>2.0.2-SNAPSHOT</version>
+	<version>2.0.2</version>
 	<packaging>jar</packaging>
 
 	<scm>
 		<connection>scm:git:ssh://git@git.its.uiowa.edu:7999/icts/spring-utils.git</connection>
 		<developerConnection>scm:git:ssh://git@git.its.uiowa.edu:7999/icts/spring-utils.git</developerConnection>
 		<url>ssh://git@git.its.uiowa.edu:7999/icts/spring-utils.git</url>
-	  <tag>HEAD</tag>
+	  <tag>v2.0.2</tag>
   </scm>
 
 	<distributionManagement>
