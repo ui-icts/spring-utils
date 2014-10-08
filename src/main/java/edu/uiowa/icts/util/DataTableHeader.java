@@ -6,18 +6,18 @@ package edu.uiowa.icts.util;
  */
 public class DataTableHeader {
 
-	private Integer data = null;
+	private String data = null;
 	private String name = null;
 	private Boolean searchable = false;
 	private Boolean orderable = false;
 	private String searchValue = null;
 	private Boolean searchRegex = false;
 
-	public Integer getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData( Integer data ) {
+	public void setData( String data ) {
 		this.data = data;
 	}
 
