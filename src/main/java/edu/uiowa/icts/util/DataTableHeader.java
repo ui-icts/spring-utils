@@ -20,7 +20,6 @@ public class DataTableHeader {
 	public void setData( String data ) {
 		this.data = data;
 	}
-
 	/**
 	 * @deprecated use setData( String data ) instead
 	 */
