@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.AttributesMapper;
 import org.springframework.ldap.core.ContextMapper;
 import org.springframework.ldap.core.DirContextAdapter;
+import org.springframework.ldap.core.DirContextOperations;
+import org.springframework.ldap.core.DistinguishedName;
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -45,19 +47,19 @@ public class LDAPHome implements LDAPService {
 
 	public List search( String value ) {
 		List list = ldapTemplate.search( "", "(cn=" + value + "*)",
-				new AttributesMapper() {
-					public Object mapFromAttributes( Attributes attrs )
-							throws NamingException {
-						return attrs.get( "DN" ).get();
-					}
-				} );
+			new AttributesMapper() {
+				public Object mapFromAttributes( Attributes attrs )
+					throws NamingException {
+					return attrs.get( "DN" ).get();
+				}
+			} );
 		return list;
 	}
 
 	public List getAllPersonNames() {
 		List list = ldapTemplate.search( "", "(cn=*)", new AttributesMapper() {
 			public Object mapFromAttributes( Attributes attrs )
-					throws NamingException {
+				throws NamingException {
 				return attrs.get( "DN" ).get();
 			}
 		} );
@@ -70,23 +72,34 @@ public class LDAPHome implements LDAPService {
 
 	private static class PersonContextMapper implements ContextMapper {
 		public Object mapFromContext( Object ctx ) {
+
 			DirContextAdapter context = (DirContextAdapter) ctx;
-			LDAPPerson p = new LDAPPerson();
-			p.setFullName( context.getStringAttribute( "displayName" ) );
-			p.setLastName( context.getStringAttribute( "sn" ) );
-			// p.setDescription(context.getStringAttribute("description"));
-			// The roleNames property of Person is an String array
-			// p.setRoleNames(context.getStringAttributes("roleNames"));
-			p.setTitle( context.getStringAttribute( "title" ) );
-			p.setDepartment( context.getStringAttribute( "department" ) );
-			p.setCollege( context.getStringAttribute( "company" ) );
-			p.setCompany( context.getStringAttribute( "company" ) );
-			p.setTelephoneNumber( context.getStringAttribute( "uiowaOfficePhone" ) );
+			DirContextOperations operations = (DirContextOperations) ctx;
+
+			LDAPPerson ldapPerson = new LDAPPerson();
+			ldapPerson.setFullName( context.getStringAttribute( "displayName" ) );
+			ldapPerson.setLastName( context.getStringAttribute( "sn" ) );
+			ldapPerson.setTitle( context.getStringAttribute( "title" ) );
+			ldapPerson.setDepartment( context.getStringAttribute( "department" ) );
+			ldapPerson.setCollege( context.getStringAttribute( "company" ) );
+			ldapPerson.setCompany( context.getStringAttribute( "company" ) );
+			ldapPerson.setTelephoneNumber( context.getStringAttribute( "uiowaOfficePhone" ) );
+			ldapPerson.setMail( context.getStringAttribute( "mail" ) );
+			ldapPerson.setGivenName( context.getStringAttribute( "givenName" ) );
+			ldapPerson.setUsername( context.getStringAttribute( "cn" ) );
+
+			String[] groupArray = operations.getStringAttributes( "memberOf" );
+			if ( groupArray != null && groupArray.length > 0 ) {
+				String[] roleNames = new String[ groupArray.length ];
+				for ( int g = 0; g < groupArray.length; g++ ) {
+					roleNames[g] = new DistinguishedName( groupArray[g] ).removeLast().getValue();
+				}
+				ldapPerson.setRoleNames( roleNames );
+			}
+
 			// p.setDn(context.getStringAttribute("distinguishedName"));
-			p.setMail( context.getStringAttribute( "mail" ) );
-			p.setGivenName( context.getStringAttribute( "givenName" ) );
-			p.setUsername( context.getStringAttribute( "cn" ) );
-			return p;
+			// p.setDescription(context.getStringAttribute("description"));
+			return ldapPerson;
 		}
 	}
 }

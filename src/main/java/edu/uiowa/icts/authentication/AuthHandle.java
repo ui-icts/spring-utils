@@ -54,9 +54,11 @@ public class AuthHandle implements AuthenticationSuccessHandler, AuthenticationF
 		HttpSession session = req.getSession();
 		String username = req.getParameter( "j_username" );
 		session.setAttribute( "username", username );
+		
+		AuditLogger.info( session.getId(), username, "logged in from", req.getRemoteHost() );
+		
 		target.onAuthenticationSuccess( req, res, auth );
 
-		AuditLogger.info( session.getId(), username, "logged in from", req.getRemoteHost() );
 
 	}
 
