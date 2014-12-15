@@ -23,21 +23,22 @@ public class GenericDaoListOptions {
 	private String search = null;
 	private List<String> searchColumns = null;
 	private List<SortColumn> sorts = null;
+	private Map<String, List<Object>> likes = null;
 	private Map<String, Object> individualLikes = null;
 	private Map<String, Object> individualEquals = null;
 	private Map<String, Object> notEquals = null;
 	private boolean doubleWildCard = true;
-	
+
 	@SuppressWarnings( "unused" )
 	private List<Disjunction> disjunctions = null;
-	
+
 	@SuppressWarnings( "unused" )
 	private List<Conjunction> conjunctions = null;
-	
+
 	private List<Junction> junctions = null;
 
 	private List<Alias> aliases = null;
-	
+
 	@SuppressWarnings( "rawtypes" )
 	private List<Class> detached = null;
 
@@ -144,7 +145,7 @@ public class GenericDaoListOptions {
 	 * @deprecated use more generic {@link setJunctions( List<Junction> )} instead
 	 */
 	public void setDisjunctions( List<Disjunction> disjunctions ) {
-		if( this.junctions == null ){
+		if ( this.junctions == null ) {
 			this.junctions = new ArrayList<Junction>();
 		}
 		this.junctions.addAll( disjunctions );
@@ -155,7 +156,7 @@ public class GenericDaoListOptions {
 	 */
 	@Deprecated
 	public void setConjunctions( List<Conjunction> conjunctions ) {
-		if( this.junctions == null ){
+		if ( this.junctions == null ) {
 			this.junctions = new ArrayList<Junction>();
 		}
 		this.junctions.addAll( conjunctions );
@@ -180,7 +181,7 @@ public class GenericDaoListOptions {
 	public void setAliases( List<Alias> aliases ) {
 		this.aliases = aliases;
 	}
-	
+
 	/**
 	 * This method does not allow the setting of the alias join type. 
 	 * @deprecated use {@link setAliases( List<Alias> )} instead.
@@ -188,10 +189,10 @@ public class GenericDaoListOptions {
 	@Deprecated
 	public void setAliases( Map<String, String> aliases ) {
 		List<Alias> list = this.aliases;
-		if( list == null ){
+		if ( list == null ) {
 			list = new ArrayList<Alias>();
 		}
-		for( String key : aliases.keySet() ){
+		for ( String key : aliases.keySet() ) {
 			list.add( new Alias( key, aliases.get( key ) ) );
 		}
 		this.aliases = list;
@@ -207,5 +208,13 @@ public class GenericDaoListOptions {
 
 	public void setJunctions( List<Junction> junctions ) {
 		this.junctions = junctions;
+	}
+
+	public Map<String, List<Object>> getLikes() {
+		return likes;
+	}
+
+	public void setLikes( Map<String, List<Object>> likes ) {
+		this.likes = likes;
 	}
 }

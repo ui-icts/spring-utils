@@ -559,7 +559,44 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	 * @param classMetaData 
 	 */
 	public void addLikeCriteria( Criteria criteria, GenericDaoListOptions options, ClassMetadata classMetaData, Dialect dialect ) {
-		if ( options.getIndividualLikes() != null && !options.getIndividualLikes().isEmpty() ) {
+		if ( options.getLikes() != null && !options.getLikes().isEmpty() ) {
+			Junction mainJunction = Restrictions.disjunction();
+			for ( String propertyName : options.getLikes().keySet() ) {
+
+				if ( options.getLikes().get( propertyName ) != null && !options.getLikes().get( propertyName ).isEmpty() ) {
+
+					boolean fail = false;
+					String propertyType = null;
+					try {
+						propertyType = classMetaData.getPropertyType( propertyName ).getName();
+					} catch ( QueryException e ) {
+						fail = true;
+					}
+
+					Disjunction disjunction = Restrictions.disjunction();
+					for ( Object value : options.getLikes().get( propertyName ) ) {
+						if ( fail ) {
+							// cast it to varchar to avoid errors
+							disjunction.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
+						} else {
+							if ( StringUtils.equalsIgnoreCase( propertyType, "integer" ) || StringUtils.equalsIgnoreCase( propertyType, "boolean" ) || StringUtils.equalsIgnoreCase( propertyType, "float" ) ) {
+								disjunction.add( new IntegerLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
+							} else if ( StringUtils.equalsIgnoreCase( propertyType, "date" ) || StringUtils.equalsIgnoreCase( propertyType, "time" ) || StringUtils.equalsIgnoreCase( propertyType, "timestamp" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar_date" ) ) {
+								disjunction.add( new DateLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%", dialect ) );
+							} else if ( StringUtils.equalsIgnoreCase( propertyType, "string" ) ) {
+								disjunction.add( Restrictions.ilike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
+							} else {
+								log.error( propertyType + " not supported in individual likes for " + domainName + " : " + propertyName );
+								// cast it to varchar to avoid errors
+								disjunction.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
+							}
+						}
+					}
+					mainJunction.add( disjunction );
+				}
+			}
+			criteria.add( mainJunction );
+		} else if ( options.getIndividualLikes() != null && !options.getIndividualLikes().isEmpty() ) {
 			for ( String propertyName : options.getIndividualLikes().keySet() ) {
 				boolean fail = false;
 				String propertyType = null;
