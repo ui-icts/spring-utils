@@ -29,6 +29,8 @@ public class GenericDaoListOptions {
 	private Map<String, Object> notEquals = null;
 	private boolean doubleWildCard = true;
 
+	private Map<String, List<String>> propertyNameMap = null;
+
 	@SuppressWarnings( "unused" )
 	private List<Disjunction> disjunctions = null;
 
@@ -142,7 +144,7 @@ public class GenericDaoListOptions {
 	}
 
 	/**
-	 * @deprecated use more generic {@link setJunctions( List<Junction> )} instead
+	 * @deprecated use more generic setJunctions( {@link List}<{@link Junction}> ) instead
 	 */
 	public void setDisjunctions( List<Disjunction> disjunctions ) {
 		if ( this.junctions == null ) {
@@ -152,7 +154,7 @@ public class GenericDaoListOptions {
 	}
 
 	/**
-	 * @deprecated use more generic {@link setJunctions( List<Junction> )} instead
+	 * @deprecated use more generic setJunctions( {@link List}<{@link Junction}> ) instead
 	 */
 	@Deprecated
 	public void setConjunctions( List<Conjunction> conjunctions ) {
@@ -184,7 +186,7 @@ public class GenericDaoListOptions {
 
 	/**
 	 * This method does not allow the setting of the alias join type. 
-	 * @deprecated use {@link setAliases( List<Alias> )} instead.
+	 * @deprecated use setAliases( {@link List}<{@link Alias}> ) instead.
 	 */
 	@Deprecated
 	public void setAliases( Map<String, String> aliases ) {
@@ -216,5 +218,13 @@ public class GenericDaoListOptions {
 
 	public void setLikes( Map<String, List<Object>> likes ) {
 		this.likes = likes;
+	}
+
+	public Map<String, List<String>> getPropertyNameMap() {
+		return propertyNameMap;
+	}
+
+	public void setPropertyNameMap( Map<String, List<String>> propertyNameMap ) {
+		this.propertyNameMap = propertyNameMap;
 	}
 }

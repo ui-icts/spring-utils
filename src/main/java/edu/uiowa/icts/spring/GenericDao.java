@@ -18,6 +18,7 @@ import org.hibernate.QueryException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.StatelessSession;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Order;
@@ -432,23 +433,22 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			Dialect dialect = ( (SessionFactoryImplementor) getSessionFactory() ).getDialect();
 			ClassMetadata classMetaData = getSessionFactory().getClassMetadata( Class.forName( domainName ) );
 
-			processAliases( criteria, options );
-
-			addIndividualEquals( criteria, options );
-
-			addJunctions( criteria, options );
-
-			addLikeCriteria( criteria, options, classMetaData, dialect );
-
-			addNotEquals( criteria, options );
-
-			addSearchCriteria( criteria, options, classMetaData, dialect );
+			applyGenericDaoListOptions( criteria, options, classMetaData, dialect );
 
 		} catch ( ClassNotFoundException e ) {
 			log.error( "error listing " + domainName, e );
 		}
 
 		return criteria;
+	}
+
+	public void applyGenericDaoListOptions( Criteria criteria, GenericDaoListOptions options, ClassMetadata classMetaData, Dialect dialect ) {
+		processAliases( criteria, options );
+		addIndividualEquals( criteria, options );
+		addJunctions( criteria, options );
+		addLikeCriteria( criteria, options, classMetaData, dialect );
+		addNotEquals( criteria, options );
+		addSearchCriteria( criteria, options, classMetaData, dialect );
 	}
 
 	public void addNotEquals( Criteria criteria, GenericDaoListOptions options ) {
@@ -489,10 +489,20 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public void addSorts( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getSorts() != null ) {
 			for ( SortColumn sortColumn : options.getSorts() ) {
-				if ( "asc".equals( sortColumn.getDirection() ) ) {
-					criteria.addOrder( Order.asc( sortColumn.getColumn() ) );
-				} else if ( "desc".equals( sortColumn.getDirection() ) ) {
-					criteria.addOrder( Order.desc( sortColumn.getColumn() ) );
+				if ( options.getPropertyNameMap() != null && options.getPropertyNameMap().get( sortColumn ) != null && !options.getPropertyNameMap().get( sortColumn ).isEmpty() ) {
+					for ( String alternateName : options.getPropertyNameMap().get( sortColumn ) ) {
+						if ( "asc".equals( sortColumn.getDirection() ) ) {
+							criteria.addOrder( Order.asc( alternateName ) );
+						} else if ( "desc".equals( sortColumn.getDirection() ) ) {
+							criteria.addOrder( Order.desc( alternateName ) );
+						}
+					}
+				} else {
+					if ( "asc".equals( sortColumn.getDirection() ) ) {
+						criteria.addOrder( Order.asc( sortColumn.getColumn() ) );
+					} else if ( "desc".equals( sortColumn.getDirection() ) ) {
+						criteria.addOrder( Order.desc( sortColumn.getColumn() ) );
+					}
 				}
 			}
 		}
@@ -523,29 +533,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			for ( String theSearch : StringUtils.split( options.getSearch().trim(), ' ' ) ) {
 				Disjunction disj = Restrictions.disjunction();
 				for ( String propertyName : options.getSearchColumns() ) {
-					boolean fail = false;
-					String propertyType = null;
-					try {
-						propertyType = classMetaData.getPropertyType( propertyName ).getName();
-					} catch ( QueryException e ) {
-						fail = true;
-					}
-					if ( fail ) {
-						// cast it to varchar to avoid errors
-						disj.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + theSearch + "%" ) );
-					} else {
-						if ( StringUtils.equalsIgnoreCase( propertyType, "integer" ) || StringUtils.equalsIgnoreCase( propertyType, "boolean" ) || StringUtils.equalsIgnoreCase( propertyType, "float" ) ) {
-							disj.add( new IntegerLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + theSearch + "%" ) );
-						} else if ( StringUtils.equalsIgnoreCase( propertyType, "date" ) || StringUtils.equalsIgnoreCase( propertyType, "time" ) || StringUtils.equalsIgnoreCase( propertyType, "timestamp" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar_date" ) ) {
-							disj.add( new DateLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + theSearch + "%", dialect ) );
-						} else if ( StringUtils.equalsIgnoreCase( propertyType, "string" ) ) {
-							disj.add( Restrictions.ilike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + theSearch + "%" ) );
-						} else {
-							log.error( propertyType + " not supported in individual likes for " + domainName + " : " + propertyName );
-							// cast it to varchar to avoid errors
-							disj.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + theSearch + "%" ) );
-						}
-					}
+					disj.add( createLikeCriterion( options, classMetaData, dialect, propertyName, theSearch ) );
 				}
 				criteria.add( disj );
 			}
@@ -560,69 +548,71 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	 */
 	public void addLikeCriteria( Criteria criteria, GenericDaoListOptions options, ClassMetadata classMetaData, Dialect dialect ) {
 		if ( options.getLikes() != null && !options.getLikes().isEmpty() ) {
-			Junction mainJunction = Restrictions.disjunction();
 			for ( String propertyName : options.getLikes().keySet() ) {
 
 				if ( options.getLikes().get( propertyName ) != null && !options.getLikes().get( propertyName ).isEmpty() ) {
 
-					boolean fail = false;
-					String propertyType = null;
-					try {
-						propertyType = classMetaData.getPropertyType( propertyName ).getName();
-					} catch ( QueryException e ) {
-						fail = true;
-					}
-
 					Disjunction disjunction = Restrictions.disjunction();
-					for ( Object value : options.getLikes().get( propertyName ) ) {
-						if ( fail ) {
-							// cast it to varchar to avoid errors
-							disjunction.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
-						} else {
-							if ( StringUtils.equalsIgnoreCase( propertyType, "integer" ) || StringUtils.equalsIgnoreCase( propertyType, "boolean" ) || StringUtils.equalsIgnoreCase( propertyType, "float" ) ) {
-								disjunction.add( new IntegerLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
-							} else if ( StringUtils.equalsIgnoreCase( propertyType, "date" ) || StringUtils.equalsIgnoreCase( propertyType, "time" ) || StringUtils.equalsIgnoreCase( propertyType, "timestamp" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar_date" ) ) {
-								disjunction.add( new DateLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%", dialect ) );
-							} else if ( StringUtils.equalsIgnoreCase( propertyType, "string" ) ) {
-								disjunction.add( Restrictions.ilike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
-							} else {
-								log.error( propertyType + " not supported in individual likes for " + domainName + " : " + propertyName );
-								// cast it to varchar to avoid errors
-								disjunction.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" ) );
+
+					if ( options.getPropertyNameMap() != null && options.getPropertyNameMap().get( propertyName ) != null && !options.getPropertyNameMap().get( propertyName ).isEmpty() ) {
+						for ( String alternate : options.getPropertyNameMap().get( propertyName ) ) {
+							for ( Object value : options.getLikes().get( propertyName ) ) {
+								disjunction.add( createLikeCriterion( options, classMetaData, dialect, alternate, value ) );
 							}
 						}
+					} else {
+						for ( Object value : options.getLikes().get( propertyName ) ) {
+							disjunction.add( createLikeCriterion( options, classMetaData, dialect, propertyName, value ) );
+						}
 					}
-					mainJunction.add( disjunction );
+
+					criteria.add( disjunction );
 				}
 			}
-			criteria.add( mainJunction );
 		} else if ( options.getIndividualLikes() != null && !options.getIndividualLikes().isEmpty() ) {
 			for ( String propertyName : options.getIndividualLikes().keySet() ) {
-				boolean fail = false;
-				String propertyType = null;
-				try {
-					propertyType = classMetaData.getPropertyType( propertyName ).getName();
-				} catch ( QueryException e ) {
-					fail = true;
-				}
-				if ( fail ) {
-					// cast it to varchar to avoid errors
-					criteria.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + options.getIndividualLikes().get( propertyName ) + "%" ) );
-				} else {
-					if ( StringUtils.equalsIgnoreCase( propertyType, "integer" ) || StringUtils.equalsIgnoreCase( propertyType, "boolean" ) || StringUtils.equalsIgnoreCase( propertyType, "float" ) ) {
-						criteria.add( new IntegerLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + options.getIndividualLikes().get( propertyName ) + "%" ) );
-					} else if ( StringUtils.equalsIgnoreCase( propertyType, "date" ) || StringUtils.equalsIgnoreCase( propertyType, "time" ) || StringUtils.equalsIgnoreCase( propertyType, "timestamp" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar_date" ) ) {
-						criteria.add( new DateLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + options.getIndividualLikes().get( propertyName ) + "%", dialect ) );
-					} else if ( StringUtils.equalsIgnoreCase( propertyType, "string" ) ) {
-						criteria.add( Restrictions.ilike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + options.getIndividualLikes().get( propertyName ) + "%" ) );
-					} else {
-						log.error( propertyType + " not supported in individual likes for " + domainName + " : " + propertyName );
-						// cast it to varchar to avoid errors
-						criteria.add( new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + options.getIndividualLikes().get( propertyName ) + "%" ) );
-					}
-				}
+				criteria.add( createLikeCriterion( options, classMetaData, dialect, propertyName, options.getIndividualLikes().get( propertyName ) ) );
 			}
 		}
+	}
+
+	/**
+	 * @param options
+	 * @param classMetaData
+	 * @param dialect
+	 * @param propertyName
+	 * @param value
+	 * @return {@link Criterion}
+	 */
+	private Criterion createLikeCriterion( GenericDaoListOptions options, ClassMetadata classMetaData, Dialect dialect, String propertyName, Object value ) {
+
+		boolean fail = false;
+		String propertyType = null;
+		try {
+			propertyType = classMetaData.getPropertyType( propertyName ).getName();
+		} catch ( QueryException e ) {
+			fail = true;
+		}
+
+		Criterion criterion = null;
+		if ( fail ) {
+			// cast it to varchar to avoid errors
+			criterion = new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
+		} else {
+			if ( StringUtils.equalsIgnoreCase( propertyType, "integer" ) || StringUtils.equalsIgnoreCase( propertyType, "boolean" ) || StringUtils.equalsIgnoreCase( propertyType, "float" ) ) {
+				criterion = new IntegerLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
+			} else if ( StringUtils.equalsIgnoreCase( propertyType, "date" ) || StringUtils.equalsIgnoreCase( propertyType, "time" ) || StringUtils.equalsIgnoreCase( propertyType, "timestamp" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar" ) || StringUtils.equalsIgnoreCase( propertyType, "calendar_date" ) ) {
+				criterion = new DateLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%", dialect );
+			} else if ( StringUtils.equalsIgnoreCase( propertyType, "string" ) ) {
+				criterion = Restrictions.ilike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
+			} else {
+				log.error( propertyType + " not supported in individual likes for " + domainName + " : " + propertyName );
+				// cast it to varchar to avoid errors
+				criterion = new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
+			}
+		}
+
+		return criterion;
 	}
 
 	@Transactional( readOnly = true )
