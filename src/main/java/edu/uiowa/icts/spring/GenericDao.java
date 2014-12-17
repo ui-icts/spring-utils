@@ -571,7 +571,15 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			}
 		} else if ( options.getIndividualLikes() != null && !options.getIndividualLikes().isEmpty() ) {
 			for ( String propertyName : options.getIndividualLikes().keySet() ) {
-				criteria.add( createLikeCriterion( options, classMetaData, dialect, propertyName, options.getIndividualLikes().get( propertyName ) ) );
+				if ( options.getPropertyNameMap() != null && options.getPropertyNameMap().get( propertyName ) != null && !options.getPropertyNameMap().get( propertyName ).isEmpty() ) {
+					Disjunction disjunction = Restrictions.disjunction();
+					for ( String alternate : options.getPropertyNameMap().get( propertyName ) ) {
+						disjunction.add( createLikeCriterion( options, classMetaData, dialect, alternate, options.getIndividualLikes().get( propertyName ) ) );
+					}
+					criteria.add( disjunction );
+				} else {
+					criteria.add( createLikeCriterion( options, classMetaData, dialect, propertyName, options.getIndividualLikes().get( propertyName ) ) );
+				}
 			}
 		}
 	}
