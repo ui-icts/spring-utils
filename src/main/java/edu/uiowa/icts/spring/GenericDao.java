@@ -73,9 +73,9 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			criteria.setMaxResults( limit == null ? 25 : limit );
 			return criteria.list();
 		} catch ( HibernateException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		}
 		return null;
 	}
@@ -122,21 +122,21 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 
 	@Transactional
 	public long count() {
-		long val = (Long) getSession().createQuery( "select count(*) from " + domainName ).uniqueResult();
+		long val = (Long) getSession().createQuery( "select count(*) from " + getDomainName() ).uniqueResult();
 		return val;
 	}
 
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public void delete( int id ) {
-		Type obj = (Type) getSession().get( domainName, id );
+		Type obj = (Type) getSession().get( getDomainName(), id );
 		getSession().delete( obj );
 	}
 
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public void delete( long id ) {
-		Type obj = (Type) getSession().get( domainName, id );
+		Type obj = (Type) getSession().get( getDomainName(), id );
 		getSession().delete( obj );
 	}
 
@@ -157,11 +157,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public Type findByProperty( String propertyName, Object value ) {
 		Type ob = null;
 		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( domainName ) );
+			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			criteria.add( Restrictions.eq( propertyName, value ) );
 			ob = (Type) criteria.uniqueResult();
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		}
 		return ob;
 	}
@@ -178,13 +178,13 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public Type findByProperties( HashMap<String, Object> propertyValues ) {
 		Type theThing = null;
 		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( domainName ) );
+			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			for ( String prp : propertyValues.keySet() ) {
 				criteria.add( Restrictions.eq( prp, propertyValues.get( prp ) ) );
 			}
 			theThing = (Type) criteria.uniqueResult();
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		}
 		return theThing;
 	}
@@ -193,11 +193,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public Integer countByProperty( String propertyName, Object value ) {
 		Integer count = 0;
 		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( domainName ) );
+			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			criteria.add( Restrictions.eq( propertyName, value ) );
 			count = ( (Number) criteria.setProjection( Projections.rowCount() ).uniqueResult() ).intValue();
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		}
 		return count;
 	}
@@ -207,11 +207,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public List<Type> listByProperty( String propertyName, Object value ) {
 		List<Type> list = null;
 		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( domainName ) );
+			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			criteria.add( Restrictions.eq( propertyName, value ) );
 			list = (List<Type>) criteria.list();
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		}
 		return list;
 	}
@@ -220,13 +220,13 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public Integer countByProperties( HashMap<String, Object> propertyValues ) {
 		Integer count = 0;
 		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( domainName ) );
+			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			for ( String prp : propertyValues.keySet() ) {
 				criteria.add( Restrictions.eq( prp, propertyValues.get( prp ) ) );
 			}
 			count = ( (Number) criteria.setProjection( Projections.rowCount() ).uniqueResult() ).intValue();
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		}
 		return count;
 	}
@@ -236,13 +236,13 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public List<Type> listByProperties( HashMap<String, Object> propertyValues ) {
 		List<Type> list = null;
 		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( domainName ) );
+			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			for ( String prp : propertyValues.keySet() ) {
 				criteria.add( Restrictions.eq( prp, propertyValues.get( prp ) ) );
 			}
 			list = (List<Type>) criteria.list();
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + domainName, e );
+			log.error( "error creating criteria for class " + getDomainName(), e );
 		}
 		return list;
 	}
@@ -394,7 +394,14 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 
 	@Transactional( readOnly = true )
 	public Integer count( GenericDaoListOptions options ) {
-		return ( (Number) criteria( options ).setProjection( Projections.rowCount() ).uniqueResult() ).intValue();
+		Criteria criteria = criteria( options );
+		criteria.setProjection( Projections.rowCount() );
+		Object result = criteria.uniqueResult();
+		if ( result == null ) {
+			log.debug( "count result is null for " + getDomainName() );
+			return 0;
+		}
+		return ( (Number) result ).intValue();
 	}
 
 	@SuppressWarnings( "unchecked" )
@@ -425,18 +432,18 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		try {
 
 			if ( options.getAlias() != null && !StringUtils.equals( options.getAlias().trim(), "" ) ) {
-				criteria = getSession().createCriteria( Class.forName( domainName ), options.getAlias().trim() );
+				criteria = getSession().createCriteria( Class.forName( getDomainName() ), options.getAlias().trim() );
 			} else {
-				criteria = getSession().createCriteria( Class.forName( domainName ) );
+				criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			}
 
 			Dialect dialect = ( (SessionFactoryImplementor) getSessionFactory() ).getDialect();
-			ClassMetadata classMetaData = getSessionFactory().getClassMetadata( Class.forName( domainName ) );
+			ClassMetadata classMetaData = getSessionFactory().getClassMetadata( Class.forName( getDomainName() ) );
 
 			applyGenericDaoListOptions( criteria, options, classMetaData, dialect );
 
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error listing " + domainName, e );
+			log.error( "error listing " + getDomainName(), e );
 		}
 
 		return criteria;
@@ -596,10 +603,21 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 
 		boolean fail = false;
 		String propertyType = null;
-		try {
-			propertyType = classMetaData.getPropertyType( propertyName ).getName();
-		} catch ( QueryException e ) {
+		if ( classMetaData == null ) {
+			log.debug( "classMetaData is null for " + getDomainName() );
 			fail = true;
+		} else {
+			try {
+				org.hibernate.type.Type propertyTypeOb = classMetaData.getPropertyType( propertyName );
+				if ( propertyTypeOb != null ) {
+					propertyType = propertyTypeOb.getName();
+				} else {
+					log.debug( "property type is null for " + propertyName );
+					fail = true;
+				}
+			} catch ( QueryException e ) {
+				fail = true;
+			}
 		}
 
 		Criterion criterion = null;
@@ -614,7 +632,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			} else if ( StringUtils.equalsIgnoreCase( propertyType, "string" ) ) {
 				criterion = Restrictions.ilike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
 			} else {
-				log.error( propertyType + " not supported in individual likes for " + domainName + " : " + propertyName );
+				log.error( propertyType + " not supported in individual likes for " + getDomainName() + " : " + propertyName );
 				// cast it to varchar to avoid errors
 				criterion = new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
 			}
@@ -661,7 +679,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public List<Type> listOrdered( String order, String direction ) {
 		Criteria criteria = null;
 		try {
-			criteria = getSession().createCriteria( Class.forName( domainName ) );
+			criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
 			if ( "desc".equalsIgnoreCase( direction ) ) {
 				criteria.addOrder( Order.desc( order ) );
 			} else {

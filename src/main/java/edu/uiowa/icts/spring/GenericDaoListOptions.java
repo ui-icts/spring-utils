@@ -227,4 +227,9 @@ public class GenericDaoListOptions {
 	public void setPropertyNameMap( Map<String, List<String>> propertyNameMap ) {
 		this.propertyNameMap = propertyNameMap;
 	}
+
+	@Override
+	public String toString() {
+		return "GenericDaoListOptions [alias=" + alias + ", columns=" + columns + ", start=" + start + ", limit=" + limit + ", search=" + search + ", searchColumns=" + searchColumns + ", sorts=" + sorts + ", likes=" + likes + ", individualLikes=" + individualLikes + ", individualEquals=" + individualEquals + ", notEquals=" + notEquals + ", doubleWildCard=" + doubleWildCard + ", propertyNameMap=" + propertyNameMap + ", junctions=" + junctions + ", aliases=" + aliases + "]";
+	}
 }

@@ -48,4 +48,9 @@ public class SortColumn {
 		}
 		this.direction = direction;
 	}
+
+	@Override
+	public String toString() {
+		return "SortColumn [column=" + column + ", direction=" + direction + "]";
+	}
 }
