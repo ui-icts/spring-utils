@@ -396,12 +396,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public Integer count( GenericDaoListOptions options ) {
 		Criteria criteria = criteria( options );
 		criteria.setProjection( Projections.rowCount() );
-		Object result = criteria.uniqueResult();
-		if ( result == null ) {
-			log.debug( "count result is null for " + getDomainName() );
-			return 0;
-		}
-		return ( (Number) result ).intValue();
+		return ( (Number) criteria.uniqueResult() ).intValue();
 	}
 
 	@SuppressWarnings( "unchecked" )
@@ -496,13 +491,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public void addSorts( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getSorts() != null ) {
 			for ( SortColumn sortColumn : options.getSorts() ) {
-
-				log.debug( sortColumn );
-
 				if ( options.getPropertyNameMap() != null && options.getPropertyNameMap().get( sortColumn.getColumn() ) != null && !options.getPropertyNameMap().get( sortColumn.getColumn() ).isEmpty() ) {
-
-					log.debug( sortColumn + " has map" );
-
 					for ( String alternateName : options.getPropertyNameMap().get( sortColumn.getColumn() ) ) {
 						if ( "asc".equals( sortColumn.getDirection() ) ) {
 							criteria.addOrder( Order.asc( alternateName ) );
@@ -511,9 +500,6 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 						}
 					}
 				} else {
-
-					log.debug( sortColumn + " no property map" );
-
 					if ( "asc".equals( sortColumn.getDirection() ) ) {
 						criteria.addOrder( Order.asc( sortColumn.getColumn() ) );
 					} else if ( "desc".equals( sortColumn.getDirection() ) ) {
