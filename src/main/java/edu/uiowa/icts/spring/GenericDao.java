@@ -496,8 +496,14 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	public void addSorts( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getSorts() != null ) {
 			for ( SortColumn sortColumn : options.getSorts() ) {
-				if ( options.getPropertyNameMap() != null && options.getPropertyNameMap().get( sortColumn ) != null && !options.getPropertyNameMap().get( sortColumn ).isEmpty() ) {
-					for ( String alternateName : options.getPropertyNameMap().get( sortColumn ) ) {
+
+				log.debug( sortColumn );
+
+				if ( options.getPropertyNameMap() != null && options.getPropertyNameMap().get( sortColumn.getColumn() ) != null && !options.getPropertyNameMap().get( sortColumn.getColumn() ).isEmpty() ) {
+
+					log.debug( sortColumn + " has map" );
+
+					for ( String alternateName : options.getPropertyNameMap().get( sortColumn.getColumn() ) ) {
 						if ( "asc".equals( sortColumn.getDirection() ) ) {
 							criteria.addOrder( Order.asc( alternateName ) );
 						} else if ( "desc".equals( sortColumn.getDirection() ) ) {
@@ -505,6 +511,9 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 						}
 					}
 				} else {
+
+					log.debug( sortColumn + " no property map" );
+
 					if ( "asc".equals( sortColumn.getDirection() ) ) {
 						criteria.addOrder( Order.asc( sortColumn.getColumn() ) );
 					} else if ( "desc".equals( sortColumn.getDirection() ) ) {
