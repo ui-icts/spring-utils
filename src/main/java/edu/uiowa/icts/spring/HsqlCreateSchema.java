@@ -44,7 +44,7 @@ public class HsqlCreateSchema {
 		try {
 
 			conn = DriverManager.getConnection( url, "sa", "" );
-			
+
 			for ( String schema : schemas ) {
 				log.debug( "Checking to see if " + schema + " exist" );
 				Statement checkst = conn.createStatement();
@@ -59,7 +59,7 @@ public class HsqlCreateSchema {
 				}
 				checkst.close();
 
-				if ( exists ){
+				if ( exists ) {
 					log.debug( "Schema " + schema + " exists...not creating" );
 				} else {
 					log.debug( "Creating schema :" + schema );
