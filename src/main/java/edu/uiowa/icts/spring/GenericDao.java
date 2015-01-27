@@ -451,6 +451,15 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		addLikeCriteria( criteria, options, classMetaData, dialect );
 		addNotEquals( criteria, options );
 		addSearchCriteria( criteria, options, classMetaData, dialect );
+		addCriterion( criteria, options );
+	}
+
+	private void addCriterion( Criteria criteria, GenericDaoListOptions options ) {
+		if ( options.getCriterion() != null && !options.getCriterion().isEmpty() ) {
+			for ( Criterion criterion : options.getCriterion() ) {
+				criteria.add( criterion );
+			}
+		}
 	}
 
 	public void addNotEquals( Criteria criteria, GenericDaoListOptions options ) {

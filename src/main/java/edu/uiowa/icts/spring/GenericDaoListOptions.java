@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.criterion.Conjunction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Junction;
 
@@ -28,24 +29,22 @@ public class GenericDaoListOptions {
 	private Map<String, Object> individualEquals = null;
 	private Map<String, Object> notEquals = null;
 	private boolean doubleWildCard = true;
-
 	private Map<String, List<String>> propertyNameMap = null;
-
-	@SuppressWarnings( "unused" )
-	private List<Disjunction> disjunctions = null;
-
-	@SuppressWarnings( "unused" )
-	private List<Conjunction> conjunctions = null;
-
 	private List<Junction> junctions = null;
-
 	private List<Alias> aliases = null;
+	private List<Criterion> criterion = null;
 
 	@SuppressWarnings( "rawtypes" )
 	private List<Class> detached = null;
 
 	@SuppressWarnings( "rawtypes" )
 	private Class transformation = null;
+
+	@SuppressWarnings( "unused" )
+	private List<Disjunction> disjunctions = null;
+
+	@SuppressWarnings( "unused" )
+	private List<Conjunction> conjunctions = null;
 
 	public Integer getStart() {
 		return start;
@@ -228,8 +227,16 @@ public class GenericDaoListOptions {
 		this.propertyNameMap = propertyNameMap;
 	}
 
+	public List<Criterion> getCriterion() {
+		return criterion;
+	}
+
+	public void setCriterion( List<Criterion> criterion ) {
+		this.criterion = criterion;
+	}
+
 	@Override
 	public String toString() {
-		return "GenericDaoListOptions [alias=" + alias + ", columns=" + columns + ", start=" + start + ", limit=" + limit + ", search=" + search + ", searchColumns=" + searchColumns + ", sorts=" + sorts + ", likes=" + likes + ", individualLikes=" + individualLikes + ", individualEquals=" + individualEquals + ", notEquals=" + notEquals + ", doubleWildCard=" + doubleWildCard + ", propertyNameMap=" + propertyNameMap + ", junctions=" + junctions + ", aliases=" + aliases + "]";
+		return "GenericDaoListOptions [alias=" + alias + ", columns=" + columns + ", start=" + start + ", limit=" + limit + ", search=" + search + ", searchColumns=" + searchColumns + ", sorts=" + sorts + ", likes=" + likes + ", individualLikes=" + individualLikes + ", individualEquals=" + individualEquals + ", notEquals=" + notEquals + ", doubleWildCard=" + doubleWildCard + ", propertyNameMap=" + propertyNameMap + ", junctions=" + junctions + ", aliases=" + aliases + ", criterion=" + criterion + "]";
 	}
 }
