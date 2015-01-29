@@ -520,8 +520,6 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	/**
-	 * @author rrlorent
-	 * @date May 23, 2014
 	 * @param criteria
 	 * @param options
 	 */
