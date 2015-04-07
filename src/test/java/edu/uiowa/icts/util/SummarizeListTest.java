@@ -2,11 +2,20 @@ package edu.uiowa.icts.util;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
 
 public class SummarizeListTest {
@@ -219,6 +228,61 @@ public class SummarizeListTest {
 		List<String> values = Arrays.asList(new String[]{"a","b","c","d","a","a","e","e","d"});
 		SummarizeList sl = new SummarizeList(values, null,3);
 		assertEquals("Categorical: {a=3, d=2, e=2}", sl.getSummary());
+	}
+	
+	@Test
+	public void getSummaryShouldReturnACountOfStringsWithSpaces(){
+		List<String> values = Arrays.asList(new String[]{"Distant Recurrence","Distant Recurrence","Distant Recurrence","Distant site"});
+		SummarizeList sl = new SummarizeList(values, null,2);
+		assertEquals("Categorical: {Distant Recurrence=3, Distant site=1}", sl.getSummary());
+	}
+	
+	@Test
+	public void getSummaryShouldReturnACountOfStringsWithSpacesWithKnownError(){
+		List<String> values = Arrays.asList(new String[]{"LIVING","LIVING","LIVING",null,null,"DECEASED"});
+		SummarizeList sl = new SummarizeList(values, null,2);
+		assertEquals("Categorical: {LIVING=3, DECEASED=1}", sl.getSummary());
+	}
+	
+	@Test
+	public void getSummaryShouldReturnACountOfStringsWithSpacesWithKnownErrorTwo(){
+		List<String> values = Arrays.asList(new String[]{"TCGA-GU-A42P-01A-11W-A25W-08","TCGA-DK-A1AD-10A-01W-A14T-08","TCGA-DK-A1AD-01A-11W-A14T-08",
+				"TCGA-FD-A3B3-10A-01W-A217-08","TCGA-GU-A42P-10A-01W-A25W-08"});
+
+		SummarizeList sl = new SummarizeList(values, null,2);
+		assertEquals("Identifier: {# of Unique ID's = 5}", sl.getSummary());
+	}
+	
+	@Test
+	public void getSummeryFromCSVFile() throws IOException{
+		File file = new File("src/test/resources/ClinicalData-BLCA-table.csv");
+	    assertTrue(file.isFile());
+		Reader in  = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withHeader("barcode","Clinical:days_to_death","Clinical:vital_status","Clinical:anatomic_treatment_site","Clinical:bcr_aliquot_barcode","Clinical:bcr_radiation_barcode","Clinical:bcr_radiation_uuid","Clinical:analyte_type").withSkipHeaderRecord(true).parse(in);
+		
+		List<String> values = new ArrayList<String>();
+		List<String> barcodeValues = new ArrayList<String>();
+		List<String> vitalStatus = new ArrayList<String>();
+
+		for(CSVRecord record : records){
+			values.add(record.get("Clinical:bcr_aliquot_barcode"));
+			barcodeValues.add(record.get("barcode"));
+			vitalStatus.add(record.get("Clinical:vital_status"));
+		}
+		SummarizeList sl = new SummarizeList(values, null,2);
+		assertEquals("Identifier: {# of Unique ID's = ".concat(new Integer(values.size()).toString()).concat("}"), sl.getSummary());
+		
+		sl = new SummarizeList(barcodeValues, null,2);
+		assertEquals("Identifier: {# of Unique ID's = ".concat(new Integer(barcodeValues.size()).toString()).concat("}"), sl.getSummary());
+		
+		sl = new SummarizeList(vitalStatus, null,2);
+		assertEquals("Categorical: {LIVING=94, DECEASED=34}", sl.getSummary());
+	}
+	
+	@Test
+	public void getSummeryShouldReturnNullWhenNoDataIsPassed(){
+		SummarizeList sl = new SummarizeList(null, null,2);
+		assertNull(sl.getSummary());
 	}
 }
 
