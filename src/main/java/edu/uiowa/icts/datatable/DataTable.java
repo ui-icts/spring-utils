@@ -2,6 +2,7 @@ package edu.uiowa.icts.datatable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +24,11 @@ public class DataTable {
 
 	@JsonProperty("recordsFiltered")
 	private Integer recordsFiltered;
+	
 	@JsonProperty("data")
-	private List<List<String>> data = new ArrayList<List<String>>();
+	private List<LinkedHashMap<String, String>> data = new ArrayList<LinkedHashMap<String, String>>();
+	//private List<List<String>> data = new ArrayList<List<String>>();
+	
 	@JsonProperty("draw")
 	private String draw;
 	
@@ -60,7 +64,7 @@ public class DataTable {
 	 * @return The data
 	 */
 	@JsonProperty("data")
-	public List<List<String>> getData() {
+	public List<LinkedHashMap<String, String>> getData() {
 		return data;
 	}
 
@@ -70,7 +74,7 @@ public class DataTable {
 	 *            The data
 	 */
 	@JsonProperty("data")
-	public void setData(List<List<String>> data) {
+	public void setData(List<LinkedHashMap<String, String>> data) {
 		this.data = data;
 	}
 
