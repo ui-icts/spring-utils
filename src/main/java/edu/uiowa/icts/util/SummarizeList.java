@@ -94,8 +94,10 @@ public class SummarizeList {
 	public HashMap<String, Integer> categoryCount() {
 		HashMap<String, Integer> h = new HashMap<String, Integer>();
 		for ( String i : this.getValuesWithIgnoredRemoved() ) {
-				Integer prev = h.get( i );
-				h.put( i, prev == null ? 1 : prev + 1 );
+				if(i!= null && !i.equals("null")){
+					Integer prev = h.get( i );
+					h.put( i, (prev == null) ? 1 : prev + 1 );
+				}
 		}
 		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(
 			h.entrySet() );
@@ -140,7 +142,7 @@ public class SummarizeList {
 		if ( l.size() == 0 )
 			return null;
 		Collections.sort( l );
-		return l.get( l.size() - 1 );
+		return l.get(l.size() - 1 );
 	}
 
 	// Max values of list
@@ -212,21 +214,27 @@ public class SummarizeList {
 			return "Numeric: " + numericSummary();
 		else {
 			Map<String, Integer> catCount = categoryCount();
-			return (catCount.size() == this.getValuesWithIgnoredRemoved().size()) ? "Identifier: {# of Unique ID's = "
-				+ this.getValuesWithIgnoredRemoved().size() + "}"
-				: "Categorical: " + catCount;
+			if(catCount.size()>0){
+				return (catCount.values().toArray()[0].equals(1)) ? "Identifier: {# of Unique ID's = "
+					+ this.getValuesWithIgnoredRemoved().size() + "}"
+					: "Categorical: " + catCount;
+			}
 		}
+		return null;
 	}
 
 	public List<String> getValuesWithIgnoredRemoved(){
 		List<String> values = new ArrayList<String>();
-		for(String s : this.values){
-			if(this.ignored== null){values.add(s);}
-			else if(!this.ignored.contains(s)){
-				values.add(s);
+		if(this.values != null){
+			for(String s : this.values){
+				if(this.ignored== null){values.add(s);}
+				else if(!this.ignored.contains(s)){
+					values.add(s);
+				}
 			}
+			return values;
 		}
-		return values;
+		return new ArrayList<String>();
 	}
 
 	public int getMaxNumberOfTextResults() {
