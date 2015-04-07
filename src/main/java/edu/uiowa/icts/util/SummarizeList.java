@@ -4,95 +4,83 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SummarizeList {
 
-	private List<String> currentList;
-	private HashMap<String, Boolean> ignoredValues;
+	//three new values
+	private List<String> values;
+	private List<String> ignored;
+	private int maxNumberOfTextResults;
+	
+	public SummarizeList() {}
 
-	public SummarizeList() {
-		currentList = new ArrayList<String>();
-		ignoredValues = new HashMap<String, Boolean>();
+	public SummarizeList(List<String> values, List<String> ignored,
+			int maxNumberOfTextResults) {
+		this.values = values;
+		this.ignored = ignored;
+		this.maxNumberOfTextResults = maxNumberOfTextResults;
+		
 	}
 
 	// Define list of strings to be processed
-	public void setList( List<String> in ) {
-		currentList = in;
+	public void setList( List<String> values ) {
+		this.values = values;
 	}
 
 	// Define list of values which should be ignored in all processing steps
-
-	// Assuming consecutive calls will erase each other...
 	public void setIgnoreList( List<String> ignore ) {
-		ignoredValues = new HashMap<String, Boolean>();
-		for ( String i : ignore ) {
-			ignoredValues.put( i, Boolean.TRUE );
-		}
+		this.ignored = ignore;
 	}
 
-	// For the given list, if 40% of the values are integers, the list is an
-	// Integer List
-	// Skip any values in the ignore list
+	// For the given list, if 40% of the values are integers, the list is an Integer List
 	public boolean isInteger() {
 		int total = 0;
-		for ( String i : currentList ) {
-			if ( !ignoredValues.containsKey( i ) ) {
+		for ( String i : this.getValuesWithIgnoredRemoved() ) {
 				try {
 					Integer.parseInt( i );
 					total++;
-				} catch ( Exception e ) {
-
-				}
+				} catch ( Exception e ) {	
 			}
 		}
-		return ( (float) total ) / ( currentList.size() - ignoredValues.size() ) >= .4;
+		return ( (float) total ) / ( this.getValuesWithIgnoredRemoved().size() ) >= .4;
 	}
 
 	// Return list as Integers, skipping null and ignore
 	public List<Integer> asInteger() {
 		List<Integer> r = new ArrayList<Integer>();
-		for ( String i : currentList ) {
-			if ( !ignoredValues.containsKey( i ) ) {
+		for ( String i : this.getValuesWithIgnoredRemoved() ) {
 				try {
 					r.add( Integer.parseInt( i ) );
 				} catch ( Exception e ) {
-
-				}
 			}
 		}
 		return r;
 	}
 
-	// For the given list, if 40% of the values are Float, the list is an Float
-	// List
+	// For the given list, if 40% of the values are Float, the list is an Float List
 	public boolean isFloat() {
 		int total = 0;
-		for ( String i : currentList ) {
-			if ( !ignoredValues.containsKey( i ) ) {
-				try {
-					Float.parseFloat( i );
-					total++;
-				} catch ( Exception e ) {
-
+		for (String i : this.getValuesWithIgnoredRemoved()) {
+			try {
+				Float.parseFloat( i );
+				total++;
+			} catch ( Exception e ) {
 				}
-			}
 		}
-		return ( (float) total ) / ( currentList.size() - ignoredValues.size() ) >= .4;
+		return ( (float) total ) / (this.getValuesWithIgnoredRemoved().size() ) >= .4;
 	}
 
 	// Return list as Float, skipping null and ignore
 	public List<Float> asFloat() {
 		List<Float> r = new ArrayList<Float>();
-		for ( String i : currentList ) {
-			if ( !ignoredValues.containsKey( i ) ) {
+		for ( String i : this.getValuesWithIgnoredRemoved() ) {
 				try {
 					r.add( Float.parseFloat( i ) );
 				} catch ( Exception e ) {
-
-				}
 			}
 		}
 		return r;
@@ -101,18 +89,13 @@ public class SummarizeList {
 	// for each string in list get count of that value
 	// in(foo,bar,bar,foo,foo,null)
 	// out(foo 3, bar 2, null 1)
-	public HashMap<String, Integer> categoryCount() {
-		return categoryCount( currentList.size() );
-	}
 
 	// Only return Top n categories
-	public HashMap<String, Integer> categoryCount( int top_num ) {
+	public HashMap<String, Integer> categoryCount() {
 		HashMap<String, Integer> h = new HashMap<String, Integer>();
-		for ( String i : currentList ) {
-			if ( !ignoredValues.containsKey( i ) ) {
+		for ( String i : this.getValuesWithIgnoredRemoved() ) {
 				Integer prev = h.get( i );
 				h.put( i, prev == null ? 1 : prev + 1 );
-			}
 		}
 		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(
 			h.entrySet() );
@@ -125,7 +108,7 @@ public class SummarizeList {
 		} );
 
 		HashMap<String, Integer> r = new LinkedHashMap<String, Integer>();
-		for ( int i = 0; i < top_num && i < list.size(); i++ ) {
+		for ( int i = 0; i < this.maxNumberOfTextResults && i < list.size(); i++ ) {
 			Map.Entry<String, Integer> e = list.get( i );
 			r.put( e.getKey(), e.getValue() );
 		}
@@ -172,13 +155,14 @@ public class SummarizeList {
 	// Avg values of list
 	public Float avgFloat() {
 		List<Float> l = asFloat();
-		if ( l.size() == 0 )
-			return null;
-		float total = 0;
-		for ( Float f : l ) {
-			total += f;
+		if ( l.size() > 0 ){
+			float total = 0;
+			for ( Float f : l ) {
+				total += f;
+			}
+			return total / l.size();
 		}
-		return total / l.size();
+		return null;
 	}
 
 	// avg values of list
@@ -217,7 +201,7 @@ public class SummarizeList {
 		HashMap<String, Float> ret = summaryFloat();
 		StringBuffer sb = new StringBuffer();
 		for ( String s : ret.keySet() ) {
-			sb.append( ( sb.length() > 1 ? "\n" : "" + s + ": " + ret.get( s ) ) );
+			sb.append( (( sb.length() > 1) ? "\n" : ("" + s + ": " + ret.get( s ) )) );
 		}
 		return ret.toString();
 
@@ -228,9 +212,30 @@ public class SummarizeList {
 			return "Numeric: " + numericSummary();
 		else {
 			Map<String, Integer> catCount = categoryCount();
-			return catCount.size() == currentList.size() - ignoredValues.size() ? "Identifier: {# of Unique ID's = "
-				+ currentList.size() + "}"
+			return (catCount.size() == this.getValuesWithIgnoredRemoved().size()) ? "Identifier: {# of Unique ID's = "
+				+ this.getValuesWithIgnoredRemoved().size() + "}"
 				: "Categorical: " + catCount;
 		}
 	}
+
+	public List<String> getValuesWithIgnoredRemoved(){
+		List<String> values = new ArrayList<String>();
+		for(String s : this.values){
+			if(this.ignored== null){values.add(s);}
+			else if(!this.ignored.contains(s)){
+				values.add(s);
+			}
+		}
+		return values;
+	}
+
+	public int getMaxNumberOfTextResults() {
+		return maxNumberOfTextResults;
+	}
+
+	public void setMaxNumberOfTextResults(int maxNumberOfTextResults) {
+		this.maxNumberOfTextResults = maxNumberOfTextResults;
+	}
+	
+	
 }
