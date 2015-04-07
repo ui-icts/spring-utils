@@ -88,6 +88,7 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
+		
 		String file_name = getDatasetName();
 		if ( !isUseAltData() ) {
 			file_name = properties.getProperty( "dataset.file.name", "dataset.xml" );
@@ -96,10 +97,18 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 		log.debug( "loading " + file_name + " as data set" );
 
 		InputStream in = this.getClass().getClassLoader().getResourceAsStream( file_name );
+		
 		FlatXmlDataSetBuilder fxdsb = new FlatXmlDataSetBuilder();
 		fxdsb.setCaseSensitiveTableNames( false );
 		fxdsb.setColumnSensing( true );
-		IDataSet datset = fxdsb.build( in );
+
+		IDataSet datset;
+		try {
+			datset = fxdsb.build( in );
+		} finally {
+			in.close();
+		}
+
 		return datset;
 	}
 
