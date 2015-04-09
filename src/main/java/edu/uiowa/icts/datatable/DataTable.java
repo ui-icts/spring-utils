@@ -65,8 +65,13 @@ public class DataTable {
 	 */
 	@JsonProperty("data")
 	public List<LinkedHashMap<String, String>> getData() {
-		return data;
+		if (data.size() > 0) { 
+			return data;
+		} else {
+			return null;
+		}
 	}
+
 
 	/**
 	 * 
