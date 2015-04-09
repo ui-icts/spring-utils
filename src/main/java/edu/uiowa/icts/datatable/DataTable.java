@@ -140,7 +140,7 @@ public class DataTable {
 	 * 
 	 * @return The error
 	 */
-	@JsonProperty("errror")
+	@JsonProperty("error")
 	public String getError() {
 		return error;
 	}
