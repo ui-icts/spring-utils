@@ -1,0 +1,308 @@
+barcode,Clinical:days_to_death,Clinical:vital_status,Clinical:anatomic_treatment_site,Clinical:bcr_aliquot_barcode,Clinical:bcr_radiation_barcode,Clinical:bcr_radiation_uuid,Clinical:analyte_type
+TCGA-GU-A42P:t,[Not Applicable],LIVING,null,TCGA-GU-A42P-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AD:n,[Not Applicable],LIVING,null,TCGA-DK-A1AD-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AD:t,null,null,null,TCGA-DK-A1AD-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B3:n,null,null,null,TCGA-FD-A3B3-10A-01W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GU-A42P:n,null,null,null,TCGA-GU-A42P-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47X:n,null,null,null,TCGA-CF-A47X-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B3:t,[Not Applicable],LIVING,null,TCGA-FD-A3B3-01A-12W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20W:n,null,null,null,TCGA-BT-A20W-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47X:t,null,null,null,TCGA-CF-A47X-01A-31W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3RB:n,null,null,null,TCGA-GC-A3RB-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20O:t,370,DECEASED,null,TCGA-BT-A20O-01A-21W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43S:t,null,null,null,TCGA-FD-A43S-01A-21W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42E:t,null,null,null,TCGA-BT-A42E-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3RB:t,[Not Applicable],LIVING,null,TCGA-GC-A3RB-01A-12W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20W:t,254,DECEASED,null,TCGA-BT-A20W-01A-21W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43S:n,null,null,null,TCGA-FD-A43S-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42E:n,null,null,null,TCGA-BT-A42E-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IK:n,null,null,null,TCGA-DK-A3IK-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I6:t,null,null,null,TCGA-DK-A2I6-01A-12W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SM:n,null,null,null,TCGA-FD-A3SM-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20N:n,null,null,null,TCGA-BT-A20N-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F7:t,62,DECEASED,null,TCGA-C4-A0F7-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I6:n,[Not Applicable],LIVING,null,TCGA-DK-A2I6-10A-01W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3X1:n,null,null,null,TCGA-DK-A3X1-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FJ-A3Z7:n,null,null,null,TCGA-FJ-A3Z7-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F7:n,null,null,null,TCGA-C4-A0F7-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IS:t,[Not Applicable],LIVING,null,TCGA-DK-A3IS-01A-21W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3N5:t,[Not Applicable],LIVING,null,TCGA-FD-A3N5-01A-11W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3N5:n,null,null,null,TCGA-FD-A3N5-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3X1:t,null,null,null,TCGA-DK-A3X1-01A-12W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FJ-A3Z7:t,null,null,null,TCGA-FJ-A3Z7-01A-12W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A0YO:t,149,DECEASED,null,TCGA-CU-A0YO-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IS:n,null,null,null,TCGA-DK-A3IS-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3WX:n,null,null,null,TCGA-DK-A3WX-10A-01W-A23E-08,TCGA-DK-A3WX-R34803,1F675BD6-ADA8-4F42-9218-E1B71A173BB2,Repli-G (Qiagen) DNA
+TCGA-DK-A3IK:t,[Not Applicable],LIVING,null,TCGA-DK-A3IK-01A-32W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-E7-A3X6:t,[Not Applicable],LIVING,null,TCGA-E7-A3X6-01A-12W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QK:n,null,null,null,TCGA-GV-A3QK-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A0YO:n,null,null,null,TCGA-CU-A0YO-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SM:t,[Not Applicable],LIVING,null,TCGA-FD-A3SM-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3WX:t,321,DECEASED,Distant Recurrence,TCGA-DK-A3WX-01A-22W-A23E-08,TCGA-DK-A3WX-R34803,1F675BD6-ADA8-4F42-9218-E1B71A173BB2,Repli-G (Qiagen) DNA
+TCGA-GU-A42Q:t,[Not Applicable],LIVING,null,TCGA-GU-A42Q-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BL-A0C8:n,15,LIVING,null,TCGA-BL-A0C8-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AC:n,[Not Applicable],LIVING,null,TCGA-DK-A1AC-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AC:t,null,null,null,TCGA-DK-A1AC-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-E7-A3X6:n,null,null,null,TCGA-E7-A3X6-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GU-A42Q:n,null,null,null,TCGA-GU-A42Q-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BL-A0C8:t,null,null,null,TCGA-BL-A0C8-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47W:n,null,null,null,TCGA-CF-A47W-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20V:n,null,null,null,TCGA-BT-A20V-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20N:t,999,DECEASED,null,TCGA-BT-A20N-01A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A27C:t,[Not Applicable],LIVING,null,TCGA-CF-A27C-01A-11W-A18A-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47W:t,null,null,null,TCGA-CF-A47W-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-K4-A3WS:n,null,null,null,TCGA-K4-A3WS-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20V:t,154,DECEASED,null,TCGA-BT-A20V-01A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-K4-A3WS:t,[Not Applicable],LIVING,null,TCGA-K4-A3WS-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A27C:n,null,null,null,TCGA-CF-A27C-10A-01W-A18A-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EL:n,819,DECEASED,Distant site,TCGA-G2-A2EL-10A-01W-A19S-08,TCGA-G2-A2EL-R33063,62DC3FF1-598F-4719-A951-F396EB3FC72A,Repli-G (Qiagen) DNA
+TCGA-DK-A3WY:t,[Not Applicable],LIVING,null,TCGA-DK-A3WY-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A0YN:n,393,DECEASED,null,TCGA-CU-A0YN-11A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IL:n,null,null,null,TCGA-DK-A3IL-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SL:n,null,null,null,TCGA-FD-A3SL-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3YS:t,[Not Applicable],LIVING,null,TCGA-GC-A3YS-01A-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A3OS:n,null,null,null,TCGA-GD-A3OS-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A3OS:t,[Not Applicable],LIVING,null,TCGA-GD-A3OS-01A-12W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F6:t,null,null,null,TCGA-C4-A0F6-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A3PK:t,null,null,null,TCGA-BT-A3PK-01A-21W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A3:n,null,null,null,TCGA-DK-A1A3-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A3QU:t,[Not Applicable],LIVING,null,TCGA-CU-A3QU-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3X2:n,null,null,null,TCGA-DK-A3X2-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JZ:t,[Not Applicable],LIVING,null,TCGA-GV-A3JZ-01A-11W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IT:t,[Not Applicable],LIVING,null,TCGA-DK-A3IT-01A-31W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A3QU:n,null,null,null,TCGA-CU-A3QU-10B-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JZ:n,null,null,null,TCGA-GV-A3JZ-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F6:n,[Not Applicable],LIVING,null,TCGA-C4-A0F6-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A3PK:n,null,null,null,TCGA-BT-A3PK-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A3:t,[Not Applicable],LIVING,null,TCGA-DK-A1A3-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-E5-A2PC:n,[Not Applicable],LIVING,null,TCGA-E5-A2PC-10B-01W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3X2:t,null,null,null,TCGA-DK-A3X2-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3YS:n,null,null,null,TCGA-GC-A3YS-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IT:n,null,null,null,TCGA-DK-A3IT-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3WY:n,null,null,null,TCGA-DK-A3WY-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EL:t,null,null,null,TCGA-G2-A2EL-01A-12W-A19S-08,TCGA-G2-A2EL-R33063,62DC3FF1-598F-4719-A951-F396EB3FC72A,Repli-G (Qiagen) DNA
+TCGA-CU-A0YN:t,null,null,null,TCGA-CU-A0YN-01A-21W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IL:t,[Not Applicable],LIVING,null,TCGA-DK-A3IL-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-E5-A2PC:t,null,null,null,TCGA-E5-A2PC-01A-11W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SL:t,[Not Applicable],LIVING,null,TCGA-FD-A3SL-01A-21W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42C:n,null,null,null,TCGA-BT-A42C-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AF:n,[Not Applicable],LIVING,null,TCGA-DK-A1AF-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A6:t,[Not Applicable],LIVING,null,TCGA-DK-A1A6-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47V:n,null,null,null,TCGA-CF-A47V-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3WC:n,null,null,null,TCGA-GC-A3WC-11A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20U:n,null,null,null,TCGA-BT-A20U-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3RD:n,null,null,null,TCGA-GC-A3RD-10B-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20U:t,454,DECEASED,null,TCGA-BT-A20U-01A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47V:t,null,null,null,TCGA-CF-A47V-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42C:t,null,null,null,TCGA-BT-A42C-01A-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3RD:t,[Not Applicable],LIVING,null,TCGA-GC-A3RD-01A-12W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AF:t,null,null,null,TCGA-DK-A1AF-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-H4-A2HO:n,null,null,null,TCGA-H4-A2HO-10A-01W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-H4-A2HO:t,[Not Applicable],LIVING,null,TCGA-H4-A2HO-01A-11W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A3OP:n,null,null,null,TCGA-GD-A3OP-11A-11W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3OO:n,null,null,null,TCGA-GC-A3OO-10C-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FJ-A3ZE:t,null,null,null,TCGA-FJ-A3ZE-01A-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IM:n,null,null,null,TCGA-DK-A3IM-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EO:n,[Not Applicable],LIVING,null,TCGA-G2-A2EO-11A-21W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A3OP:t,[Not Applicable],LIVING,null,TCGA-GD-A3OP-01A-21W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MI:n,null,null,null,TCGA-CF-A3MI-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3OO:t,[Not Applicable],LIVING,null,TCGA-GC-A3OO-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JW:n,null,null,null,TCGA-GV-A3JW-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3I6:t,[Not Applicable],LIVING,null,TCGA-GC-A3I6-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3I6:n,null,null,null,TCGA-GC-A3I6-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MI:t,[Not Applicable],LIVING,null,TCGA-CF-A3MI-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FJ-A3ZE:n,null,null,null,TCGA-FJ-A3ZE-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IU:t,[Not Applicable],LIVING,null,TCGA-DK-A3IU-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3WC:t,[Not Applicable],LIVING,null,TCGA-GC-A3WC-01A-31W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A6:n,null,null,null,TCGA-DK-A1A6-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A3PJ:t,null,null,null,TCGA-BT-A3PJ-01A-21W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JW:t,[Not Applicable],LIVING,null,TCGA-GV-A3JW-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IM:t,[Not Applicable],LIVING,null,TCGA-DK-A3IM-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SS:t,[Not Applicable],LIVING,null,TCGA-FD-A3SS-01A-12W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A3PJ:n,null,null,null,TCGA-BT-A3PJ-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EO:t,null,null,null,TCGA-G2-A2EO-01A-11W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QI:t,[Not Applicable],LIVING,null,TCGA-GV-A3QI-01A-11W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IU:n,null,null,null,TCGA-DK-A3IU-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SS:n,null,null,null,TCGA-FD-A3SS-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QI:n,null,null,null,TCGA-GV-A3QI-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AE:n,[Not Applicable],LIVING,null,TCGA-DK-A1AE-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B8:n,null,null,null,TCGA-FD-A3B8-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42B:n,null,null,null,TCGA-BT-A42B-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43P:n,null,null,null,TCGA-FD-A43P-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A3IB:n,null,null,null,TCGA-G2-A3IB-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QK:t,[Not Applicable],LIVING,null,TCGA-GV-A3QK-01B-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A5:t,null,null,null,TCGA-DK-A1A5-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B8:t,[Not Applicable],LIVING,null,TCGA-FD-A3B8-01A-31W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A3KJ:n,null,null,null,TCGA-CU-A3KJ-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20T:n,null,null,null,TCGA-BT-A20T-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43X:t,null,null,null,TCGA-FD-A43X-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20T:t,452,DECEASED,null,TCGA-BT-A20T-01A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3RC:n,null,null,null,TCGA-GC-A3RC-10B-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43X:n,null,null,null,TCGA-FD-A43X-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AE:t,null,null,null,TCGA-DK-A1AE-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42B:t,null,null,null,TCGA-BT-A42B-01A-32W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43P:t,null,null,null,TCGA-FD-A43P-01A-31W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3RC:t,[Not Applicable],LIVING,null,TCGA-GC-A3RC-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SJ:t,null,null,null,TCGA-FD-A3SJ-01A-12W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BL-A13I:t,15,DECEASED,null,TCGA-BL-A13I-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EF:t,null,null,null,TCGA-G2-A2EF-01A-12W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FJ-A3ZF:t,null,null,null,TCGA-FJ-A3ZF-01A-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BL-A13I:n,null,null,null,TCGA-BL-A13I-11A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A3OQ:n,null,null,null,TCGA-GD-A3OQ-11A-21W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MH:n,null,null,null,TCGA-CF-A3MH-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IN:n,250,DECEASED,null,TCGA-DK-A3IN-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SJ:n,null,null,null,TCGA-FD-A3SJ-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JX:n,null,null,null,TCGA-GV-A3JX-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A3OQ:t,[Not Applicable],LIVING,null,TCGA-GD-A3OQ-01A-32W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MH:t,[Not Applicable],LIVING,null,TCGA-CF-A3MH-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EF:n,[Not Applicable],LIVING,null,TCGA-G2-A2EF-10A-01W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FJ-A3ZF:n,null,null,null,TCGA-FJ-A3ZF-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A3KJ:t,[Not Applicable],LIVING,null,TCGA-CU-A3KJ-01A-11W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JX:t,[Not Applicable],LIVING,null,TCGA-GV-A3JX-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IV:t,[Not Available],DECEASED,null,TCGA-DK-A3IV-01A-22W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A5:n,65,DECEASED,null,TCGA-DK-A1A5-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A40G:t,[Not Applicable],LIVING,null,TCGA-GV-A40G-01A-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IN:t,null,null,null,TCGA-DK-A3IN-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SR:t,[Not Available],DECEASED,null,TCGA-FD-A3SR-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FT-A3EE:n,null,null,null,TCGA-FT-A3EE-10A-01W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A3IB:t,[Not Applicable],LIVING,null,TCGA-G2-A3IB-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FT-A3EE:t,[Not Applicable],LIVING,null,TCGA-FT-A3EE-01A-11W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A40G:n,null,null,null,TCGA-GV-A40G-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IV:n,null,null,null,TCGA-DK-A3IV-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SR:n,null,null,null,TCGA-FD-A3SR-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B7:n,null,null,null,TCGA-FD-A3B7-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-H4-A2HQ:t,[Not Applicable],LIVING,null,TCGA-H4-A2HQ-01A-11W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A2LD:t,[Not Applicable],LIVING,null,TCGA-BT-A2LD-01A-12W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3NA:t,[Not Applicable],LIVING,null,TCGA-FD-A3NA-01A-11W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A3YL:n,null,null,null,TCGA-CU-A3YL-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3NA:n,null,null,null,TCGA-FD-A3NA-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A2LD:n,null,null,null,TCGA-BT-A2LD-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B7:t,122,DECEASED,null,TCGA-FD-A3B7-01A-31W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A3YL:t,[Not Applicable],LIVING,null,TCGA-CU-A3YL-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47T:n,null,null,null,TCGA-CF-A47T-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-K4-A3WV:n,null,null,null,TCGA-K4-A3WV-11A-21W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47T:t,null,null,null,TCGA-CF-A47T-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-H4-A2HQ:n,null,null,null,TCGA-H4-A2HQ-10A-01W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BL-A13J:t,15,DECEASED,null,TCGA-BL-A13J-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-K4-A3WV:t,[Not Applicable],LIVING,null,TCGA-K4-A3WV-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SQ:n,null,null,null,TCGA-FD-A3SQ-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20J:n,null,null,null,TCGA-BT-A20J-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BL-A13J:n,null,null,null,TCGA-BL-A13J-11A-13W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MG:n,null,null,null,TCGA-CF-A3MG-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A3VY:n,null,null,null,TCGA-G2-A3VY-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0EZ:t,null,null,null,TCGA-C4-A0EZ-01A-21W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I2:n,236,DECEASED,null,TCGA-DK-A2I2-10A-01W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20R:n,null,null,null,TCGA-BT-A20R-11A-11W-A18A-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MG:t,[Not Applicable],LIVING,null,TCGA-CF-A3MG-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I2:t,null,null,null,TCGA-DK-A2I2-01A-11W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A3VY:t,[Not Applicable],LIVING,null,TCGA-G2-A3VY-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0EZ:n,273,DECEASED,null,TCGA-C4-A0EZ-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20J:t,578,DECEASED,null,TCGA-BT-A20J-01A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QG:n,null,null,null,TCGA-GV-A3QG-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A3PH:t,141,DECEASED,null,TCGA-BT-A3PH-01A-11W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A1HS:n,null,null,null,TCGA-CF-A1HS-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A1HS:t,[Not Applicable],LIVING,null,TCGA-CF-A1HS-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A3IE:n,612,DECEASED,null,TCGA-G2-A3IE-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SQ:t,1423,DECEASED,null,TCGA-FD-A3SQ-01A-21W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A3PH:n,null,null,null,TCGA-BT-A3PH-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QG:t,[Completed],DECEASED,null,TCGA-GV-A3QG-01A-11W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A3IE:t,null,null,null,TCGA-G2-A3IE-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B6:n,null,null,null,TCGA-FD-A3B6-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43N:n,null,null,null,TCGA-FD-A43N-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AG:n,[Not Applicable],LIVING,null,TCGA-DK-A1AG-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47S:t,null,null,null,TCGA-CF-A47S-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A7:t,null,null,null,TCGA-DK-A1A7-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-HQ-A2OE:n,[Not Applicable],LIVING,null,TCGA-HQ-A2OE-10A-01W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47S:n,null,null,null,TCGA-CF-A47S-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B6:t,[Not Applicable],LIVING,null,TCGA-FD-A3B6-01A-21W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3BM:n,null,null,null,TCGA-GC-A3BM-11A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20R:t,154,DECEASED,null,TCGA-BT-A20R-01A-12W-A18A-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AG:t,null,null,null,TCGA-DK-A1AG-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43N:t,null,null,null,TCGA-FD-A43N-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SP:n,null,null,null,TCGA-FD-A3SP-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MF:n,null,null,null,TCGA-CF-A3MF-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2HX:t,null,null,null,TCGA-DK-A2HX-01A-12W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JV:n,null,null,null,TCGA-GV-A3JV-10B-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A3MF:t,[Not Applicable],LIVING,null,TCGA-CF-A3MF-01A-12W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2HX:n,[Not Applicable],LIVING,null,TCGA-DK-A2HX-10A-01W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I1:t,[Not Applicable],LIVING,null,TCGA-DK-A2I1-01A-11W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GC-A3BM:t,[Not Applicable],LIVING,null,TCGA-GC-A3BM-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20Q:n,null,null,null,TCGA-BT-A20Q-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QH:n,null,null,null,TCGA-GV-A3QH-10A-01W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A40E:n,null,null,null,TCGA-GV-A40E-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I1:n,null,null,null,TCGA-DK-A2I1-10A-01W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1A7:n,[Not Applicable],LIVING,null,TCGA-DK-A1A7-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3JV:t,[Not Applicable],LIVING,null,TCGA-GV-A3JV-01A-11W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-HQ-A2OE:t,null,null,null,TCGA-HQ-A2OE-01A-11W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A1HR:n,null,null,null,TCGA-CF-A1HR-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A0YR:t,null,null,null,TCGA-CU-A0YR-01A-12W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A1HR:t,[Not Applicable],LIVING,null,TCGA-CF-A1HR-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QH:t,[Not Applicable],LIVING,null,TCGA-GV-A3QH-01A-11W-A226-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A40E:t,[Not Applicable],LIVING,null,TCGA-GV-A40E-01A-12W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SP:t,[Not Applicable],LIVING,null,TCGA-FD-A3SP-01A-31W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CU-A0YR:n,[Not Applicable],LIVING,null,TCGA-CU-A0YR-11A-13W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B5:n,null,null,null,TCGA-FD-A3B5-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GU-A42R:n,null,null,null,TCGA-GU-A42R-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A2LB:t,null,null,null,TCGA-BT-A2LB-01A-11W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AB:t,[Not Applicable],LIVING,null,TCGA-DK-A1AB-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BL-A3JM:n,205,DECEASED,Distant Recurrence,TCGA-BL-A3JM-11A-31W-A224-08,TCGA-BL-A3JM-R29830,F8C3E1CF-6730-4176-8B1C-27930A15A278,Repli-G (Qiagen) DNA
+TCGA-BL-A3JM:t,null,null,null,TCGA-BL-A3JM-01A-12W-A224-08,TCGA-BL-A3JM-R29830,F8C3E1CF-6730-4176-8B1C-27930A15A278,Repli-G (Qiagen) DNA
+TCGA-BT-A2LB:n,null,null,null,TCGA-BT-A2LB-11A-11W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AB:n,null,null,null,TCGA-DK-A1AB-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B5:t,272,DECEASED,null,TCGA-FD-A3B5-01A-11W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GU-A42R:t,null,null,null,TCGA-GU-A42R-01A-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20Q:t,592,DECEASED,null,TCGA-BT-A20Q-01A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43U:t,[Not Applicable],LIVING,null,TCGA-FD-A43U-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A43U:n,null,null,null,TCGA-FD-A43U-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SO:n,null,null,null,TCGA-FD-A3SO-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I4:t,null,null,null,TCGA-DK-A2I4-01A-11W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EK:n,null,null,null,TCGA-G2-A2EK-10A-01W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EK:t,[Not Applicable],LIVING,null,TCGA-G2-A2EK-01A-22W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-E7-A3Y1:t,[Not Applicable],LIVING,null,TCGA-E7-A3Y1-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EC:n,[Not Applicable],LIVING,null,TCGA-G2-A2EC-10A-01W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-E7-A3Y1:n,null,null,null,TCGA-E7-A3Y1-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A2I4:n,null,null,null,TCGA-DK-A2I4-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20P:n,null,null,null,TCGA-BT-A20P-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EC:t,null,null,null,TCGA-G2-A2EC-01A-11W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F1:t,null,null,null,TCGA-C4-A0F1-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F1:n,[Not Applicable],LIVING,null,TCGA-C4-A0F1-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3IQ:n,null,null,null,TCGA-DK-A3IQ-10A-01W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2ES:n,[Not Applicable],LIVING,null,TCGA-G2-A2ES-11A-31D-A17V-08,null,null,DNA
+TCGA-DK-A3IQ:t,[Not Applicable],LIVING,null,TCGA-DK-A3IQ-01A-31W-A21G-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SO:t,167,DECEASED,null,TCGA-FD-A3SO-01A-11W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2ES:t,null,null,null,TCGA-G2-A2ES-01A-11R-A180-07,null,null,RNA
+TCGA-FD-A3B4:n,[Not Applicable],LIVING,null,TCGA-FD-A3B4-10A-01W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AA:t,null,null,null,TCGA-DK-A1AA-01A-11W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A2LA:t,[Not Applicable],LIVING,null,TCGA-BT-A2LA-01A-11W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47Y:n,null,null,null,TCGA-CF-A47Y-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A1AA:n,[Not Applicable],LIVING,null,TCGA-DK-A1AA-10A-01W-A14T-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3B4:t,null,null,null,TCGA-FD-A3B4-01A-12W-A217-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A2LA:n,null,null,null,TCGA-BT-A2LA-11A-11W-A19S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20P:t,543,DECEASED,null,TCGA-BT-A20P-01A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-CF-A47Y:t,null,null,null,TCGA-CF-A47Y-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-K4-A3WU:n,null,null,null,TCGA-K4-A3WU-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A2C5:t,[Not Applicable],LIVING,Distant Recurrence,TCGA-GD-A2C5-01A-12W-A207-08,TCGA-GD-A2C5-R21671,79AB7E62-6F27-4A0B-BD9D-6604C379142E,Repli-G (Qiagen) DNA
+TCGA-BT-A20X:n,null,null,null,TCGA-BT-A20X-11A-12W-A18A-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42F:t,null,null,null,TCGA-BT-A42F-01A-11W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20X:t,251,DECEASED,null,TCGA-BT-A20X-01A-11W-A18A-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A0S7:n,200,DECEASED,null,TCGA-BT-A0S7-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A42F:n,null,null,null,TCGA-BT-A42F-10A-01W-A25W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GD-A2C5:n,null,null,null,TCGA-GD-A2C5-11A-11W-A207-08,TCGA-GD-A2C5-R21671,79AB7E62-6F27-4A0B-BD9D-6604C379142E,Repli-G (Qiagen) DNA
+TCGA-K4-A3WU:t,[Not Applicable],LIVING,null,TCGA-K4-A3WU-01B-11W-A23R-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A0S7:t,null,null,null,TCGA-BT-A0S7-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EJ:n,[Not Applicable],LIVING,null,TCGA-G2-A2EJ-10A-01W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SN:n,null,null,null,TCGA-FD-A3SN-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-G2-A2EJ:t,null,null,null,TCGA-G2-A2EJ-01A-11W-A207-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A20O:n,null,null,null,TCGA-BT-A20O-11A-11W-A16J-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A0YX:n,400,DECEASED,null,TCGA-BT-A0YX-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QF:n,null,null,null,TCGA-GV-A3QF-10A-01W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3N6:t,[Not Applicable],LIVING,null,TCGA-FD-A3N6-01A-11W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F0:t,null,null,null,TCGA-C4-A0F0-01A-12W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3N6:n,null,null,null,TCGA-FD-A3N6-10A-01W-A224-08,null,null,Repli-G (Qiagen) DNA
+TCGA-BT-A0YX:t,null,null,null,TCGA-BT-A0YX-01A-11W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3WW:n,null,null,null,TCGA-DK-A3WW-10A-01W-A23S-08,null,null,Repli-G (Qiagen) DNA
+TCGA-C4-A0F0:n,[Not Applicable],LIVING,null,TCGA-C4-A0F0-10A-01W-A12W-08,null,null,Repli-G (Qiagen) DNA
+TCGA-GV-A3QF:t,[Not Applicable],LIVING,null,TCGA-GV-A3QF-01A-31W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-FD-A3SN:t,[Not Applicable],LIVING,null,TCGA-FD-A3SN-01A-12W-A23E-08,null,null,Repli-G (Qiagen) DNA
+TCGA-DK-A3WW:t,[Not Applicable],LIVING,null,TCGA-DK-A3WW-01A-22W-A23R-08,null,null,Repli-G (Qiagen) DNA
+
