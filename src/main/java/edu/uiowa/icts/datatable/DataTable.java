@@ -15,28 +15,25 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "recordsFiltered", "data", "draw", "recordsTotal" })
+@JsonInclude( JsonInclude.Include.NON_NULL )
+@JsonPropertyOrder( { "recordsFiltered", "data", "draw", "recordsTotal" } )
 public class DataTable {
-	
-	
 
-	@JsonProperty("recordsFiltered")
+	@JsonProperty( "recordsFiltered" )
 	private Integer recordsFiltered;
-	
-	@JsonProperty("data")
-	private List<LinkedHashMap<String, String>> data = new ArrayList<LinkedHashMap<String, String>>();
-	//private List<List<String>> data = new ArrayList<List<String>>();
-	
-	@JsonProperty("draw")
+
+	@JsonProperty( "data" )
+	private List<LinkedHashMap<String, Object>> data = new ArrayList<LinkedHashMap<String, Object>>();
+
+	@JsonProperty( "draw" )
 	private String draw;
-	
-	@JsonProperty("error")
+
+	@JsonProperty( "error" )
 	private String error;
 
-	@JsonProperty("recordsTotal")
+	@JsonProperty( "recordsTotal" )
 	private Integer recordsTotal;
+
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -44,7 +41,7 @@ public class DataTable {
 	 * 
 	 * @return The recordsFiltered
 	 */
-	@JsonProperty("recordsFiltered")
+	@JsonProperty( "recordsFiltered" )
 	public Integer getRecordsFiltered() {
 		return recordsFiltered;
 	}
@@ -54,8 +51,8 @@ public class DataTable {
 	 * @param recordsFiltered
 	 *            The recordsFiltered
 	 */
-	@JsonProperty("recordsFiltered")
-	public void setRecordsFiltered(Integer recordsFiltered) {
+	@JsonProperty( "recordsFiltered" )
+	public void setRecordsFiltered( Integer recordsFiltered ) {
 		this.recordsFiltered = recordsFiltered;
 	}
 
@@ -63,23 +60,18 @@ public class DataTable {
 	 * 
 	 * @return The data
 	 */
-	@JsonProperty("data")
-	public List<LinkedHashMap<String, String>> getData() {
-		if (data.size() > 0) { 
-			return data;
-		} else {
-			return null;
-		}
+	@JsonProperty( "data" )
+	public List<LinkedHashMap<String, Object>> getData() {
+		return data == null ? new ArrayList<LinkedHashMap<String, Object>>() : data;
 	}
-
 
 	/**
 	 * 
 	 * @param data
 	 *            The data
 	 */
-	@JsonProperty("data")
-	public void setData(List<LinkedHashMap<String, String>> data) {
+	@JsonProperty( "data" )
+	public void setData( List<LinkedHashMap<String, Object>> data ) {
 		this.data = data;
 	}
 
@@ -87,7 +79,7 @@ public class DataTable {
 	 * 
 	 * @return The draw
 	 */
-	@JsonProperty("draw")
+	@JsonProperty( "draw" )
 	public String getDraw() {
 		return draw;
 	}
@@ -97,8 +89,8 @@ public class DataTable {
 	 * @param draw
 	 *            The draw
 	 */
-	@JsonProperty("draw")
-	public void setDraw(String draw) {
+	@JsonProperty( "draw" )
+	public void setDraw( String draw ) {
 		this.draw = draw;
 	}
 
@@ -106,7 +98,7 @@ public class DataTable {
 	 * 
 	 * @return The recordsTotal
 	 */
-	@JsonProperty("recordsTotal")
+	@JsonProperty( "recordsTotal" )
 	public Integer getRecordsTotal() {
 		return recordsTotal;
 	}
@@ -116,14 +108,14 @@ public class DataTable {
 	 * @param recordsTotal
 	 *            The recordsTotal
 	 */
-	@JsonProperty("recordsTotal")
-	public void setRecordsTotal(Integer recordsTotal) {
+	@JsonProperty( "recordsTotal" )
+	public void setRecordsTotal( Integer recordsTotal ) {
 		this.recordsTotal = recordsTotal;
 	}
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
+		return ToStringBuilder.reflectionToString( this );
 	}
 
 	@JsonAnyGetter
@@ -132,15 +124,15 @@ public class DataTable {
 	}
 
 	@JsonAnySetter
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
+	public void setAdditionalProperty( String name, Object value ) {
+		this.additionalProperties.put( name, value );
 	}
 
 	/**
 	 * 
 	 * @return The error
 	 */
-	@JsonProperty("error")
+	@JsonProperty( "error" )
 	public String getError() {
 		return error;
 	}
@@ -150,8 +142,8 @@ public class DataTable {
 	 * @param error
 	 *            The error
 	 */
-	@JsonProperty("error")
-	public void setError(String error) {
+	@JsonProperty( "error" )
+	public void setError( String error ) {
 		this.error = error;
 	}
 
