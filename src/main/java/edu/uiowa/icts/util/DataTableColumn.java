@@ -5,13 +5,19 @@ package edu.uiowa.icts.util;
  */
 public class DataTableColumn {
 
+	private String data = null;
 	private String name = null;
 	private String value = null;
 	private String title = null;
 	private boolean selected = true;
 
 	public DataTableColumn( String name, String value, String title, boolean selected ) {
+		this( name, value, value, title, selected );
+	}
+
+	public DataTableColumn( String name, String data, String value, String title, boolean selected ) {
 		this.name = name;
+		this.data = data;
 		this.title = title;
 		this.value = value;
 		this.selected = selected;
@@ -48,4 +54,13 @@ public class DataTableColumn {
 	public void setSelected( boolean selected ) {
 		this.selected = selected;
 	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData( String data ) {
+		this.data = data;
+	}
+
 }
