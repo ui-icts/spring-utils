@@ -1,26 +1,53 @@
 package edu.uiowa.icts.util;
 
+import java.io.Serializable;
+
 /**
  * @author rrlorent
  */
-public class DataTableColumn {
+public class DataTableColumn implements Serializable {
+
+	private static final long serialVersionUID = -7520698552551125238L;
 
 	private String data = null;
 	private String name = null;
-	private String value = null;
 	private String title = null;
-	private boolean selected = true;
+	private boolean searchable = true;
+	private boolean sortable = true;
+	private boolean visible = true;
 
-	public DataTableColumn( String name, String value, String title, boolean selected ) {
-		this( name, value, value, title, selected );
+	public DataTableColumn( String name, String title ) {
+		this( name, name, title );
 	}
 
-	public DataTableColumn( String name, String data, String value, String title, boolean selected ) {
-		this.name = name;
+	public DataTableColumn( String data, String name, String title ) {
 		this.data = data;
+		this.name = name;
 		this.title = title;
-		this.value = value;
-		this.selected = selected;
+	}
+
+	public DataTableColumn( String name, String title, boolean visible ) {
+		this( name, name, title );
+		this.visible = visible;
+	}
+	
+	public DataTableColumn( String data, String name, String title, boolean visible ) {
+		this( data, name, title );
+		this.visible = visible;
+	}
+	
+	public DataTableColumn( String name, String title, boolean searchable, boolean sortable, boolean visible ) {
+		this( name, name, title );
+		this.searchable = searchable;
+		this.sortable = sortable;
+		this.visible = visible;
+	}
+
+	public DataTableColumn( String data, String name, String title, boolean searchable, boolean sortable, boolean visible ) {
+		this( data, name, title );
+		this.searchable = searchable;
+		this.sortable = sortable;
+		this.visible = visible;
 	}
 
 	public String getName() {
@@ -31,14 +58,6 @@ public class DataTableColumn {
 		this.name = name;
 	}
 
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue( String value ) {
-		this.value = value;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -47,20 +66,36 @@ public class DataTableColumn {
 		this.title = title;
 	}
 
-	public boolean getSelected() {
-		return selected;
-	}
-
-	public void setSelected( boolean selected ) {
-		this.selected = selected;
-	}
-
 	public String getData() {
 		return data;
 	}
 
 	public void setData( String data ) {
 		this.data = data;
+	}
+
+	public boolean getSearchable() {
+		return searchable;
+	}
+
+	public void setSearchable( boolean searchable ) {
+		this.searchable = searchable;
+	}
+
+	public boolean getSortable() {
+		return sortable;
+	}
+
+	public void setSortable( boolean sortable ) {
+		this.sortable = sortable;
+	}
+
+	public boolean getVisible() {
+		return visible;
+	}
+
+	public void setVisible( boolean visible ) {
+		this.visible = visible;
 	}
 
 }
