@@ -9,6 +9,15 @@ public class DataTableSearch {
 	private String value;
 	private Boolean regex;
 
+	public DataTableSearch() {
+		// default no argument constructor required for jackson
+	}
+
+	public DataTableSearch( String value, Boolean regex ) {
+		this.value = value;
+		this.regex = regex;
+	}
+
 	public String getValue() {
 		return value;
 	}
