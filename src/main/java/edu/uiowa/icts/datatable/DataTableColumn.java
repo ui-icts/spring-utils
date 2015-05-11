@@ -9,11 +9,49 @@ public class DataTableColumn {
 	private String data;
 	private String name;
 	private String title;
-	private Boolean orderable;
-	private Boolean searchable;
+	private Boolean orderable = true;
+	private Boolean searchable = true;
 	private Boolean visible = true;
 
 	private DataTableSearch search;
+
+	public DataTableColumn() {
+		// default no argument constructor required for jackson
+	}
+
+	public DataTableColumn( String name, String title ) {
+		this( name, name, title );
+	}
+
+	public DataTableColumn( String data, String name, String title ) {
+		this.data = data;
+		this.name = name;
+		this.title = title;
+	}
+
+	public DataTableColumn( String name, String title, boolean visible ) {
+		this( name, name, title );
+		this.visible = visible;
+	}
+
+	public DataTableColumn( String data, String name, String title, boolean visible ) {
+		this( data, name, title );
+		this.visible = visible;
+	}
+
+	public DataTableColumn( String name, String title, boolean searchable, boolean orderable, boolean visible ) {
+		this( name, name, title );
+		this.searchable = searchable;
+		this.orderable = orderable;
+		this.visible = visible;
+	}
+
+	public DataTableColumn( String data, String name, String title, boolean searchable, boolean orderable, boolean visible ) {
+		this( data, name, title );
+		this.searchable = searchable;
+		this.orderable = orderable;
+		this.visible = visible;
+	}
 
 	public String getData() {
 		return data;
