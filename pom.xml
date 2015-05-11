@@ -56,7 +56,7 @@
 	<dependencies>
 	
 	
-		<!--  Added to support Json DataTable Class schappetj: 2015-04-07-->
+		<!--  Added to support JSON DataTable Class schappetj: 2015-04-07 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
