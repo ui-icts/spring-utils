@@ -3,7 +3,9 @@ package edu.uiowa.icts.util;
 /**
  * @author rrlorent
  * @since August 1, 2014
+ * @deprecated use {@link edu.uiowa.icts.datatable.DataTableColumn} instead
  */
+@Deprecated
 public class DataTableHeader {
 
 	private String data = null;

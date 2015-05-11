@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 /**
  * @author rrlorent
+ * @deprecated use {@link edu.uiowa.icts.datatable.DataTableColumn} instead
  */
+@Deprecated
 public class DataTableColumn implements Serializable {
 
 	private static final long serialVersionUID = -7520698552551125238L;
