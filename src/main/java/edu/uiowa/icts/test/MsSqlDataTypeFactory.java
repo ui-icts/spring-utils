@@ -15,7 +15,7 @@ public class MsSqlDataTypeFactory extends DefaultDataTypeFactory {
 	public static int UNIQUEIDENTIFIER = -11;
 
 	@Override
-	public Collection getValidDbProducts() {
+	public Collection<?> getValidDbProducts() {
 		// TODO Auto-generated method stub
 		return super.getValidDbProducts();
 	}

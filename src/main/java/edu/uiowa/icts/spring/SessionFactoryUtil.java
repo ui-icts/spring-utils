@@ -16,6 +16,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
  *         singleton. Actually it only wraps the Hibernate SessionFactory.
  *         You are free to use any kind of JTA or Thread transactionFactories.
  */
+@SuppressWarnings( "deprecation" )
 public class SessionFactoryUtil {
 
 	/** The single instance of hibernate SessionFactory */
