@@ -12,7 +12,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.QueryException;
 import org.hibernate.Session;
@@ -43,7 +42,9 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	private static final Log log = LogFactory.getLog( GenericDao.class );
 
 	public SessionFactory sessionFactory;
+
 	private String domainName;
+	private Class<?> domainClass;
 
 	public void setSessionFactory( boolean usesf ) {
 		if ( usesf ) {
@@ -67,17 +68,10 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	@Transactional( readOnly = true )
 	@SuppressWarnings( "unchecked" )
 	public List<Type> search( String property, String search, Integer limit ) {
-		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			criteria.add( Restrictions.ilike( property, search + "%" ) );
-			criteria.setMaxResults( limit == null ? 25 : limit );
-			return criteria.list();
-		} catch ( HibernateException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
-		}
-		return null;
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		criteria.add( Restrictions.ilike( property, search + "%" ) );
+		criteria.setMaxResults( limit == null ? 25 : limit );
+		return criteria.list();
 	}
 
 	@Transactional
@@ -122,21 +116,22 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 
 	@Transactional
 	public long count() {
-		long val = (Long) getSession().createQuery( "select count(*) from " + getDomainName() ).uniqueResult();
-		return val;
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		criteria.setProjection( Projections.rowCount() );
+		return ( (Number) criteria.uniqueResult() ).longValue();
 	}
 
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public void delete( int id ) {
-		Type obj = (Type) getSession().get( getDomainName(), id );
+		Type obj = (Type) getSession().get( getDomainClass(), id );
 		getSession().delete( obj );
 	}
 
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public void delete( long id ) {
-		Type obj = (Type) getSession().get( getDomainName(), id );
+		Type obj = (Type) getSession().get( getDomainClass(), id );
 		getSession().delete( obj );
 	}
 
@@ -144,117 +139,58 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		getSession().delete( obj );
 	}
 
-	public String getDomainName() {
-		return domainName;
-	}
-
-	public void setDomainName( String domainName ) {
-		this.domainName = domainName;
-	}
-
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public Type findByProperty( String propertyName, Object value ) {
-		Type ob = null;
-		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			criteria.add( Restrictions.eq( propertyName, value ) );
-			ob = (Type) criteria.uniqueResult();
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
-		}
-		return ob;
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		criteria.add( Restrictions.eq( propertyName, value ) );
+		return (Type) criteria.uniqueResult();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * edu.uiowa.icts.spring.GenericDaoInterface#findByProperties(java.util.
-	 * HashMap)
-	 */
 	@Override
 	@SuppressWarnings( "unchecked" )
 	public Type findByProperties( HashMap<String, Object> propertyValues ) {
-		Type theThing = null;
-		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			for ( String prp : propertyValues.keySet() ) {
-				criteria.add( Restrictions.eq( prp, propertyValues.get( prp ) ) );
-			}
-			theThing = (Type) criteria.uniqueResult();
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		for ( String property : propertyValues.keySet() ) {
+			criteria.add( Restrictions.eq( property, propertyValues.get( property ) ) );
 		}
-		return theThing;
+		return (Type) criteria.uniqueResult();
 	}
 
 	@Transactional( readOnly = true )
 	public Integer countByProperty( String propertyName, Object value ) {
-		Integer count = 0;
-		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			criteria.add( Restrictions.eq( propertyName, value ) );
-			count = ( (Number) criteria.setProjection( Projections.rowCount() ).uniqueResult() ).intValue();
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
-		}
-		return count;
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		criteria.add( Restrictions.eq( propertyName, value ) );
+		criteria.setProjection( Projections.rowCount() );
+		return ( (Number) criteria.uniqueResult() ).intValue();
 	}
 
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> listByProperty( String propertyName, Object value ) {
-		List<Type> list = null;
-		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			criteria.add( Restrictions.eq( propertyName, value ) );
-			list = (List<Type>) criteria.list();
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
-		}
-		return list;
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		criteria.add( Restrictions.eq( propertyName, value ) );
+		return (List<Type>) criteria.list();
 	}
 
 	@Override
 	public Integer countByProperties( HashMap<String, Object> propertyValues ) {
-		Integer count = 0;
-		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			for ( String prp : propertyValues.keySet() ) {
-				criteria.add( Restrictions.eq( prp, propertyValues.get( prp ) ) );
-			}
-			count = ( (Number) criteria.setProjection( Projections.rowCount() ).uniqueResult() ).intValue();
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		criteria.setProjection( Projections.rowCount() );
+		for ( String prp : propertyValues.keySet() ) {
+			criteria.add( Restrictions.eq( prp, propertyValues.get( prp ) ) );
 		}
-		return count;
+		return ( (Number) criteria.uniqueResult() ).intValue();
 	}
 
 	@SuppressWarnings( "unchecked" )
 	@Override
 	public List<Type> listByProperties( HashMap<String, Object> propertyValues ) {
-		List<Type> list = null;
-		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			for ( String prp : propertyValues.keySet() ) {
-				criteria.add( Restrictions.eq( prp, propertyValues.get( prp ) ) );
-			}
-			list = (List<Type>) criteria.list();
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error creating criteria for class " + getDomainName(), e );
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		for ( String property : propertyValues.keySet() ) {
+			criteria.add( Restrictions.eq( property, propertyValues.get( property ) ) );
 		}
-		return list;
-	}
-
-	@SuppressWarnings( "unchecked" )
-	@Transactional( readOnly = true )
-	/**
-	 * @deprecated use {@link listByProperty(String propertyName, Object value)} instead.  
-	 */
-	@Deprecated
-	public Type findByCriteria( String s ) {
-		return (Type) getSession().createQuery( "from " + getDomainName() + " where " + s ).uniqueResult();
+		return (List<Type>) criteria.list();
 	}
 
 	@SuppressWarnings( "unchecked" )
@@ -272,31 +208,33 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> list() {
-		try {
-			return getSession().createCriteria( Class.forName( getDomainName() ) ).list();
-		} catch ( HibernateException e ) {
-			log.error( "error Class.forName for " + getDomainName(), e );
-			throw e;
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error Class.forName for " + getDomainName(), e );
-			return null;
-		}
+		return getSession().createCriteria( getDomainClass() ).list();
 	}
 
+	@Override
+	public void update( Type obj ) {
+		getSession().update( obj );
+	}
+
+	@Override
 	@SuppressWarnings( "unchecked" )
+	public List<Type> list( Comparator<Type> comparator ) {
+		List<Type> list = getSession().createCriteria( getDomainClass() ).list();
+		Collections.sort( list, comparator );
+		return list;
+	}
+
 	@Transactional( readOnly = true )
 	public String dump() {
-		String result = "Dumping " + getDomainName() + "\n";
-		List<Type> lt = getSession().createQuery( "from " + getDomainName() ).list();
-		for ( Type t : lt ) {
+		String result = "Dumping " + getDomainClass() + "\n";
+		for ( Type item : list() ) {
 			try {
-				Class<?> ob = Class.forName( getDomainName() );
-				Method[] list_method = ob.getMethods();
-				for ( Method m : list_method ) {
+				Method[] methods = getDomainClass().getMethods();
+				for ( Method method : methods ) {
 					try {
-						if ( m.getName().startsWith( "get" ) ) {
-							result = result + m.invoke( t ) + "\t";
-							log.debug( m.invoke( t ) + "\t" );
+						if ( method.getName().startsWith( "get" ) ) {
+							result = result + method.invoke( item ) + "\t";
+							log.debug( method.invoke( item ) + "\t" );
 						}
 					} catch ( Exception e ) {
 						log.error( "error calling dump", e );
@@ -312,38 +250,25 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return result;
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Transactional
+	@SuppressWarnings( "unchecked" )
 	public List<Type> exec( String sql ) {
 		Query query = getSession().createSQLQuery( sql );
-		try {
-			query.setResultTransformer( Transformers.aliasToBean( Class.forName( getDomainName() ) ) );
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error Class.forName for " + getDomainName(), e );
-		}
+		query.setResultTransformer( Transformers.aliasToBean( getDomainClass() ) );
 		return query.list();
 	}
 
 	@Transactional
 	public void execute( String sql ) {
 		Query query = getSession().createSQLQuery( sql );
-
-		try {
-			query.executeUpdate();
-			//query.setResultTransformer( Transformers.aliasToBean( Class.forName( getDomainName() ) ) );
-		} catch ( HibernateException e ) {
-			log.error( "error Class.forName for " + getDomainName(), e );
-		}
-		//return query.list();
+		query.executeUpdate();
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Transactional
 	public void clean() {
-		List<Type> lt = getSession().createQuery( "from " + getDomainName() ).list();
-		for ( Type t : lt ) {
-			log.debug( "Cleanning..." + t.getClass().getName() );
-			getSession().delete( t );
+		log.debug( "Cleanning..." + getDomainClass() );
+		for ( Type item : list() ) {
+			getSession().delete( item );
 		}
 	}
 
@@ -423,23 +348,18 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 
 	@Transactional( readOnly = true )
 	protected Criteria criteria( GenericDaoListOptions options ) {
+
 		Criteria criteria = null;
-		try {
-
-			if ( options.getAlias() != null && !StringUtils.equals( options.getAlias().trim(), "" ) ) {
-				criteria = getSession().createCriteria( Class.forName( getDomainName() ), options.getAlias().trim() );
-			} else {
-				criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			}
-
-			Dialect dialect = ( (SessionFactoryImplementor) getSessionFactory() ).getDialect();
-			ClassMetadata classMetaData = getSessionFactory().getClassMetadata( Class.forName( getDomainName() ) );
-
-			applyGenericDaoListOptions( criteria, options, classMetaData, dialect );
-
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error listing " + getDomainName(), e );
+		if ( options.getAlias() != null && !StringUtils.equals( options.getAlias().trim(), "" ) ) {
+			criteria = getSession().createCriteria( getDomainClass(), options.getAlias().trim() );
+		} else {
+			criteria = getSession().createCriteria( getDomainClass() );
 		}
+
+		Dialect dialect = ( (SessionFactoryImplementor) getSessionFactory() ).getDialect();
+		ClassMetadata classMetaData = getSessionFactory().getClassMetadata( getDomainClass() );
+
+		applyGenericDaoListOptions( criteria, options, classMetaData, dialect );
 
 		return criteria;
 	}
@@ -606,7 +526,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		boolean fail = false;
 		String propertyType = null;
 		if ( classMetaData == null ) {
-			log.debug( "classMetaData is null for " + getDomainName() );
+			log.debug( "classMetaData is null for " + getDomainClass() );
 			fail = true;
 		} else {
 			try {
@@ -634,7 +554,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			} else if ( StringUtils.equalsIgnoreCase( propertyType, "string" ) ) {
 				criterion = Restrictions.ilike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
 			} else {
-				log.error( propertyType + " not supported in individual likes for " + getDomainName() + " : " + propertyName );
+				log.error( propertyType + " not supported in individual likes for " + getDomainClass() + " : " + propertyName );
 				// cast it to varchar to avoid errors
 				criterion = new CastAsVarcharLike( propertyName, ( options.isDoubleWildCard() ? "%" : "" ) + value + "%" );
 			}
@@ -679,18 +599,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> listOrdered( String order, String direction ) {
-		Criteria criteria = null;
-		try {
-			criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			if ( "desc".equalsIgnoreCase( direction ) ) {
-				criteria.addOrder( Order.desc( order ) );
-			} else {
-				criteria.addOrder( Order.asc( order ) );
-			}
-		} catch ( HibernateException e ) {
-			log.error( "error", e );
-		} catch ( ClassNotFoundException e ) {
-			log.error( "error", e );
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		if ( "desc".equalsIgnoreCase( direction ) ) {
+			criteria.addOrder( Order.desc( order ) );
+		} else {
+			criteria.addOrder( Order.asc( order ) );
 		}
 		return criteria.list();
 	}
@@ -706,163 +619,25 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return (Integer) getSession().createQuery( "select max(" + s + ") from " + getDomainName() + " " ).uniqueResult();
 	}
 
-	@SuppressWarnings( { "unchecked", "unused" } )
-	@Transactional( readOnly = true )
-	@Deprecated
-	public List<Object[]> listSearchPaged( int numResults, int firstResult, String searchst, List<String[]> orderData, List<String> colNames, List<String> searchCols, List<String> colType ) {
-		searchst = "%" + searchst + "%";
-		String alias = "i";
-		String prefix = alias + ".";
-
-		/*
-		 * Build the WHERE clause
-		 */
-		StringBuffer where = new StringBuffer();
-		int count = 0;
-		for ( String att : searchCols ) {
-			String type = colType.get( count );
-			if ( "string".equalsIgnoreCase( type ) )
-				where.append( prefix + att + "  LIKE ? " );
-			else
-				where.append( "str(" + prefix + att + ")  LIKE ? " );
-
-			if ( count < searchCols.size() - 1 )
-				where.append( " OR " );
-
-			count++;
-		}
-
-		/**
-		 * Build the SELECT clause
-		 * 
-		 */
-		StringBuffer select = new StringBuffer();
-		count = 0;
-		for ( String col : colNames ) {
-			select.append( " " + prefix + col + " " );
-
-			if ( count < colNames.size() - 1 )
-				select.append( ", " );
-
-			count++;
-		}
-
-		/**
-		 * Build the ORDER BY clause
-		 * 
-		 */
-		StringBuffer orderby = new StringBuffer();
-		count = 0;
-		for ( String[] order : orderData ) {
-			if ( order.length < 2 )
-				continue;
-
-			String col = order[0];
-			String dir = order[1];
-			if ( "desc".equalsIgnoreCase( dir ) )
-				orderby.append( " " + prefix + col + " DESC" );
-			else
-				orderby.append( " " + prefix + col + " ASC" );
-
-			if ( count < orderData.size() - 1 )
-				orderby.append( ", " );
-			count++;
-
-		}
-
-		/**
-		 * Create Query
-		 * 
-		 * 
-		 */
-		String qstring = "SELECT " + select + " FROM " + getDomainName() + " as " + alias + " WHERE " + where + " ORDER BY " + orderby + "";
-		log.debug( "FULL QUERY:" + qstring );
-		Query q = getSession().createQuery( qstring );
-		q.setMaxResults( numResults );
-		q.setFirstResult( firstResult );
-
-		/**
-		 * Add search parameters
-		 * 
-		 */
-		count = 0;
-		for ( String att : searchCols ) {
-			// String type = colType.get(count);
-			q.setString( count, searchst );
-			count++;
-		}
-
-		List<Object[]> list = q.list();
-		log.debug( "result Size:" + list.size() );
-
-		return list;
+	public String getDomainName() {
+		return domainName;
 	}
 
-	@SuppressWarnings( "unused" )
-	@Transactional( readOnly = true )
-	@Deprecated
-	public Long countSearch( String searchst, List<String> searchCols, List<String> colType ) {
-		searchst = "%" + searchst + "%";
-		String alias = "i";
-		String prefix = alias + ".";
-
-		StringBuffer where = new StringBuffer();
-		int count = 0;
-		for ( String att : searchCols ) {
-			String type = colType.get( count );
-			if ( "string".equalsIgnoreCase( type ) )
-				where.append( prefix + att + "  LIKE ? " );
-			else
-				where.append( "str(" + prefix + att + ")  LIKE ? " );
-
-			if ( count < searchCols.size() - 1 )
-				where.append( " OR " );
-
-			count++;
-		}
-
-		String select = "count(i)";
-
-		log.debug( "select:" + select.toString() );
-		log.debug( "where:" + where.toString() );
-
-		String qstring = "SELECT " + select + " FROM " + getDomainName() + " as " + alias + " WHERE " + where + "";
-		log.debug( "FULL QUERY:" + qstring );
-
-		Query q = getSession().createQuery( qstring );
-
-		count = 0;
-		for ( String att : searchCols ) {
-
-			q.setString( count, searchst );
-			count++;
-		}
-
-		Long size = (Long) q.uniqueResult();
-		log.debug( "result Size:" + size );
-
-		return size;
-	}
-
-	@Override
-	public void update( Type obj ) {
-		getSession().update( obj );
-	}
-
-	@Override
-	@SuppressWarnings( "unchecked" )
-	public List<Type> list( Comparator<Type> comparator ) {
-		List<Type> list = null;
+	public void setDomainName( String domainName ) {
+		this.domainName = domainName;
 		try {
-			Criteria criteria = getSession().createCriteria( Class.forName( getDomainName() ) );
-			list = criteria.list();
-			Collections.sort( list, comparator );
-		} catch ( HibernateException e ) {
-			log.error( "error calling list", e );
+			this.domainClass = Class.forName( domainName );
 		} catch ( ClassNotFoundException e ) {
-			log.error( "error calling list", e );
+			throw new RuntimeException( "error setting domain name to " + domainName, e );
 		}
-		return list;
 	}
+
+	public Class<?> getDomainClass() {
+		return domainClass;
+	}
+
+	//	public void setDomainClass( Class<?> domainClass ) {
+	//		this.domainClass = domainClass;
+	//	}
 
 }

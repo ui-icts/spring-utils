@@ -32,11 +32,7 @@ public class UserDetailsContextMapperImpl implements UserDetailsContextMapper {
 
 		log.debug( "mapping :: " + username );
 
-		List<GrantedAuthority> mappedAuthorities = new ArrayList<GrantedAuthority>();
-
-		for ( GrantedAuthority granted : grantedAuthorities ) {
-			mappedAuthorities.add( granted );
-		}
+		List<GrantedAuthority> mappedAuthorities = new ArrayList<GrantedAuthority>( grantedAuthorities );
 
 		if ( this.authorities != null && !this.authorities.isEmpty() ) {
 			for ( String authority : this.authorities ) {
