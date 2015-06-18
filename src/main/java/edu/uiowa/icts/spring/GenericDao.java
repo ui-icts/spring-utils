@@ -46,6 +46,19 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	private String domainName;
 	private Class<?> domainClass;
 
+	public GenericDao() {
+		// no-arg constructor :: setDomainName must be called
+	}
+
+	/**
+	 * This constructor is preferred because Class.forName( getDomainName() ) will not need to be executed.
+	 * @param domainClass
+	 */
+	public GenericDao( Class<?> domainClass ) {
+		this.domainClass = domainClass;
+		this.domainName = domainClass.getCanonicalName();
+	}
+
 	public void setSessionFactory( boolean usesf ) {
 		if ( usesf ) {
 			sessionFactory = SessionFactoryUtil.getInstance();
@@ -110,7 +123,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	@Transactional
-	public void refresh( Object obj ) {
+	public void refresh( Type obj ) {
 		getSession().refresh( obj );
 	}
 
@@ -613,8 +626,8 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	@Transactional
-	public Integer maxOf( String s ) {
-		return (Integer) getSession().createQuery( "select max(" + s + ") from " + getDomainName() + " " ).uniqueResult();
+	public Integer maxOf( String property ) {
+		return (Integer) getSession().createQuery( "select max(" + property + ") from " + getDomainClass().getCanonicalName() + " " ).uniqueResult();
 	}
 
 	public String getDomainName() {

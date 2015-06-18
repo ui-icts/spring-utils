@@ -57,7 +57,7 @@ public interface GenericDaoInterface<Type> {
 
 	public void setDomainName( String domainName );
 
-	public Integer maxOf( String s );
+	public Integer maxOf( String property );
 
 	public void justSave( Type obj );
 
@@ -91,7 +91,7 @@ public interface GenericDaoInterface<Type> {
 
 	public List<Type> list( Integer start, Integer limit, String search, ArrayList<String> searchColumns, ArrayList<SortColumn> sorts, HashMap<String, Object> individualLikes, HashMap<String, Object> individualEquals );
 
-	public List<Type> listByQuery( String s );
+	public List<Type> listByQuery( String query );
 
 	public Integer countByProperties( HashMap<String, Object> propertyValues );
 
@@ -105,6 +105,6 @@ public interface GenericDaoInterface<Type> {
 
 	public void close();
 
-	public void refresh( Object obj );
+	public void refresh( Type obj );
 
 }
