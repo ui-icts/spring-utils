@@ -327,7 +327,6 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> list( GenericDaoListOptions options ) {
-		List<Type> list;
 		try {
 			Criteria criteria = criteria( options );
 			addSorts( criteria, options );
@@ -337,13 +336,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 			if ( options.getLimit() != null && options.getLimit() != -1 ) { // datatable sets iDisplayLength = -1 when bPaginate = false
 				criteria.setMaxResults( options.getLimit() );
 			}
-			list = criteria.list();
+			return criteria.list();
 		} catch ( Exception e ) {
 			log.error( "Error getting List with options", e );
 			log.debug( "options: " + options.toString() );
 			return new ArrayList<Type>();
 		}
-		return list;
 	}
 
 	@Transactional( readOnly = true )
