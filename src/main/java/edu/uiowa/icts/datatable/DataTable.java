@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class DataTable {
 
 	@JsonProperty( "recordsFiltered" )
-	private Integer recordsFiltered;
+	private Integer recordsFiltered = 0;
 
 	@JsonProperty( "data" )
 	private List<LinkedHashMap<String, Object>> data = new ArrayList<LinkedHashMap<String, Object>>();
@@ -32,13 +32,21 @@ public class DataTable {
 	private String error;
 
 	@JsonProperty( "recordsTotal" )
-	private Integer recordsTotal;
+	private Integer recordsTotal = 0;
 
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+	public DataTable() {
+
+	}
+
+	public DataTable( String draw, String error ) {
+		this.draw = draw;
+		this.error = error;
+	}
+
 	/**
-	 * 
 	 * @return The recordsFiltered
 	 */
 	@JsonProperty( "recordsFiltered" )
@@ -47,9 +55,7 @@ public class DataTable {
 	}
 
 	/**
-	 * 
-	 * @param recordsFiltered
-	 *            The recordsFiltered
+	 * @param recordsFiltered The recordsFiltered
 	 */
 	@JsonProperty( "recordsFiltered" )
 	public void setRecordsFiltered( Integer recordsFiltered ) {
@@ -57,7 +63,6 @@ public class DataTable {
 	}
 
 	/**
-	 * 
 	 * @return The data
 	 */
 	@JsonProperty( "data" )
@@ -66,9 +71,7 @@ public class DataTable {
 	}
 
 	/**
-	 * 
-	 * @param data
-	 *            The data
+	 * @param data The data
 	 */
 	@JsonProperty( "data" )
 	public void setData( List<LinkedHashMap<String, Object>> data ) {
@@ -76,7 +79,6 @@ public class DataTable {
 	}
 
 	/**
-	 * 
 	 * @return The draw
 	 */
 	@JsonProperty( "draw" )
@@ -85,9 +87,7 @@ public class DataTable {
 	}
 
 	/**
-	 * 
-	 * @param draw
-	 *            The draw
+	 * @param draw The draw
 	 */
 	@JsonProperty( "draw" )
 	public void setDraw( String draw ) {
@@ -95,7 +95,6 @@ public class DataTable {
 	}
 
 	/**
-	 * 
 	 * @return The recordsTotal
 	 */
 	@JsonProperty( "recordsTotal" )
@@ -104,9 +103,7 @@ public class DataTable {
 	}
 
 	/**
-	 * 
-	 * @param recordsTotal
-	 *            The recordsTotal
+	 * @param recordsTotal The recordsTotal
 	 */
 	@JsonProperty( "recordsTotal" )
 	public void setRecordsTotal( Integer recordsTotal ) {
@@ -129,7 +126,6 @@ public class DataTable {
 	}
 
 	/**
-	 * 
 	 * @return The error
 	 */
 	@JsonProperty( "error" )
@@ -138,9 +134,7 @@ public class DataTable {
 	}
 
 	/**
-	 * 
-	 * @param error
-	 *            The error
+	 * @param error The error
 	 */
 	@JsonProperty( "error" )
 	public void setError( String error ) {
