@@ -619,6 +619,15 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return criteria.list();
 	}
 
+	@Override
+	@Transactional
+	@SuppressWarnings( "unchecked" )
+	public List<Type> list( Order order ) {
+		Criteria criteria = getSession().createCriteria( getDomainClass() );
+		criteria.addOrder( order );
+		return criteria.list();
+	}
+
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public List<Type[]> query( String st ) {
