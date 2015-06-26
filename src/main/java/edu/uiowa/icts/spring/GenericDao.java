@@ -448,6 +448,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 				}
 			}
 		}
+		if ( options.getOrders() != null && !options.getOrders().isEmpty() ) {
+			for ( Order order : options.getOrders() ) {
+				criteria.addOrder( order );
+			}
+		}
 	}
 
 	/**

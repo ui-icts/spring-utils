@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import edu.uiowa.icts.spring.GenericDaoListOptions;
@@ -27,6 +29,8 @@ public class DataTableRequest {
 	private List<DataTableOrder> order = new ArrayList<DataTableOrder>();
 
 	private DataTableSearch search;
+
+	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonIgnore
 	public GenericDaoListOptions getGenericDaoListOptions() {
@@ -133,6 +137,16 @@ public class DataTableRequest {
 
 	public void setSearch( DataTableSearch search ) {
 		this.search = search;
+	}
+
+	@JsonAnyGetter
+	public Map<String, Object> getAdditionalProperties() {
+		return this.additionalProperties;
+	}
+
+	@JsonAnySetter
+	public void setAdditionalProperty( String name, Object value ) {
+		this.additionalProperties.put( name, value );
 	}
 
 	@Override

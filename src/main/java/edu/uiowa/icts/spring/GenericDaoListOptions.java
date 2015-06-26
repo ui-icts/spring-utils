@@ -8,6 +8,7 @@ import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Junction;
+import org.hibernate.criterion.Order;
 
 import edu.uiowa.icts.sql.Alias;
 import edu.uiowa.icts.util.SortColumn;
@@ -24,6 +25,7 @@ public class GenericDaoListOptions {
 	private String search = null;
 	private List<String> searchColumns = null;
 	private List<SortColumn> sorts = null;
+	private List<Order> orders = null;
 	private Map<String, List<Object>> likes = null;
 	private Map<String, Object> individualLikes = null;
 	private Map<String, Object> individualEquals = null;
@@ -238,5 +240,13 @@ public class GenericDaoListOptions {
 	@Override
 	public String toString() {
 		return "GenericDaoListOptions [alias=" + alias + ", columns=" + columns + ", start=" + start + ", limit=" + limit + ", search=" + search + ", searchColumns=" + searchColumns + ", sorts=" + sorts + ", likes=" + likes + ", individualLikes=" + individualLikes + ", individualEquals=" + individualEquals + ", notEquals=" + notEquals + ", doubleWildCard=" + doubleWildCard + ", propertyNameMap=" + propertyNameMap + ", junctions=" + junctions + ", aliases=" + aliases + ", criterion=" + criterion + "]";
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders( List<Order> orders ) {
+		this.orders = orders;
 	}
 }

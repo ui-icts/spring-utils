@@ -1,5 +1,11 @@
 package edu.uiowa.icts.datatable;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+
 /**
  * @author rrlorent
  * @since May 11, 2015
@@ -9,11 +15,14 @@ public class DataTableColumn {
 	private String data;
 	private String name;
 	private String title;
+	private String className;
 	private Boolean orderable = true;
 	private Boolean searchable = true;
 	private Boolean visible = true;
 
 	private DataTableSearch search;
+
+	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	public DataTableColumn() {
 		// default no argument constructor required for jackson
@@ -77,6 +86,14 @@ public class DataTableColumn {
 		this.title = title;
 	}
 
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName( String className ) {
+		this.className = className;
+	}
+
 	public Boolean getOrderable() {
 		return orderable;
 	}
@@ -109,46 +126,19 @@ public class DataTableColumn {
 		this.search = search;
 	}
 
+	@JsonAnyGetter
+	public Map<String, Object> getAdditionalProperties() {
+		return this.additionalProperties;
+	}
+
+	@JsonAnySetter
+	public void setAdditionalProperty( String name, Object value ) {
+		this.additionalProperties.put( name, value );
+	}
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append( "DataTableColumn [" );
-		if ( data != null ) {
-			builder.append( "data=" );
-			builder.append( data );
-			builder.append( ", " );
-		}
-		if ( name != null ) {
-			builder.append( "name=" );
-			builder.append( name );
-			builder.append( ", " );
-		}
-		if ( title != null ) {
-			builder.append( "title=" );
-			builder.append( title );
-			builder.append( ", " );
-		}
-		if ( orderable != null ) {
-			builder.append( "orderable=" );
-			builder.append( orderable );
-			builder.append( ", " );
-		}
-		if ( searchable != null ) {
-			builder.append( "searchable=" );
-			builder.append( searchable );
-			builder.append( ", " );
-		}
-		if ( visible != null ) {
-			builder.append( "visible=" );
-			builder.append( visible );
-			builder.append( ", " );
-		}
-		if ( search != null ) {
-			builder.append( "search=" );
-			builder.append( search );
-		}
-		builder.append( "]" );
-		return builder.toString();
+		return String.format( "DataTableColumn [data=%s, name=%s, title=%s, className=%s, orderable=%s, searchable=%s, visible=%s, search=%s, additionalProperties=%s]", data, name, title, className, orderable, searchable, visible, search, additionalProperties );
 	}
 
 }
