@@ -22,6 +22,8 @@ public class SwitchUserImpl implements DelegateService {
 
 	private static final Log log = LogFactory.getLog( SwitchUserImpl.class );
 
+	private String usernameParameter = "j_username";
+
 	@Override
 	public boolean checkAuthentication( HttpServletRequest request ) throws AuthenticationException {
 
@@ -35,7 +37,7 @@ public class SwitchUserImpl implements DelegateService {
 			}
 		}
 
-		String user = request.getParameter( "j_username" );
+		String user = request.getParameter( usernameParameter );
 		if ( user != null ) {
 			return true;
 		} else {
@@ -61,6 +63,14 @@ public class SwitchUserImpl implements DelegateService {
 			}
 		}
 		return false;
+	}
+
+	public String getUsernameParameter() {
+		return usernameParameter;
+	}
+
+	public void setUsernameParameter( String usernameParameter ) {
+		this.usernameParameter = usernameParameter;
 	}
 
 }
