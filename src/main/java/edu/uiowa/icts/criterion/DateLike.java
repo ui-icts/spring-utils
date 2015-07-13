@@ -29,8 +29,11 @@ import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.spi.TypedValue;
 
 /**
+ * <p>DateLike class.</p>
+ *
  * @author rrlorent
  * @date March 20, 2014
+ * @version $Id: $
  */
 public class DateLike implements Criterion {
 
@@ -45,6 +48,13 @@ public class DateLike implements Criterion {
 	private String value;
 	private Dialect dialect;
 
+	/**
+	 * <p>Constructor for DateLike.</p>
+	 *
+	 * @param propertyName a {@link java.lang.String} object.
+	 * @param value a {@link java.lang.String} object.
+	 * @param dialect a {@link org.hibernate.dialect.Dialect} object.
+	 */
 	public DateLike( String propertyName, String value, Dialect dialect ) {
 		super();
 		this.propertyName = propertyName;
@@ -53,6 +63,8 @@ public class DateLike implements Criterion {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * (non-Javadoc)
 	 * @see org.hibernate.criterion.Criterion#toSqlString(org.hibernate.Criteria, org.hibernate.criterion.CriteriaQuery)
 	 */
@@ -73,6 +85,8 @@ public class DateLike implements Criterion {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * (non-Javadoc)
 	 * @see org.hibernate.criterion.Criterion#getTypedValues(org.hibernate.Criteria, org.hibernate.criterion.CriteriaQuery)
 	 */

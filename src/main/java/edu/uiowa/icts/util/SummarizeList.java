@@ -28,6 +28,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>SummarizeList class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class SummarizeList {
 
 	//three new values
@@ -35,8 +41,18 @@ public class SummarizeList {
 	private List<String> ignored;
 	private int maxNumberOfTextResults;
 	
+	/**
+	 * <p>Constructor for SummarizeList.</p>
+	 */
 	public SummarizeList() {}
 
+	/**
+	 * <p>Constructor for SummarizeList.</p>
+	 *
+	 * @param values a {@link java.util.List} object.
+	 * @param ignored a {@link java.util.List} object.
+	 * @param maxNumberOfTextResults a int.
+	 */
 	public SummarizeList(List<String> values, List<String> ignored,
 			int maxNumberOfTextResults) {
 		this.values = values;
@@ -46,16 +62,31 @@ public class SummarizeList {
 	}
 
 	// Define list of strings to be processed
+	/**
+	 * <p>setList.</p>
+	 *
+	 * @param values a {@link java.util.List} object.
+	 */
 	public void setList( List<String> values ) {
 		this.values = values;
 	}
 
 	// Define list of values which should be ignored in all processing steps
+	/**
+	 * <p>setIgnoreList.</p>
+	 *
+	 * @param ignore a {@link java.util.List} object.
+	 */
 	public void setIgnoreList( List<String> ignore ) {
 		this.ignored = ignore;
 	}
 
 	// For the given list, if 40% of the values are integers, the list is an Integer List
+	/**
+	 * <p>isInteger.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isInteger() {
 		int total = 0;
 		for ( String i : this.getValuesWithIgnoredRemoved() ) {
@@ -69,6 +100,11 @@ public class SummarizeList {
 	}
 
 	// Return list as Integers, skipping null and ignore
+	/**
+	 * <p>asInteger.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Integer> asInteger() {
 		List<Integer> r = new ArrayList<Integer>();
 		for ( String i : this.getValuesWithIgnoredRemoved() ) {
@@ -81,6 +117,11 @@ public class SummarizeList {
 	}
 
 	// For the given list, if 40% of the values are Float, the list is an Float List
+	/**
+	 * <p>isFloat.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isFloat() {
 		int total = 0;
 		for (String i : this.getValuesWithIgnoredRemoved()) {
@@ -94,6 +135,11 @@ public class SummarizeList {
 	}
 
 	// Return list as Float, skipping null and ignore
+	/**
+	 * <p>asFloat.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Float> asFloat() {
 		List<Float> r = new ArrayList<Float>();
 		for ( String i : this.getValuesWithIgnoredRemoved() ) {
@@ -110,6 +156,11 @@ public class SummarizeList {
 	// out(foo 3, bar 2, null 1)
 
 	// Only return Top n categories
+	/**
+	 * <p>categoryCount.</p>
+	 *
+	 * @return a {@link java.util.HashMap} object.
+	 */
 	public HashMap<String, Integer> categoryCount() {
 		HashMap<String, Integer> h = new HashMap<String, Integer>();
 		for ( String i : this.getValuesWithIgnoredRemoved() ) {
@@ -137,6 +188,11 @@ public class SummarizeList {
 	}
 
 	// Min values of list
+	/**
+	 * <p>minFloat.</p>
+	 *
+	 * @return a {@link java.lang.Float} object.
+	 */
 	public Float minFloat() {
 		List<Float> l = asFloat();
 		if ( l.size() == 0 )
@@ -156,6 +212,11 @@ public class SummarizeList {
 	}
 
 	// Max values of list
+	/**
+	 * <p>maxFloat.</p>
+	 *
+	 * @return a {@link java.lang.Float} object.
+	 */
 	public Float maxFloat() {
 		List<Float> l = asFloat();
 		if ( l.size() == 0 )
@@ -165,6 +226,11 @@ public class SummarizeList {
 	}
 
 	// Max values of list
+	/**
+	 * <p>maxInteger.</p>
+	 *
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public Integer maxInteger() {
 		List<Integer> l = asInteger();
 		if ( l.size() == 0 )
@@ -174,6 +240,11 @@ public class SummarizeList {
 	}
 
 	// Avg values of list
+	/**
+	 * <p>avgFloat.</p>
+	 *
+	 * @return a {@link java.lang.Float} object.
+	 */
 	public Float avgFloat() {
 		List<Float> l = asFloat();
 		if ( l.size() > 0 ){
@@ -198,6 +269,11 @@ public class SummarizeList {
 		return total / l.size();
 	}
 
+	/**
+	 * <p>medianFloat.</p>
+	 *
+	 * @return a {@link java.lang.Float} object.
+	 */
 	public Float medianFloat() {
 		List<Float> l = asFloat();
 		if ( l.size() == 0 )
@@ -208,6 +284,11 @@ public class SummarizeList {
 
 	// Return summary of the list
 	// min, max, avg, median, mean
+	/**
+	 * <p>summaryFloat.</p>
+	 *
+	 * @return a {@link java.util.HashMap} object.
+	 */
 	public HashMap<String, Float> summaryFloat() {
 		HashMap<String, Float> h = new LinkedHashMap<String, Float>();
 		h.put( "avg", avgFloat() );
@@ -218,6 +299,11 @@ public class SummarizeList {
 		return h;
 	}
 
+	/**
+	 * <p>numericSummary.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String numericSummary() {
 		HashMap<String, Float> ret = summaryFloat();
 		StringBuffer sb = new StringBuffer();
@@ -228,6 +314,11 @@ public class SummarizeList {
 
 	}
 
+	/**
+	 * <p>getSummary.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getSummary() {
 		if ( isFloat() || isInteger() )
 			return "Numeric: " + numericSummary();
@@ -242,6 +333,11 @@ public class SummarizeList {
 		return null;
 	}
 
+	/**
+	 * <p>getValuesWithIgnoredRemoved.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<String> getValuesWithIgnoredRemoved(){
 		List<String> values = new ArrayList<String>();
 		if(this.values != null){
@@ -256,10 +352,20 @@ public class SummarizeList {
 		return new ArrayList<String>();
 	}
 
+	/**
+	 * <p>Getter for the field <code>maxNumberOfTextResults</code>.</p>
+	 *
+	 * @return a int.
+	 */
 	public int getMaxNumberOfTextResults() {
 		return maxNumberOfTextResults;
 	}
 
+	/**
+	 * <p>Setter for the field <code>maxNumberOfTextResults</code>.</p>
+	 *
+	 * @param maxNumberOfTextResults a int.
+	 */
 	public void setMaxNumberOfTextResults(int maxNumberOfTextResults) {
 		this.maxNumberOfTextResults = maxNumberOfTextResults;
 	}

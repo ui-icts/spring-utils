@@ -33,8 +33,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
+ * <p>DebugRolesTag class.</p>
+ *
  * @user rrlorent
  * @date Sep 9, 2013
+ * @author schappetj
+ * @version $Id: $
  */
 public class DebugRolesTag extends BodyTagSupport {
 
@@ -46,6 +50,11 @@ public class DebugRolesTag extends BodyTagSupport {
 
 	private Iterator<? extends GrantedAuthority> iterator = null;
 
+	/**
+	 * <p>doStartTag.</p>
+	 *
+	 * @return a int.
+	 */
 	public int doStartTag() {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -72,6 +81,11 @@ public class DebugRolesTag extends BodyTagSupport {
 		return SKIP_BODY;
 	}
 
+	/**
+	 * <p>doAfterBody.</p>
+	 *
+	 * @return a int.
+	 */
 	public int doAfterBody() {
 		if ( iterator != null && iterator.hasNext() ) {
 			pageContext.setAttribute( "role", iterator.next().getAuthority() );
@@ -80,16 +94,32 @@ public class DebugRolesTag extends BodyTagSupport {
 		return SKIP_BODY;
 	}
 
+	/**
+	 * <p>doEndTag.</p>
+	 *
+	 * @return a int.
+	 * @throws javax.servlet.jsp.JspException if any.
+	 */
 	public int doEndTag() throws JspException {
 		this.iterator = null;
 		this.var = null;
 		return super.doEndTag();
 	}
 
+	/**
+	 * <p>Getter for the field <code>var</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getVar() {
 		return var;
 	}
 
+	/**
+	 * <p>Setter for the field <code>var</code>.</p>
+	 *
+	 * @param var a {@link java.lang.String} object.
+	 */
 	public void setVar( String var ) {
 		this.var = var;
 	}

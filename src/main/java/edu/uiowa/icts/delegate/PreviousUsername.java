@@ -35,13 +35,22 @@ import org.springframework.security.web.authentication.switchuser.SwitchUserFilt
 import org.springframework.security.web.authentication.switchuser.SwitchUserGrantedAuthority;
 
 /**
+ * <p>PreviousUsername class.</p>
+ *
  * @author rrlorent
+ * @version $Id: $
  */
 @SuppressWarnings( "serial" )
 public class PreviousUsername extends TagSupport {
 
 	private static final Log log = LogFactory.getLog( PreviousUsername.class );
 
+	/**
+	 * <p>doStartTag.</p>
+	 *
+	 * @return a int.
+	 * @throws javax.servlet.jsp.JspException if any.
+	 */
 	public int doStartTag() throws JspException {
 		try {
 			log.debug( pageContext == null );
@@ -52,6 +61,11 @@ public class PreviousUsername extends TagSupport {
 		return EVAL_PAGE;
 	}
 
+	/**
+	 * <p>username.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String username() {
 		try {
 			Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();

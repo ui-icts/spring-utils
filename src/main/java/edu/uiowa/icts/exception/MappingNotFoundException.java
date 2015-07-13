@@ -20,6 +20,12 @@ package edu.uiowa.icts.exception;
  * #L%
  */
 
+/**
+ * <p>MappingNotFoundException class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class MappingNotFoundException extends Exception {
 
 	private static final long serialVersionUID = 2890579965738044986L;
@@ -29,6 +35,9 @@ public class MappingNotFoundException extends Exception {
 	// ----------------------------------------------
 	// Default constructor - initializes instance variable to unknown
 
+	/**
+	 * <p>Constructor for MappingNotFoundException.</p>
+	 */
 	public MappingNotFoundException() {
 		super(); // call superclass constructor
 		mapping = "unknown";
@@ -38,6 +47,11 @@ public class MappingNotFoundException extends Exception {
 	// Constructor receives some kind of message that is saved in an instance
 	// variable.
 
+	/**
+	 * <p>Constructor for MappingNotFoundException.</p>
+	 *
+	 * @param mapping a {@link java.lang.String} object.
+	 */
 	public MappingNotFoundException(String mapping) {
 		super(mapping); // call super class constructor
 		this.mapping = mapping; // save message
@@ -46,6 +60,11 @@ public class MappingNotFoundException extends Exception {
 	// ------------------------------------------------
 	// public method, callable by exception catcher. It returns the error
 	// message.
+	/**
+	 * <p>getError.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getError() {
 		return mapping;
 	}

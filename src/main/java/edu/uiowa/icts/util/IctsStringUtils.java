@@ -23,10 +23,20 @@ package edu.uiowa.icts.util;
 import java.util.StringTokenizer;
 
 /**
+ * <p>IctsStringUtils class.</p>
+ *
  * @author rrlorent
+ * @version $Id: $
  */
 public class IctsStringUtils {
 
+	/**
+	 * <p>relabel.</p>
+	 *
+	 * @param sqllabel a {@link java.lang.String} object.
+	 * @param leadingCapital a boolean.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String relabel( String sqllabel, boolean leadingCapital ) {
 		StringBuffer result = new StringBuffer();
 		StringTokenizer theTokenizer = new StringTokenizer( sqllabel, "_-" );

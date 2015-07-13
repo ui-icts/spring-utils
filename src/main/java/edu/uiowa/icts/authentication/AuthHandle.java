@@ -41,8 +41,11 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import edu.uiowa.icts.log4j.AuditLogger;
 
 /**
+ * <p>AuthHandle class.</p>
+ *
  * @author rrlorent
  * @since Jul 30, 2014
+ * @version $Id: $
  */
 public class AuthHandle implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 
@@ -51,6 +54,7 @@ public class AuthHandle implements AuthenticationSuccessHandler, AuthenticationF
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	private AuthenticationSuccessHandler target = new SavedRequestAwareAuthenticationSuccessHandler();
 
+	/** {@inheritDoc} */
 	@Override
 	public void onAuthenticationFailure( HttpServletRequest req, HttpServletResponse res, AuthenticationException excep ) throws IOException, ServletException {
 		AuditLogger.info( "NONE", req.getParameter( "j_username" ), "Error logging in from " + req.getRemoteHost(), excep.getMessage() );
@@ -58,6 +62,7 @@ public class AuthHandle implements AuthenticationSuccessHandler, AuthenticationF
 		redirectStrategy.sendRedirect( req, res, "/login.html?error=true" );
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void onAuthenticationSuccess( HttpServletRequest req, HttpServletResponse res, Authentication auth ) throws IOException, ServletException {
 
@@ -82,6 +87,15 @@ public class AuthHandle implements AuthenticationSuccessHandler, AuthenticationF
 
 	}
 
+	/**
+	 * <p>proceed.</p>
+	 *
+	 * @param request a {@link javax.servlet.http.HttpServletRequest} object.
+	 * @param response a {@link javax.servlet.http.HttpServletResponse} object.
+	 * @param auth a {@link org.springframework.security.core.Authentication} object.
+	 * @throws java.io.IOException if any.
+	 * @throws javax.servlet.ServletException if any.
+	 */
 	public void proceed( HttpServletRequest request, HttpServletResponse response, Authentication auth ) throws IOException, ServletException {
 		target.onAuthenticationSuccess( request, response, auth );
 	}

@@ -28,6 +28,12 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * <p>CookieCheck class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class CookieCheck extends BodyTagSupport {
 
 	private static final long serialVersionUID = 3786884329856237339L;
@@ -36,6 +42,11 @@ public class CookieCheck extends BodyTagSupport {
 
 	private String cookieName = null;
 
+	/**
+	 * <p>doStartTag.</p>
+	 *
+	 * @return a int.
+	 */
 	public int doStartTag() {
 
 		HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
@@ -54,11 +65,22 @@ public class CookieCheck extends BodyTagSupport {
 		return SKIP_BODY;
 	}
 
+	/**
+	 * <p>doAfterBody.</p>
+	 *
+	 * @return a int.
+	 */
 	public int doAfterBody() {
 		clear();
 		return SKIP_BODY;
 	}
 
+	/**
+	 * <p>doEndTag.</p>
+	 *
+	 * @return a int.
+	 * @throws javax.servlet.jsp.JspException if any.
+	 */
 	public int doEndTag() throws JspException {
 		return super.doEndTag();
 	}
@@ -67,10 +89,20 @@ public class CookieCheck extends BodyTagSupport {
 		this.cookieName = null;
 	}
 
+	/**
+	 * <p>Getter for the field <code>cookieName</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getCookieName() {
 		return cookieName;
 	}
 
+	/**
+	 * <p>Setter for the field <code>cookieName</code>.</p>
+	 *
+	 * @param cookieName a {@link java.lang.String} object.
+	 */
 	public void setCookieName( String cookieName ) {
 		this.cookieName = cookieName;
 	}

@@ -36,8 +36,11 @@ import org.springframework.security.ldap.userdetails.UserDetailsContextMapper;
 import org.springframework.stereotype.Component;
 
 /**
+ * <p>UserDetailsContextMapperImpl class.</p>
+ *
  * @author rrlorent
  * @since May 18, 2015
+ * @version $Id: $
  */
 @Component
 public class UserDetailsContextMapperImpl implements UserDetailsContextMapper {
@@ -47,6 +50,7 @@ public class UserDetailsContextMapperImpl implements UserDetailsContextMapper {
 	private String rolePrefix = "ROLE_";
 	private List<String> authorities;
 
+	/** {@inheritDoc} */
 	@Override
 	public UserDetails mapUserFromContext( DirContextOperations ctx, String username, Collection<? extends GrantedAuthority> grantedAuthorities ) {
 
@@ -63,23 +67,44 @@ public class UserDetailsContextMapperImpl implements UserDetailsContextMapper {
 		return new User( username, "[PROTECED]", mappedAuthorities );
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void mapUserToContext( UserDetails user, DirContextAdapter ctx ) {
 		// TODO
 	}
 
+	/**
+	 * <p>Getter for the field <code>rolePrefix</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getRolePrefix() {
 		return rolePrefix;
 	}
 
+	/**
+	 * <p>Setter for the field <code>rolePrefix</code>.</p>
+	 *
+	 * @param rolePrefix a {@link java.lang.String} object.
+	 */
 	public void setRolePrefix( String rolePrefix ) {
 		this.rolePrefix = rolePrefix;
 	}
 
+	/**
+	 * <p>Getter for the field <code>authorities</code>.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<String> getAuthorities() {
 		return authorities;
 	}
 
+	/**
+	 * <p>Setter for the field <code>authorities</code>.</p>
+	 *
+	 * @param authorities a {@link java.util.List} object.
+	 */
 	public void setAuthorities( List<String> authorities ) {
 		this.authorities = authorities;
 	}

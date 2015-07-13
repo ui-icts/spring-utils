@@ -23,7 +23,10 @@ package edu.uiowa.icts.util;
 import org.apache.commons.lang.StringUtils;
 
 /**
+ * <p>SortColumn class.</p>
+ *
  * @author rrlorent
+ * @version $Id: $
  */
 public class SortColumn {
 
@@ -33,12 +36,20 @@ public class SortColumn {
 	private String column;
 	private String direction;
 
+	/**
+	 * <p>Constructor for SortColumn.</p>
+	 *
+	 * @param column a {@link java.lang.String} object.
+	 * @param direction a {@link java.lang.String} object.
+	 */
 	public SortColumn( String column, String direction ) {
 		this.setColumn( column );
 		this.setDirection( direction );
 	}
 
 	/**
+	 * <p>Getter for the field <code>column</code>.</p>
+	 *
 	 * @return the column
 	 */
 	public String getColumn() {
@@ -46,6 +57,8 @@ public class SortColumn {
 	}
 
 	/**
+	 * <p>Setter for the field <code>column</code>.</p>
+	 *
 	 * @param column the column to set
 	 */
 	public void setColumn( String column ) {
@@ -53,6 +66,8 @@ public class SortColumn {
 	}
 
 	/**
+	 * <p>Getter for the field <code>direction</code>.</p>
+	 *
 	 * @return the direction
 	 */
 	public String getDirection() {
@@ -60,6 +75,8 @@ public class SortColumn {
 	}
 
 	/**
+	 * <p>Setter for the field <code>direction</code>.</p>
+	 *
 	 * @param direction the direction to set
 	 */
 	public void setDirection( String direction ) {
@@ -69,6 +86,7 @@ public class SortColumn {
 		this.direction = direction;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return "SortColumn [column=" + column + ", direction=" + direction + "]";

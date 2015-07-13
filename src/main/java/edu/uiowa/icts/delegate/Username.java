@@ -31,13 +31,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
+ * <p>Username class.</p>
+ *
  * @author rrlorent
+ * @version $Id: $
  */
 @SuppressWarnings( "serial" )
 public class Username extends TagSupport {
 
 	private static final Log log = LogFactory.getLog( Username.class );
 
+	/**
+	 * <p>doStartTag.</p>
+	 *
+	 * @return a int.
+	 * @throws javax.servlet.jsp.JspException if any.
+	 */
 	public int doStartTag() throws JspException {
 		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();

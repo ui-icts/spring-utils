@@ -26,10 +26,18 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.slf4j.MDC;
 
+/**
+ * <p>AuditLogger class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class AuditLogger {
 
 	/**
-	 * @param args
+	 * <p>main.</p>
+	 *
+	 * @param args an array of {@link java.lang.String} objects.
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -37,6 +45,15 @@ public class AuditLogger {
 	}
 	
 	private static final Log log = LogFactory.getLog("audit");
+    /**
+     * <p>info.</p>
+     *
+     * @param sessionId a {@link java.lang.String} object.
+     * @param userid a {@link java.lang.String} object.
+     * @param activity a {@link java.lang.String} object.
+     * @param activityDetail a {@link java.lang.String} object.
+     * @param activityDetail a {@link java.lang.String} object.
+     */
     public static void info (String sessionId, String userid, String activity, String activityDetail) {
     	MDC.put("userid", userid);
         MDC.put("activity", activity);
@@ -46,6 +63,15 @@ public class AuditLogger {
 	              
 	}
     
+    /**
+     * <p>change.</p>
+     *
+     * @param sessionId a {@link java.lang.String} object.
+     * @param userid a {@link java.lang.String} object.
+     * @param activity a {@link java.lang.String} object.
+     * @param oldValue a {@link java.lang.String} object.
+     * @param newValue a {@link java.lang.String} object.
+     */
     public static void change(String sessionId, String userid, String activity, String oldValue, String newValue) {
     	MDC.put("userid", userid);
         MDC.put("activity", activity);
@@ -55,6 +81,14 @@ public class AuditLogger {
 	              
 	}
     
+    /**
+     * <p>info.</p>
+     *
+     * @param sessionId a {@link java.lang.String} object.
+     * @param userid a {@link java.lang.String} object.
+     * @param activity a {@link java.lang.String} object.
+     * @param listItems a {@link java.util.List} object.
+     */
     public static void info (String sessionId, String userid, String activity, List<String> listItems) {
     	MDC.put("userid", userid);
         MDC.put("activity", activity);

@@ -31,8 +31,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-/**************************
- * 
+/**
+ * <p>ParamterCheck class.</p>
+ *
  * @author schappetj
  *
  * <filter>
@@ -44,7 +45,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
  *       <param-name>test-param</param-name>
  *       <param-value>This parameter is for testing.</param-value>
  *   </init-param>
-I*  </filter>
+ *I*  </filter>
  * <filter-mapping>
  *   <filter-name>ParameterCheckFilter</filter-name>
  *   <url-pattern>/*</url-pattern>
@@ -52,8 +53,9 @@ I*  </filter>
  *
  *
  *
- ***************************/
-
+ **************************
+ * @version $Id: $
+ */
 public class ParamterCheck implements Filter {
 	
 	static class FilteredRequest extends HttpServletRequestWrapper {
@@ -94,14 +96,19 @@ public class ParamterCheck implements Filter {
 		}
 	}
 
+	/** {@inheritDoc} */
 	public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain ) throws IOException, ServletException {
 		chain.doFilter( new FilteredRequest( request ), response );
 	}
 
+	/**
+	 * <p>destroy.</p>
+	 */
 	public void destroy() {
 
 	}
 
+	/** {@inheritDoc} */
 	public void init( FilterConfig filterConfig ) {
 		// do stuff
 	}

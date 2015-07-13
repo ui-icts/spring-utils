@@ -35,8 +35,11 @@ import edu.uiowa.icts.spring.GenericDaoListOptions;
 import edu.uiowa.icts.util.SortColumn;
 
 /**
+ * <p>DataTableRequest class.</p>
+ *
  * @author rrlorent
  * @since May 11, 2015
+ * @version $Id: $
  */
 public class DataTableRequest {
 
@@ -52,6 +55,11 @@ public class DataTableRequest {
 
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+	/**
+	 * <p>getGenericDaoListOptions.</p>
+	 *
+	 * @return a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 */
 	@JsonIgnore
 	public GenericDaoListOptions getGenericDaoListOptions() {
 		GenericDaoListOptions options = new GenericDaoListOptions();
@@ -103,72 +111,154 @@ public class DataTableRequest {
 		return options;
 	}
 
+	/**
+	 * <p>Getter for the field <code>length</code>.</p>
+	 *
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public Integer getLength() {
 		return length;
 	}
 
+	/**
+	 * <p>Setter for the field <code>length</code>.</p>
+	 *
+	 * @param length a {@link java.lang.Integer} object.
+	 */
 	public void setLength( Integer length ) {
 		this.length = length;
 	}
 
+	/**
+	 * <p>Getter for the field <code>start</code>.</p>
+	 *
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public Integer getStart() {
 		return start;
 	}
 
+	/**
+	 * <p>Setter for the field <code>start</code>.</p>
+	 *
+	 * @param start a {@link java.lang.Integer} object.
+	 */
 	public void setStart( Integer start ) {
 		this.start = start;
 	}
 
+	/**
+	 * <p>Getter for the field <code>draw</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getDraw() {
 		return draw;
 	}
 
+	/**
+	 * <p>Setter for the field <code>draw</code>.</p>
+	 *
+	 * @param draw a {@link java.lang.String} object.
+	 */
 	public void setDraw( String draw ) {
 		this.draw = draw;
 	}
 
+	/**
+	 * <p>Getter for the field <code>individualSearch</code>.</p>
+	 *
+	 * @return a {@link java.lang.Boolean} object.
+	 */
 	public Boolean getIndividualSearch() {
 		return individualSearch;
 	}
 
+	/**
+	 * <p>Setter for the field <code>individualSearch</code>.</p>
+	 *
+	 * @param individualSearch a {@link java.lang.Boolean} object.
+	 */
 	public void setIndividualSearch( Boolean individualSearch ) {
 		this.individualSearch = individualSearch;
 	}
 
+	/**
+	 * <p>Getter for the field <code>columns</code>.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<DataTableColumn> getColumns() {
 		return columns;
 	}
 
+	/**
+	 * <p>Setter for the field <code>columns</code>.</p>
+	 *
+	 * @param columns a {@link java.util.List} object.
+	 */
 	public void setColumns( List<DataTableColumn> columns ) {
 		this.columns = columns;
 	}
 
+	/**
+	 * <p>Getter for the field <code>order</code>.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<DataTableOrder> getOrder() {
 		return order;
 	}
 
+	/**
+	 * <p>Setter for the field <code>order</code>.</p>
+	 *
+	 * @param order a {@link java.util.List} object.
+	 */
 	public void setOrder( List<DataTableOrder> order ) {
 		this.order = order;
 	}
 
+	/**
+	 * <p>Getter for the field <code>search</code>.</p>
+	 *
+	 * @return a {@link edu.uiowa.icts.datatable.DataTableSearch} object.
+	 */
 	public DataTableSearch getSearch() {
 		return search;
 	}
 
+	/**
+	 * <p>Setter for the field <code>search</code>.</p>
+	 *
+	 * @param search a {@link edu.uiowa.icts.datatable.DataTableSearch} object.
+	 */
 	public void setSearch( DataTableSearch search ) {
 		this.search = search;
 	}
 
+	/**
+	 * <p>Getter for the field <code>additionalProperties</code>.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {
 		return this.additionalProperties;
 	}
 
+	/**
+	 * <p>setAdditionalProperty.</p>
+	 *
+	 * @param name a {@link java.lang.String} object.
+	 * @param value a {@link java.lang.Object} object.
+	 */
 	@JsonAnySetter
 	public void setAdditionalProperty( String name, Object value ) {
 		this.additionalProperties.put( name, value );
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

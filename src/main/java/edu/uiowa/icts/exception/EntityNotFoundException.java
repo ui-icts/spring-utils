@@ -21,25 +21,47 @@ package edu.uiowa.icts.exception;
  */
 
 /**
+ * <p>EntityNotFoundException class.</p>
+ *
  * @author rrlorent
  * @since June 30, 2015
+ * @version $Id: $
  */
 public class EntityNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 7722434224985333450L;
 
+	/**
+	 * <p>Constructor for EntityNotFoundException.</p>
+	 */
 	public EntityNotFoundException() {
 		super();
 	}
 
+	/**
+	 * <p>Constructor for EntityNotFoundException.</p>
+	 *
+	 * @param message a {@link java.lang.String} object.
+	 * @param cause a {@link java.lang.Throwable} object.
+	 */
 	public EntityNotFoundException( String message, Throwable cause ) {
 		super( message, cause );
 	}
 
+	/**
+	 * <p>Constructor for EntityNotFoundException.</p>
+	 *
+	 * @param message a {@link java.lang.String} object.
+	 */
 	public EntityNotFoundException( String message ) {
 		super( message );
 	}
 
+	/**
+	 * <p>Constructor for EntityNotFoundException.</p>
+	 *
+	 * @param cause a {@link java.lang.Throwable} object.
+	 */
 	public EntityNotFoundException( Throwable cause ) {
 		super( cause );
 	}

@@ -28,8 +28,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.switchuser.SwitchUserFilter;
 import org.springframework.security.web.authentication.switchuser.SwitchUserGrantedAuthority;
 
+/**
+ * <p>UserUid class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class UserUid {
 
+	/**
+	 * <p>username.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String username() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String user = "";
@@ -41,6 +52,11 @@ public class UserUid {
 		return user;
 	}
 
+	/**
+	 * <p>previousUsername.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String previousUsername() {
 		Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
 		if ( currentAuth != null ) {

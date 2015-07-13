@@ -21,30 +21,54 @@ package edu.uiowa.icts.datatable;
  */
 
 /**
+ * <p>DataTableOrder class.</p>
+ *
  * @author rrlorent
  * @since May 11, 2015
+ * @version $Id: $
  */
 public class DataTableOrder {
 
 	private Integer column;
 	private String dir;
 
+	/**
+	 * <p>Getter for the field <code>column</code>.</p>
+	 *
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public Integer getColumn() {
 		return column;
 	}
 
+	/**
+	 * <p>Setter for the field <code>column</code>.</p>
+	 *
+	 * @param column a {@link java.lang.Integer} object.
+	 */
 	public void setColumn( Integer column ) {
 		this.column = column;
 	}
 
+	/**
+	 * <p>Getter for the field <code>dir</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getDir() {
 		return dir;
 	}
 
+	/**
+	 * <p>Setter for the field <code>dir</code>.</p>
+	 *
+	 * @param dir a {@link java.lang.String} object.
+	 */
 	public void setDir( String dir ) {
 		this.dir = dir;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

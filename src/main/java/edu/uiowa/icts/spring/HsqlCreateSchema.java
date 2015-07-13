@@ -35,8 +35,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * <p>HsqlCreateSchema class.</p>
+ *
  * @author bkusenda
  * @since January 5, 2011
+ * @version $Id: $
  */
 public class HsqlCreateSchema {
 
@@ -45,6 +48,9 @@ public class HsqlCreateSchema {
 	private String url = "jdbc:hsqldb:file:testdb";
 	private boolean test = false;
 
+	/**
+	 * <p>create.</p>
+	 */
 	public void create() {
 
 		String output = "";
@@ -109,26 +115,56 @@ public class HsqlCreateSchema {
 
 	}
 
+	/**
+	 * <p>Getter for the field <code>schemas</code>.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<String> getSchemas() {
 		return schemas;
 	}
 
+	/**
+	 * <p>Setter for the field <code>schemas</code>.</p>
+	 *
+	 * @param schemas a {@link java.util.List} object.
+	 */
 	public void setSchemas( List<String> schemas ) {
 		this.schemas = schemas;
 	}
 
+	/**
+	 * <p>Getter for the field <code>url</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * <p>Setter for the field <code>url</code>.</p>
+	 *
+	 * @param url a {@link java.lang.String} object.
+	 */
 	public void setUrl( String url ) {
 		this.url = url;
 	}
 
+	/**
+	 * <p>isTest.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isTest() {
 		return test;
 	}
 
+	/**
+	 * <p>Setter for the field <code>test</code>.</p>
+	 *
+	 * @param test a boolean.
+	 */
 	public void setTest( boolean test ) {
 		this.test = test;
 	}

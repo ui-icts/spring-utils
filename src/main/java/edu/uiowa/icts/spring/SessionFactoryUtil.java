@@ -31,10 +31,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
+ * <p>SessionFactoryUtil class.</p>
+ *
  * @author hennebrueder This class garanties that only one single SessionFactory
  *         is instanciated and that the configuration is done thread safe as
  *         singleton. Actually it only wraps the Hibernate SessionFactory.
  *         You are free to use any kind of JTA or Thread transactionFactories.
+ * @version $Id: $
  */
 @SuppressWarnings( "deprecation" )
 public class SessionFactoryUtil {
@@ -55,12 +58,18 @@ public class SessionFactoryUtil {
 		//    sessionFactory = new Configuration().configure().buildSessionFactory();
 	}
 
+	/**
+	 * <p>getInstance.</p>
+	 *
+	 * @return a {@link org.hibernate.SessionFactory} object.
+	 */
 	public static SessionFactory getInstance() {
 		return sessionFactory;
 	}
 
 	/**
 	 * Opens a session and will not bind it to a session context
+	 *
 	 * @return the session
 	 */
 	public Session openSession() {
@@ -75,7 +84,7 @@ public class SessionFactoryUtil {
 	 * name="current_session_context_class">thread</property> This would return
 	 * the current open session or if this does not exist, will create a new
 	 * session
-	 * 
+	 *
 	 * @return the session
 	 */
 	public Session getCurrentSession() {

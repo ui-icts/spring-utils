@@ -128,7 +128,10 @@
                         <name>filter</name>
                         <placement>X</placement>
                     </tag>
-                        
+                    <tag>
+                        <name>user</name>
+                        <placement>X</placement>
+                    </tag>    
                     	
                 	</tags>
             

@@ -42,6 +42,12 @@ import org.junit.Before;
 
 import edu.uiowa.icts.service.PropertyLoader;
 
+/**
+ * <p>Abstract BaseIctsTestCase class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public abstract class BaseIctsTestCase extends DBTestCase {
 
 	protected final Log log = LogFactory.getLog( getClass().getName() );
@@ -53,6 +59,9 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 	private boolean buildSchema = false;
 	private String schemaSqlFile = null;
 
+	/**
+	 * <p>Constructor for BaseIctsTestCase.</p>
+	 */
 	public BaseIctsTestCase() {
 		log.debug( "setting database properties" );
 
@@ -64,6 +73,11 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 		System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "" );
 	}
 
+	/**
+	 * <p>setUp.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		log.debug( "=== starting " + getName() + " =============================" );
@@ -100,12 +114,18 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 		super.setUp();
 	}
 
+	/**
+	 * <p>tearDown.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@After
 	public void tearDown() throws Exception {
 		log.debug( "=== ending " + getName() + " =============================\n" );
 		super.tearDown();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected IDataSet getDataSet() throws Exception {
 		
@@ -132,6 +152,7 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 		return datset;
 	}
 
+	/** {@inheritDoc} */
 	protected void setUpDatabaseConfig( DatabaseConfig config ) {
 		log.debug( "setting database config" );
 		config.setProperty( "http://www.dbunit.org/properties/datatypeFactory", new MsSqlDataTypeFactory() );
@@ -140,11 +161,21 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 
 	}
 
+	/**
+	 * <p>Setter for the field <code>dataset</code>.</p>
+	 *
+	 * @param dataset a {@link java.lang.String} object.
+	 */
 	public void setDataset( String dataset ) {
 		this.dataset = dataset;
 		setUseAltData( true );
 	}
 
+	/**
+	 * <p>getDatasetName.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getDatasetName() {
 		if ( dataset == null ) {
 			setDataset( "dataset.xml" );
@@ -152,26 +183,56 @@ public abstract class BaseIctsTestCase extends DBTestCase {
 		return dataset;
 	}
 
+	/**
+	 * <p>Setter for the field <code>useAltData</code>.</p>
+	 *
+	 * @param useAltData a boolean.
+	 */
 	public void setUseAltData( boolean useAltData ) {
 		this.useAltData = useAltData;
 	}
 
+	/**
+	 * <p>isUseAltData.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isUseAltData() {
 		return useAltData;
 	}
 
+	/**
+	 * <p>isBuildSchema.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isBuildSchema() {
 		return buildSchema;
 	}
 
+	/**
+	 * <p>Setter for the field <code>buildSchema</code>.</p>
+	 *
+	 * @param buildSchema a boolean.
+	 */
 	public void setBuildSchema( boolean buildSchema ) {
 		this.buildSchema = buildSchema;
 	}
 
+	/**
+	 * <p>Getter for the field <code>schemaSqlFile</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getSchemaSqlFile() {
 		return schemaSqlFile;
 	}
 
+	/**
+	 * <p>Setter for the field <code>schemaSqlFile</code>.</p>
+	 *
+	 * @param schemaSqlFile a {@link java.lang.String} object.
+	 */
 	public void setSchemaSqlFile( String schemaSqlFile ) {
 		this.schemaSqlFile = schemaSqlFile;
 	}

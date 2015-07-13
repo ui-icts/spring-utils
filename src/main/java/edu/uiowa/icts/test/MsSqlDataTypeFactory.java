@@ -27,19 +27,26 @@ import org.dbunit.dataset.datatype.DataTypeException;
 import org.dbunit.dataset.datatype.DefaultDataTypeFactory;
 
 /**
+ * <p>MsSqlDataTypeFactory class.</p>
+ *
  * @author rrlorent
+ * @version $Id: $
  */
 public class MsSqlDataTypeFactory extends DefaultDataTypeFactory {
 
+	/** Constant <code>NVARCHAR=-9</code> */
 	public static int NVARCHAR = -9;
+	/** Constant <code>UNIQUEIDENTIFIER=-11</code> */
 	public static int UNIQUEIDENTIFIER = -11;
 
+	/** {@inheritDoc} */
 	@Override
 	public Collection<?> getValidDbProducts() {
 		// TODO Auto-generated method stub
 		return super.getValidDbProducts();
 	}
 	
+	/** {@inheritDoc} */
 	public DataType createDataType( int sqlType, String sqlTypeName ) throws DataTypeException {
 
 		if ( sqlType == NVARCHAR ) {

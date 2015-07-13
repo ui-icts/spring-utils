@@ -57,6 +57,12 @@ import edu.uiowa.icts.sql.Alias;
 import edu.uiowa.icts.util.SortColumn;
 
 @Transactional
+/**
+ * <p>GenericDao class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class GenericDao<Type> implements GenericDaoInterface<Type> {
 
 	private static final Log log = LogFactory.getLog( GenericDao.class );
@@ -66,38 +72,59 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	private String domainName;
 	private Class<?> domainClass;
 
+	/**
+	 * <p>Constructor for GenericDao.</p>
+	 */
 	public GenericDao() {
 		// no-arg constructor :: setDomainName must be called
 	}
 
 	/**
 	 * This constructor is preferred because Class.forName( getDomainName() ) will not need to be executed.
-	 * @param domainClass
+	 *
+	 * @param domainClass a {@link java.lang.Class} object.
 	 */
 	public GenericDao( Class<?> domainClass ) {
 		this.domainClass = domainClass;
 		this.domainName = domainClass.getCanonicalName();
 	}
 
+	/**
+	 * <p>Setter for the field <code>sessionFactory</code>.</p>
+	 *
+	 * @param usesf a boolean.
+	 */
 	public void setSessionFactory( boolean usesf ) {
 		if ( usesf ) {
 			sessionFactory = SessionFactoryUtil.getInstance();
 		}
 	}
 
+	/**
+	 * <p>getSession.</p>
+	 *
+	 * @return a {@link org.hibernate.Session} object.
+	 */
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/** {@inheritDoc} */
 	@Autowired
 	public void setSessionFactory( SessionFactory sessionFactory ) {
 		this.sessionFactory = sessionFactory;
 	}
 
+	/**
+	 * <p>Getter for the field <code>sessionFactory</code>.</p>
+	 *
+	 * @return a {@link org.hibernate.SessionFactory} object.
+	 */
 	public SessionFactory getSessionFactory() {
 		return this.sessionFactory;
 	}
 
+	/** {@inheritDoc} */
 	@Transactional( readOnly = true )
 	@SuppressWarnings( "unchecked" )
 	public List<Type> search( String property, String search, Integer limit ) {
@@ -107,46 +134,87 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return criteria.list();
 	}
 
+	/**
+	 * <p>saveOrUpdate.</p>
+	 *
+	 * @param obj a Type object.
+	 */
 	@Transactional
 	public void saveOrUpdate( Type obj ) {
 		getSession().saveOrUpdate( obj );
 	}
 
+	/**
+	 * <p>save.</p>
+	 *
+	 * @param obj a Type object.
+	 */
 	@Transactional
 	public void save( Type obj ) {
 		getSession().save( obj );
 	}
 
+	/**
+	 * <p>justSave.</p>
+	 *
+	 * @param obj a Type object.
+	 */
 	@Transactional
 	public void justSave( Type obj ) {
 		getSession().save( obj );
 	}
 
+	/**
+	 * <p>persist.</p>
+	 *
+	 * @param obj a Type object.
+	 */
 	@Transactional
 	public void persist( Type obj ) {
 		getSession().persist( obj );
 	}
 
+	/**
+	 * <p>merge.</p>
+	 *
+	 * @param obj a Type object.
+	 */
 	@Transactional
 	public void merge( Type obj ) {
 		getSession().merge( obj );
 	}
 
+	/**
+	 * <p>flush.</p>
+	 */
 	@Transactional
 	public void flush() {
 		getSession().flush();
 	}
 
+	/**
+	 * <p>close.</p>
+	 */
 	@Transactional
 	public void close() {
 		getSession().close();
 	}
 
+	/**
+	 * <p>refresh.</p>
+	 *
+	 * @param obj a Type object.
+	 */
 	@Transactional
 	public void refresh( Type obj ) {
 		getSession().refresh( obj );
 	}
 
+	/**
+	 * <p>count.</p>
+	 *
+	 * @return a long.
+	 */
 	@Transactional
 	public long count() {
 		Criteria criteria = getSession().createCriteria( getDomainClass() );
@@ -154,6 +222,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return ( (Number) criteria.uniqueResult() ).longValue();
 	}
 
+	/** {@inheritDoc} */
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public void delete( int id ) {
@@ -161,6 +230,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		getSession().delete( obj );
 	}
 
+	/**
+	 * <p>delete.</p>
+	 *
+	 * @param id a long.
+	 */
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public void delete( long id ) {
@@ -168,10 +242,16 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		getSession().delete( obj );
 	}
 
+	/**
+	 * <p>delete.</p>
+	 *
+	 * @param obj a Type object.
+	 */
 	public void delete( Type obj ) {
 		getSession().delete( obj );
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public Type findByProperty( String propertyName, Object value ) {
@@ -180,6 +260,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return (Type) criteria.uniqueResult();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	@SuppressWarnings( "unchecked" )
 	public Type findByProperties( HashMap<String, Object> propertyValues ) {
@@ -190,6 +271,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return (Type) criteria.uniqueResult();
 	}
 
+	/** {@inheritDoc} */
 	@Transactional( readOnly = true )
 	public Integer countByProperty( String propertyName, Object value ) {
 		Criteria criteria = getSession().createCriteria( getDomainClass() );
@@ -198,6 +280,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return ( (Number) criteria.uniqueResult() ).intValue();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> listByProperty( String propertyName, Object value ) {
@@ -206,6 +289,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return (List<Type>) criteria.list();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Integer countByProperties( HashMap<String, Object> propertyValues ) {
 		Criteria criteria = getSession().createCriteria( getDomainClass() );
@@ -216,6 +300,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return ( (Number) criteria.uniqueResult() ).intValue();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings( "unchecked" )
 	@Override
 	public List<Type> listByProperties( HashMap<String, Object> propertyValues ) {
@@ -226,29 +311,43 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return (List<Type>) criteria.list();
 	}
 
+	/**
+	 * <p>findByQuery.</p>
+	 *
+	 * @param s a {@link java.lang.String} object.
+	 * @return a Type object.
+	 */
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public Type findByQuery( String s ) {
 		return (Type) getSession().createQuery( s ).uniqueResult();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> listByQuery( String s ) {
 		return getSession().createQuery( s ).list();
 	}
 
+	/**
+	 * <p>list.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> list() {
 		return getSession().createCriteria( getDomainClass() ).list();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void update( Type obj ) {
 		getSession().update( obj );
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	@SuppressWarnings( "unchecked" )
 	public List<Type> list( Comparator<Type> comparator ) {
@@ -257,6 +356,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return list;
 	}
 
+	/**
+	 * <p>dump.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	@Transactional( readOnly = true )
 	public String dump() {
 		String result = "Dumping " + getDomainClass() + "\n";
@@ -283,6 +387,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return result;
 	}
 
+	/** {@inheritDoc} */
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public List<Type> exec( String sql ) {
@@ -291,12 +396,16 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return query.list();
 	}
 
+	/** {@inheritDoc} */
 	@Transactional
 	public void execute( String sql ) {
 		Query query = getSession().createSQLQuery( sql );
 		query.executeUpdate();
 	}
 
+	/**
+	 * <p>clean.</p>
+	 */
 	@Transactional
 	public void clean() {
 		log.debug( "Cleanning..." + getDomainClass() );
@@ -305,21 +414,25 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Transactional( readOnly = true )
 	public List<Type> list( Integer start, Integer limit ) {
 		return list( start, limit, null, new ArrayList<String>(), new ArrayList<SortColumn>(), new HashMap<String, Object>() );
 	}
 
+	/** {@inheritDoc} */
 	@Transactional( readOnly = true )
 	public List<Type> list( Integer start, Integer limit, ArrayList<SortColumn> sorts ) {
 		return list( start, limit, null, new ArrayList<String>(), sorts, new HashMap<String, Object>() );
 	}
 
+	/** {@inheritDoc} */
 	@Transactional( readOnly = true )
 	public List<Type> list( Integer start, Integer limit, String search, ArrayList<String> searchColumns, ArrayList<SortColumn> sorts ) {
 		return list( start, limit, search, searchColumns, sorts, new HashMap<String, Object>() );
 	}
 
+	/** {@inheritDoc} */
 	public Integer count( String search, ArrayList<String> searchColumns ) {
 		GenericDaoListOptions options = new GenericDaoListOptions();
 		options.setSearch( search );
@@ -327,6 +440,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return count( options );
 	}
 
+	/** {@inheritDoc} */
 	public Integer count( String search, ArrayList<String> searchColumns, HashMap<String, Object> properties ) {
 		GenericDaoListOptions options = new GenericDaoListOptions();
 		options.setSearch( search );
@@ -335,11 +449,13 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return count( options );
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public List<Type> list( Integer start, Integer limit, String search, ArrayList<String> searchColumns, ArrayList<SortColumn> sorts, HashMap<String, Object> individualLikes ) {
 		return list( start, limit, search, searchColumns, sorts, individualLikes, null );
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Integer count( String search, ArrayList<String> searchColumns, HashMap<String, Object> individualLikes, HashMap<String, Object> individualEquals ) {
 		GenericDaoListOptions options = new GenericDaoListOptions();
@@ -350,6 +466,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return count( options );
 	}
 
+	/** {@inheritDoc} */
 	@Transactional( readOnly = true )
 	public Integer count( GenericDaoListOptions options ) {
 		Criteria criteria = criteria( options );
@@ -357,6 +474,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return ( (Number) criteria.uniqueResult() ).intValue();
 	}
 
+	/**
+	 * <p>list.</p>
+	 *
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> list( GenericDaoListOptions options ) {
@@ -377,6 +500,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		}
 	}
 
+	/**
+	 * <p>criteria.</p>
+	 *
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 * @return a {@link org.hibernate.Criteria} object.
+	 */
 	@Transactional( readOnly = true )
 	protected Criteria criteria( GenericDaoListOptions options ) {
 
@@ -395,6 +524,14 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return criteria;
 	}
 
+	/**
+	 * <p>applyGenericDaoListOptions.</p>
+	 *
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 * @param classMetaData a {@link org.hibernate.metadata.ClassMetadata} object.
+	 * @param dialect a {@link org.hibernate.dialect.Dialect} object.
+	 */
 	public void applyGenericDaoListOptions( Criteria criteria, GenericDaoListOptions options, ClassMetadata classMetaData, Dialect dialect ) {
 		processAliases( criteria, options );
 		addIndividualEquals( criteria, options );
@@ -413,6 +550,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		}
 	}
 
+	/**
+	 * <p>addNotEquals.</p>
+	 *
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 */
 	public void addNotEquals( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getNotEquals() != null && !options.getNotEquals().isEmpty() ) {
 			for ( String key : options.getNotEquals().keySet() ) {
@@ -421,6 +564,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		}
 	}
 
+	/**
+	 * <p>addIndividualEquals.</p>
+	 *
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 */
 	public void addIndividualEquals( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getIndividualEquals() != null && !options.getIndividualEquals().isEmpty() ) {
 			for ( String key : options.getIndividualEquals().keySet() ) {
@@ -430,9 +579,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	/**
+	 * <p>addJunctions.</p>
+	 *
 	 * @author rrlorent
-	 * @param criteria
-	 * @param options
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
 	 */
 	public void addJunctions( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getJunctions() != null && !options.getJunctions().isEmpty() ) {
@@ -443,10 +594,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	/**
+	 * <p>addSorts.</p>
+	 *
 	 * @author rrlorent
 	 * @date May 28, 2014
-	 * @param criteria
-	 * @param options
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
 	 */
 	public void addSorts( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getSorts() != null ) {
@@ -476,8 +629,10 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	/**
-	 * @param criteria
-	 * @param options
+	 * <p>processAliases.</p>
+	 *
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
 	 */
 	public void processAliases( Criteria criteria, GenericDaoListOptions options ) {
 		if ( options.getAliases() != null ) {
@@ -488,10 +643,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	/**
-	 * @param criteria
-	 * @param options
-	 * @param dialect 
-	 * @param classMetaData 
+	 * <p>addSearchCriteria.</p>
+	 *
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 * @param dialect a {@link org.hibernate.dialect.Dialect} object.
+	 * @param classMetaData a {@link org.hibernate.metadata.ClassMetadata} object.
 	 */
 	public void addSearchCriteria( Criteria criteria, GenericDaoListOptions options, ClassMetadata classMetaData, Dialect dialect ) {
 		if ( options.getSearch() != null && !"".equals( options.getSearch() ) && options.getSearchColumns() != null && !options.getSearchColumns().isEmpty() ) {
@@ -506,10 +663,12 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 	}
 
 	/**
-	 * @param criteria
-	 * @param options
-	 * @param dialect 
-	 * @param classMetaData 
+	 * <p>addLikeCriteria.</p>
+	 *
+	 * @param criteria a {@link org.hibernate.Criteria} object.
+	 * @param options a {@link edu.uiowa.icts.spring.GenericDaoListOptions} object.
+	 * @param dialect a {@link org.hibernate.dialect.Dialect} object.
+	 * @param classMetaData a {@link org.hibernate.metadata.ClassMetadata} object.
 	 */
 	public void addLikeCriteria( Criteria criteria, GenericDaoListOptions options, ClassMetadata classMetaData, Dialect dialect ) {
 		if ( options.getLikes() != null && !options.getLikes().isEmpty() ) {
@@ -599,6 +758,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return criterion;
 	}
 
+	/** {@inheritDoc} */
 	@Transactional( readOnly = true )
 	public List<Type> list( Integer start, Integer limit, String search, ArrayList<String> searchColumns, ArrayList<SortColumn> sorts, HashMap<String, Object> individualLikes, HashMap<String, Object> individualEquals ) {
 		GenericDaoListOptions options = new GenericDaoListOptions();
@@ -612,6 +772,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return list( options );
 	}
 
+	/** {@inheritDoc} */
 	public void save( Collection<Type> list ) {
 		StatelessSession session = this.getSessionFactory().openStatelessSession();
 		session.beginTransaction();
@@ -622,6 +783,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		session.close();
 	}
 
+	/** {@inheritDoc} */
 	public void saveOrUpdate( Collection<Type> list ) {
 		StatelessSession session = getSessionFactory().openStatelessSession();
 		session.beginTransaction();
@@ -632,6 +794,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		session.close();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings( "unchecked" )
 	@Transactional( readOnly = true )
 	public List<Type> listOrdered( String order, String direction ) {
@@ -644,6 +807,7 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return criteria.list();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	@Transactional
 	@SuppressWarnings( "unchecked" )
@@ -653,21 +817,29 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		return criteria.list();
 	}
 
+	/** {@inheritDoc} */
 	@Transactional
 	@SuppressWarnings( "unchecked" )
 	public List<Type[]> query( String st ) {
 		return getSession().createQuery( st ).list();
 	}
 
+	/** {@inheritDoc} */
 	@Transactional
 	public Integer maxOf( String property ) {
 		return (Integer) getSession().createQuery( "select max(" + property + ") from " + getDomainClass().getCanonicalName() + " " ).uniqueResult();
 	}
 
+	/**
+	 * <p>Getter for the field <code>domainName</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getDomainName() {
 		return domainName;
 	}
 
+	/** {@inheritDoc} */
 	public void setDomainName( String domainName ) {
 		this.domainName = domainName;
 		try {
@@ -677,6 +849,11 @@ public class GenericDao<Type> implements GenericDaoInterface<Type> {
 		}
 	}
 
+	/**
+	 * <p>Getter for the field <code>domainClass</code>.</p>
+	 *
+	 * @return a {@link java.lang.Class} object.
+	 */
 	public Class<?> getDomainClass() {
 		return domainClass;
 	}
