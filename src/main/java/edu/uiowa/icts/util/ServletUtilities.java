@@ -39,7 +39,7 @@ public class ServletUtilities {
 	/** Constant <code>SECONDS_PER_YEAR=60 * 60 * 24 * 365</code> */
 	public static final int SECONDS_PER_YEAR = 60 * 60 * 24 * 365;
 
-	/** Constant <code>DOCTYPE="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTM"{trunked}</code> */
+	
 	public static final String DOCTYPE = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">";
 
 	/**

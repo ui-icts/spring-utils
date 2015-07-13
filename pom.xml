@@ -9,7 +9,27 @@
 	<artifactId>spring-utils</artifactId>
 	<version>2.0.10</version>
 	<packaging>jar</packaging>
+ 	<developers>
+    	<developer>
+      		<name>Ryan Lorentzen</name>
+      		<email>ryan-lorentezen@uiowa.edu</email>
+      		<organization>University of Iowa ICTS</organization>
+      		<organizationUrl>http://www.icts.uiowa.edu</organizationUrl>
+    	</developer>
+    	<developer>
+      		<name>James Schappet</name>
+      		<email>james-schappet@uiowa.edu</email>
+      		<organization>University of Iowa ICTS</organization>
+      		<organizationUrl>http://www.icts.uiowa.edu</organizationUrl>
+    	</developer>
+  	</developers>
 
+	<licenses>
+	  <license>
+	    <name>The Apache License, Version 2.0</name>
+	    <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	  </license>
+	</licenses>
 	<scm>
 		<connection>scm:git:ssh://git@git.its.uiowa.edu:7999/icts/spring-utils.git</connection>
 		<developerConnection>scm:git:ssh://git@git.its.uiowa.edu:7999/icts/spring-utils.git</developerConnection>
@@ -365,4 +385,6 @@
 		<!-- test dependencies end -->
 
 	</dependencies>
+	<description>ICTS Utitlities for Spring Hibernate Projects</description>
+	<url>https://www.icts.uiowa.edu</url>
 </project>

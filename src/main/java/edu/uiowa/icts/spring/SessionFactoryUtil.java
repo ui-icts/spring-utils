@@ -80,8 +80,8 @@ public class SessionFactoryUtil {
 	 * Returns a session from the session context. If there is no session in the context it opens a session,
 	 * stores it in the context and returns it.
 	 * This factory is intended to be used with a hibernate.cfg.xml
-	 * including the following property <property
-	 * name="current_session_context_class">thread</property> This would return
+	 * including the following property name="current_session_context_class" value=thread 
+	 * This would return
 	 * the current open session or if this does not exist, will create a new
 	 * session
 	 *

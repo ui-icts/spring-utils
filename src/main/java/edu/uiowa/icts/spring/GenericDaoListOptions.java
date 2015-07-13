@@ -285,7 +285,7 @@ public class GenericDaoListOptions {
 	/**
 	 * <p>Setter for the field <code>disjunctions</code>.</p>
 	 *
-	 * @deprecated use more generic setJunctions( {@link java.util.List}<{@link org.hibernate.criterion.Junction}> ) instead
+	 * @deprecated use more generic setJunctions( {@link java.util.List}{@link org.hibernate.criterion.Junction} ) instead
 	 * @param disjunctions a {@link java.util.List} object.
 	 */
 	public void setDisjunctions( List<Disjunction> disjunctions ) {
@@ -298,7 +298,7 @@ public class GenericDaoListOptions {
 	/**
 	 * <p>Setter for the field <code>conjunctions</code>.</p>
 	 *
-	 * @deprecated use more generic setJunctions( {@link java.util.List}<{@link org.hibernate.criterion.Junction}> ) instead
+	 * @deprecated use more generic setJunctions( {@link java.util.List} {@link org.hibernate.criterion.Junction} ) instead
 	 * @param conjunctions a {@link java.util.List} object.
 	 */
 	@Deprecated
@@ -348,7 +348,7 @@ public class GenericDaoListOptions {
 	/**
 	 * This method does not allow the setting of the alias join type.
 	 *
-	 * @deprecated use setAliases( {@link java.util.List}<{@link edu.uiowa.icts.sql.Alias}> ) instead.
+	 * @deprecated use setAliases( {@link java.util.List} {@link edu.uiowa.icts.sql.Alias}  ) instead.
 	 * @param aliases a {@link java.util.Map} object.
 	 */
 	@Deprecated

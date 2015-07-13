@@ -36,27 +36,31 @@ import javax.servlet.http.HttpServletRequestWrapper;
  *
  * @author schappetj
  *
- * <filter>
- *  <filter-name>ParameterCheckFilter</filter-name>
- *   <filter-class>
- *       edu.uiowa.icts.filter.ParamterCheck
- *   </filter-class>
- *   <init-param>
- *       <param-name>test-param</param-name>
- *       <param-value>This parameter is for testing.</param-value>
- *   </init-param>
- *I*  </filter>
- * <filter-mapping>
- *   <filter-name>ParameterCheckFilter</filter-name>
- *   <url-pattern>/*</url-pattern>
- * </filter-mapping>
- *
- *
- *
- **************************
+ ***************************
  * @version $Id: $
- */
+ ******/
 public class ParamterCheck implements Filter {
+
+
+/**************
+ ** <filter>
+ **  <filter-name>ParameterCheckFilter</filter-name>
+ **   <filter-class>
+ **       edu.uiowa.icts.filter.ParamterCheck
+ **   </filter-class>
+ **   <init-param>
+ **       <param-name>test-param</param-name>
+ **       <param-value>This parameter is for testing.</param-value>
+ **   </init-param>
+ ** </filter>
+ ** <filter-mapping>
+ **   <filter-name>ParameterCheckFilter</filter-name>
+ **   <url-pattern>/*</url-pattern>
+ ** </filter-mapping>
+ **
+ **
+ **/
+
 	
 	static class FilteredRequest extends HttpServletRequestWrapper {
 

@@ -41,10 +41,6 @@ import java.util.ResourceBundle;
  * /some/pkg/Resource.properties
  * </pre>
  *
- * @param name classpath resource name [may not be null]
- * @param loader classloader through which to load the resource [null is equivalent to the application loader]
- * @return resource converted to java.util.Properties [may be null if the resource was not found and THROW_ON_LOAD_FAILURE is false]
- * @throws IllegalArgumentException if the resource was not found and THROW_ON_LOAD_FAILURE is true
  * @author schappetj
  * @version $Id: $
  */
