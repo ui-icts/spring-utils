@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -9,26 +10,37 @@
 	<artifactId>spring-utils</artifactId>
 	<version>2.0.10</version>
 	<packaging>jar</packaging>
- 	<developers>
-    	<developer>
-      		<name>Ryan Lorentzen</name>
-      		<email>ryan-lorentezen@uiowa.edu</email>
-      		<organization>University of Iowa ICTS</organization>
-      		<organizationUrl>http://www.icts.uiowa.edu</organizationUrl>
-    	</developer>
-    	<developer>
-      		<name>James Schappet</name>
-      		<email>james-schappet@uiowa.edu</email>
-      		<organization>University of Iowa ICTS</organization>
-      		<organizationUrl>http://www.icts.uiowa.edu</organizationUrl>
-    	</developer>
-  	</developers>
+
+	<description>ICTS Utilities for Spring Hibernate Projects</description>
+	<url>https://www.icts.uiowa.edu</url>	
+	
+	<organization>
+		<name>University of Iowa Institute for Clinical and Translational Science (ICTS)</name>
+		<url>https://www.icts.uiowa.edu/</url>
+	</organization>
+	
+	<inceptionYear>2010</inceptionYear>
+	
+	<developers>
+		<developer>
+			<name>Ryan Lorentzen</name>
+			<email>ryan-lorentezen@uiowa.edu</email>
+			<organization>University of Iowa ICTS</organization>
+			<organizationUrl>http://www.icts.uiowa.edu</organizationUrl>
+		</developer>
+		<developer>
+			<name>James Schappet</name>
+			<email>james-schappet@uiowa.edu</email>
+			<organization>University of Iowa ICTS</organization>
+			<organizationUrl>http://www.icts.uiowa.edu</organizationUrl>
+		</developer>
+	</developers>
 
 	<licenses>
-	  <license>
-	    <name>The Apache License, Version 2.0</name>
-	    <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-	  </license>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
 	</licenses>
 	<scm>
 		<connection>scm:git:ssh://git@git.its.uiowa.edu:7999/icts/spring-utils.git</connection>
@@ -57,108 +69,96 @@
 
 	</distributionManagement>
 
-	<!-- open source license -->
-	<organization>
-		<name>University of Iowa Institute for Clinical and Translational Science (ICTS)</name>
-		<url>https://www.icts.uiowa.edu/</url>
-	</organization>
-	<inceptionYear>2010</inceptionYear>
-	<!-- end open source license -->
-<profiles>
- <profile> 
-    <id>release</id>
-    <build>
-<plugins>
-<plugin>
-  <groupId>org.sonatype.plugins</groupId>
-  <artifactId>nexus-staging-maven-plugin</artifactId>
-  <version>1.6.3</version>
-  <extensions>true</extensions>
-  <configuration>
-     <serverId>ossrh</serverId>
-     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-     <autoReleaseAfterClose>true</autoReleaseAfterClose>
-  </configuration>
-</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>3.2.5.RELEASE</spring.version>
+		<maven.javadoc.skip>false</maven.javadoc.skip>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.3</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9.1</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
+				<version>2.8.1</version>
+				<configuration>
+					<tags>
+						<tag>
+							<name>date</name>
+							<!-- The value X makes javadoc ignoring the tag -->
+							<placement>X</placement>
+						</tag>
+						<tag>
+							<name>filter</name>
+							<placement>X</placement>
+						</tag>
+						<tag>
+							<name>user</name>
+							<placement>X</placement>
+						</tag>
+					</tags>
+				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-
-</plugins>
-
-
-
-    </build>
-  </profile>
-</profiles>
-	<build>
-		<plugins>
-		 <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.8.1</version>
-            <configuration>
-                <tags>
-                    <tag>
-                        <name>date</name>
-                        <!-- The value X makes javadoc ignoring the tag -->
-                        <placement>X</placement>
-                    </tag>
-                    <tag>
-                        <name>filter</name>
-                        <placement>X</placement>
-                    </tag>
-                    <tag>
-                        <name>user</name>
-                        <placement>X</placement>
-                    </tag>    
-                    	
-                	</tags>
-            
-            </configuration>
-            </plugin>
-            
-		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -211,16 +211,39 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
-	</plugins>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>license-maven-plugin</artifactId>
+										<versionRange>[1.8,)</versionRange>
+										<goals>
+											<goal>
+												update-file-header
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.2.5.RELEASE</spring.version>
-		<maven.javadoc.skip>false</maven.javadoc.skip>
-	</properties>
 
 	<dependencies>
 
@@ -383,8 +406,5 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- test dependencies end -->
-
 	</dependencies>
-	<description>ICTS Utitlities for Spring Hibernate Projects</description>
-	<url>https://www.icts.uiowa.edu</url>
 </project>
