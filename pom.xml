@@ -8,7 +8,7 @@
 	<name>spring-utils</name>
 	<groupId>edu.uiowa.icts.spring</groupId>
 	<artifactId>spring-utils</artifactId>
-	<version>2.0.10</version>
+	<version>2.0.12-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<description>ICTS Utilities for Spring Hibernate Projects</description>
