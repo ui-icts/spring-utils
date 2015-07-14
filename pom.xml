@@ -38,11 +38,13 @@
 
 	</distributionManagement>
 
+	<!-- open source license -->
 	<organization>
 		<name>University of Iowa Institute for Clinical and Translational Science (ICTS)</name>
 		<url>https://www.icts.uiowa.edu/</url>
 	</organization>
 	<inceptionYear>2010</inceptionYear>
+	<!-- end open source license -->
 
 	<build>
 		<plugins>
@@ -63,6 +65,8 @@
 					<tag>v${releaseVersion}</tag>
 				</configuration>
 			</plugin>
+
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
@@ -139,38 +143,8 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>license-maven-plugin</artifactId>
-										<versionRange>[1.8,)</versionRange>
-										<goals>
-											<goal>
-												update-file-header
-											</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+
+	</plugins>
 	</build>
 
 	<properties>
