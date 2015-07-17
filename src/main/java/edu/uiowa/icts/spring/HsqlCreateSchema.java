@@ -31,6 +31,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -48,6 +50,8 @@ public class HsqlCreateSchema {
 	private String url = "jdbc:hsqldb:file:testdb";
 	private boolean test = false;
 
+	private DataSource dataSource ;
+	
 	/**
 	 * <p>create.</p>
 	 */
@@ -69,7 +73,11 @@ public class HsqlCreateSchema {
 		Connection conn = null;
 		try {
 
-			conn = DriverManager.getConnection( url, "sa", "" );
+			if (dataSource == null ) {
+				conn = DriverManager.getConnection( url, "sa", "" );
+			} else {
+				conn = dataSource.getConnection();
+			}
 
 			for ( String schema : schemas ) {
 				log.debug( "Checking to see if " + schema + " exist" );
@@ -167,6 +175,26 @@ public class HsqlCreateSchema {
 	 */
 	public void setTest( boolean test ) {
 		this.test = test;
+	}
+	
+	
+
+	/**
+	 * <p>Getter for the field <code>dataSource</code>.</p>
+	 *
+	 * @return a {@link  javax.sql.DataSource} object.
+	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <p>Setter for the field <code>dataSource</code>.</p>
+	 *
+	 * @param dataSource a {@link javax.sql.DataSource} object.
+	 */
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 
 }
