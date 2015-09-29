@@ -32,11 +32,20 @@ import org.springframework.security.web.authentication.switchuser.SwitchUserFilt
 import org.springframework.security.web.authentication.switchuser.SwitchUserGrantedAuthority;
 
 /**
+ * <p>SpringSecurityIsNotSwitched class.</p>
+ *
  * @author rrlorent
+ * @version $Id: $
  */
 @SuppressWarnings( "serial" )
 public class SpringSecurityIsNotSwitched extends TagSupport {
 	
+	/**
+	 * <p>doStartTag.</p>
+	 *
+	 * @return a int.
+	 * @throws javax.servlet.jsp.JspException if any.
+	 */
 	public int doStartTag() throws JspException {
 		Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
 		if ( currentAuth != null ) {

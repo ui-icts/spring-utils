@@ -22,15 +22,63 @@ package edu.uiowa.icts.spring.ldap;
 
 import java.util.List;
 
+/**
+ * <p>LDAPService interface.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 @SuppressWarnings("rawtypes")
 public interface LDAPService {
 	
+	/**
+	 * <p>getAllPersonNames.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List getAllPersonNames();
+	/**
+	 * <p>findByUsername.</p>
+	 *
+	 * @param username a {@link java.lang.String} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<LDAPPerson> findByUsername(String username);
+	/**
+	 * <p>getByUsername.</p>
+	 *
+	 * @param username a {@link java.lang.String} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<LDAPPerson> getByUsername(String username);
+	/**
+	 * <p>search.</p>
+	 *
+	 * @param value a {@link java.lang.String} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List search(String value);
+	/**
+	 * <p>findByFullname.</p>
+	 *
+	 * @param firstname a {@link java.lang.String} object.
+	 * @param lastname a {@link java.lang.String} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<LDAPPerson> findByFullname(String firstname, String lastname);
+	/**
+	 * <p>searchFirstName.</p>
+	 *
+	 * @param firstName a {@link java.lang.String} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<LDAPPerson> searchFirstName( String firstName );
+	/**
+	 * <p>searchLastName.</p>
+	 *
+	 * @param lastName a {@link java.lang.String} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<LDAPPerson> searchLastName( String lastName );
 	
 }

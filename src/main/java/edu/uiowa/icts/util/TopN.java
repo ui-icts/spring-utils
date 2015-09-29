@@ -28,6 +28,12 @@ import java.util.Random;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * <p>TopN class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class TopN<T> {
 	private static final Log log = LogFactory.getLog( TopN.class );
 
@@ -37,16 +43,29 @@ public class TopN<T> {
 
 	int count;
 
+	/**
+	 * <p>Constructor for TopN.</p>
+	 *
+	 * @param count a int.
+	 */
 	public TopN( int count ) {
 		this.count = count;
 		reset();
 	}
 
+	/**
+	 * <p>Constructor for TopN.</p>
+	 */
 	public TopN() {
 		this.count = 100;
 		reset();
 	}
 
+	/**
+	 * <p>main.</p>
+	 *
+	 * @param args an array of {@link java.lang.String} objects.
+	 */
 	public static void main( String args[] ) {
 		TopN<Double> top10 = new TopN<Double>( 10 );
 		Random r = new Random();
@@ -64,6 +83,9 @@ public class TopN<T> {
 
 	}
 
+	/**
+	 * <p>reset.</p>
+	 */
 	public void reset() {
 		topValues = new LinkedList<Double>();
 		theList = new ArrayList<T>();
@@ -74,10 +96,23 @@ public class TopN<T> {
 		}
 	}
 
+	/**
+	 * <p>inTopN.</p>
+	 *
+	 * @param current a {@link java.lang.Double} object.
+	 * @return a int.
+	 */
 	public int inTopN( Double current ) {
 		return inTopN( current, null );
 	}
 
+	/**
+	 * <p>inTopN.</p>
+	 *
+	 * @param current a {@link java.lang.Double} object.
+	 * @param obj a T object.
+	 * @return a int.
+	 */
 	public int inTopN( Double current, T obj ) {
 		int i = 0;
 		for ( Double d : topValues ) {
@@ -91,6 +126,13 @@ public class TopN<T> {
 		return -1;
 	}
 
+	/**
+	 * <p>inBottomN.</p>
+	 *
+	 * @param current a {@link java.lang.Double} object.
+	 * @param obj a T object.
+	 * @return a int.
+	 */
 	public int inBottomN( Double current, T obj ) {
 		// TODO Auto-generated method stub
 		int i = 0;
@@ -105,10 +147,18 @@ public class TopN<T> {
 		return -1;
 	}
 
+	/**
+	 * <p>size.</p>
+	 *
+	 * @return a int.
+	 */
 	public int size() {
 		return topValues.size();
 	}
 
+	/**
+	 * <p>print.</p>
+	 */
 	public void print() {
 		log.debug( "List: " + topValues.size() );
 		int i = 0;
@@ -117,11 +167,21 @@ public class TopN<T> {
 		}
 	}
 
+	/**
+	 * <p>max.</p>
+	 *
+	 * @return a {@link java.lang.Double} object.
+	 */
 	public Double max() {
 
 		return topValues.get( 0 );
 	}
 
+	/**
+	 * <p>getList.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<T> getList() {
 		return theList;
 	}

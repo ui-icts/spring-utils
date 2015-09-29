@@ -28,8 +28,11 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.engine.spi.TypedValue;
 
 /**
+ * <p>IntegerLike class.</p>
+ *
  * @author rrlorent
  * @date March 20, 2014
+ * @version $Id: $
  */
 public class IntegerLike implements Criterion {
 
@@ -38,12 +41,20 @@ public class IntegerLike implements Criterion {
 	private String propertyName;
 	private String value;
 
+	/**
+	 * <p>Constructor for IntegerLike.</p>
+	 *
+	 * @param propertyName a {@link java.lang.String} object.
+	 * @param value a {@link java.lang.String} object.
+	 */
 	public IntegerLike( String propertyName, String value ) {
 		this.propertyName = propertyName;
 		this.value = value;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * (non-Javadoc)
 	 * @see org.hibernate.criterion.Criterion#toSqlString(org.hibernate.Criteria, org.hibernate.criterion.CriteriaQuery)
 	 */
@@ -57,6 +68,8 @@ public class IntegerLike implements Criterion {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * (non-Javadoc)
 	 * @see org.hibernate.criterion.Criterion#getTypedValues(org.hibernate.Criteria, org.hibernate.criterion.CriteriaQuery)
 	 */

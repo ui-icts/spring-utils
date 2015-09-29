@@ -33,10 +33,17 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 
 import edu.uiowa.icts.log4j.AuditLogger;
 
+/**
+ * <p>LogoutHandle class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class LogoutHandle implements LogoutSuccessHandler {
 
 	private LogoutSuccessHandler handler = new SimpleUrlLogoutSuccessHandler();
 
+	/** {@inheritDoc} */
 	@Override
 	public void onLogoutSuccess( HttpServletRequest request, HttpServletResponse response, Authentication authentication ) throws IOException, ServletException {
 		HttpSession session = request.getSession();

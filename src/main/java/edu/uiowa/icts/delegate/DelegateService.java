@@ -24,10 +24,30 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.core.AuthenticationException;
 
+/**
+ * <p>DelegateService interface.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public interface DelegateService {
 	
+	/**
+	 * <p>checkAuthentication.</p>
+	 *
+	 * @param request a {@link javax.servlet.http.HttpServletRequest} object.
+	 * @return a boolean.
+	 * @throws org.springframework.security.core.AuthenticationException if any.
+	 */
 	boolean checkAuthentication( HttpServletRequest request ) throws AuthenticationException;
 
+	/**
+	 * <p>checkExitAuthentication.</p>
+	 *
+	 * @param request a {@link javax.servlet.http.HttpServletRequest} object.
+	 * @return a boolean.
+	 * @throws org.springframework.security.core.AuthenticationException if any.
+	 */
 	boolean checkExitAuthentication( HttpServletRequest request ) throws AuthenticationException;
 	
 }

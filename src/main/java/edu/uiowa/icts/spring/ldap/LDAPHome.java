@@ -103,7 +103,7 @@ public class LDAPHome implements LDAPService {
 			ldapPerson.setDepartment( context.getStringAttribute( "department" ) );
 			ldapPerson.setCollege( context.getStringAttribute( "company" ) );
 			ldapPerson.setCompany( context.getStringAttribute( "company" ) );
-			ldapPerson.setTelephoneNumber( context.getStringAttribute( "uiowaOfficePhone" ) );
+			ldapPerson.setTelephoneNumber( context.getStringAttribute( "telephoneNumber" ) );
 			ldapPerson.setMail( context.getStringAttribute( "mail" ) );
 			ldapPerson.setGivenName( context.getStringAttribute( "givenName" ) );
 			ldapPerson.setUsername( context.getStringAttribute( "cn" ) );

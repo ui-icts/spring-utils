@@ -23,8 +23,11 @@ package edu.uiowa.icts.sql;
 import org.hibernate.sql.JoinType;
 
 /**
+ * <p>Alias class.</p>
+ *
  * @author rrlorent
  * @since May 15, 2014
+ * @version $Id: $
  */
 public class Alias {
 
@@ -46,6 +49,12 @@ public class Alias {
 	private String alias;
 	private JoinType joinType;
 
+	/**
+	 * <p>Constructor for Alias.</p>
+	 *
+	 * @param associationPath a {@link java.lang.String} object.
+	 * @param alias a {@link java.lang.String} object.
+	 */
 	public Alias( String associationPath, String alias ) {
 		super();
 		this.associationPath = associationPath;
@@ -53,6 +62,13 @@ public class Alias {
 		this.joinType = JoinType.INNER_JOIN;
 	}
 	
+	/**
+	 * <p>Constructor for Alias.</p>
+	 *
+	 * @param associationPath a {@link java.lang.String} object.
+	 * @param alias a {@link java.lang.String} object.
+	 * @param joinType a {@link org.hibernate.sql.JoinType} object.
+	 */
 	public Alias( String associationPath, String alias, JoinType joinType ) {
 		super();
 		this.associationPath = associationPath;
@@ -60,30 +76,61 @@ public class Alias {
 		this.joinType = joinType;
 	}
 
+	/**
+	 * <p>Getter for the field <code>associationPath</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getAssociationPath() {
 		return associationPath;
 	}
 
+	/**
+	 * <p>Setter for the field <code>associationPath</code>.</p>
+	 *
+	 * @param associationPath a {@link java.lang.String} object.
+	 */
 	public void setAssociationPath( String associationPath ) {
 		this.associationPath = associationPath;
 	}
 
+	/**
+	 * <p>Getter for the field <code>alias</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getAlias() {
 		return alias;
 	}
 
+	/**
+	 * <p>Setter for the field <code>alias</code>.</p>
+	 *
+	 * @param alias a {@link java.lang.String} object.
+	 */
 	public void setAlias( String alias ) {
 		this.alias = alias;
 	}
 
+	/**
+	 * <p>Getter for the field <code>joinType</code>.</p>
+	 *
+	 * @return a {@link org.hibernate.sql.JoinType} object.
+	 */
 	public JoinType getJoinType() {
 		return joinType;
 	}
 
+	/**
+	 * <p>Setter for the field <code>joinType</code>.</p>
+	 *
+	 * @param joinType a {@link org.hibernate.sql.JoinType} object.
+	 */
 	public void setJoinType( JoinType joinType ) {
 		this.joinType = joinType;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return "Alias [associationPath=" + associationPath + ", alias=" + alias + ", joinType=" + joinType + "]";

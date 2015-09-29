@@ -29,8 +29,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.switchuser.SwitchUserFilter;
 
+/**
+ * <p>Security class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class Security {
 
+	/**
+	 * <p>hasRole.</p>
+	 *
+	 * @param role a {@link java.lang.String} object.
+	 * @return a boolean.
+	 */
 	public static boolean hasRole( String role ) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if ( authentication != null ) {
@@ -44,11 +56,21 @@ public class Security {
 		return false;
 	}
 
+	/**
+	 * <p>isAuthenticated.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public static boolean isAuthenticated() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return authentication != null && ! ( authentication instanceof AnonymousAuthenticationToken ) && authentication.isAuthenticated();
 	}
 
+	/**
+	 * <p>isUserSwitched.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public static boolean isUserSwitched() {
 		return hasRole( SwitchUserFilter.ROLE_PREVIOUS_ADMINISTRATOR );
 	}

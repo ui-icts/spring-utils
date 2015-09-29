@@ -20,6 +20,12 @@ package edu.uiowa.icts.exception;
  * #L%
  */
 
+/**
+ * <p>DatatableException class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public class DatatableException extends Exception {
 
 	private static final long serialVersionUID = 2890579965738044986L;
@@ -29,6 +35,9 @@ public class DatatableException extends Exception {
 	// ----------------------------------------------
 	// Default constructor - initializes instance variable to unknown
 
+	/**
+	 * <p>Constructor for DatatableException.</p>
+	 */
 	public DatatableException() {
 		super(); // call superclass constructor
 		message = "unknown";
@@ -38,6 +47,11 @@ public class DatatableException extends Exception {
 	// Constructor receives some kind of message that is saved in an instance
 	// variable.
 
+	/**
+	 * <p>Constructor for DatatableException.</p>
+	 *
+	 * @param mapping a {@link java.lang.String} object.
+	 */
 	public DatatableException(String mapping) {
 		super(mapping); // call super class constructor
 		this.message = mapping; // save message
@@ -46,6 +60,11 @@ public class DatatableException extends Exception {
 	// ------------------------------------------------
 	// public method, callable by exception catcher. It returns the error
 	// message.
+	/**
+	 * <p>getError.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getError() {
 		return message;
 	}

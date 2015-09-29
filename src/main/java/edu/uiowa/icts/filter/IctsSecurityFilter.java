@@ -33,12 +33,16 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.filter.GenericFilterBean;
 
 /**
+ * <p>IctsSecurityFilter class.</p>
+ *
  * @author rrlorent
+ * @version $Id: $
  */
 public class IctsSecurityFilter extends GenericFilterBean {
 
 	private static final Log log = LogFactory.getLog( IctsSecurityFilter.class );
 
+	/** {@inheritDoc} */
 	@Override
 	public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain ) throws IOException, ServletException {
 

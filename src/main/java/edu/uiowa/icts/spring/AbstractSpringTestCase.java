@@ -26,17 +26,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * <p>Abstract AbstractSpringTestCase class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( locations = { "/test-application-context.xml" } )
 @TransactionConfiguration( transactionManager = "transactionManager" )
 @Transactional
 public abstract class AbstractSpringTestCase extends AbstractBaseTestCase {
 
+	/** {@inheritDoc} */
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();

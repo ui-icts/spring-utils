@@ -23,11 +23,21 @@ package edu.uiowa.icts.el;
 import java.util.Set;
 
 /**
+ * <p>SetContains class.</p>
+ *
  * @author rrlorent
  * @date May 14, 2014
+ * @version $Id: $
  */
 public class SetContains {
 	
+	/**
+	 * <p>setContains.</p>
+	 *
+	 * @param set a {@link java.util.Set} object.
+	 * @param object a {@link java.lang.Object} object.
+	 * @return a {@link java.lang.Boolean} object.
+	 */
 	@SuppressWarnings( "rawtypes" )
 	public static Boolean setContains( Set set, Object object ){
 		if( set == null || object == null ){

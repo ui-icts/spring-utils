@@ -25,20 +25,34 @@ import junit.framework.TestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * <p>Abstract AbstractBaseTestCase class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 public abstract class AbstractBaseTestCase extends TestCase {
 
 	protected final Log log = LogFactory.getLog( getClass().getName() );
 
+	/** {@inheritDoc} */
 	@Override
 	protected void setUp() throws Exception {
 		log.debug( "=== starting " + getName() + " =============================" );
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void tearDown() throws Exception {
 		log.debug( "=== ending " + getName() + " =============================\n" );
 	}
 
+	/**
+	 * <p>assertTextPresent.</p>
+	 *
+	 * @param expected a {@link java.lang.String} object.
+	 * @param value a {@link java.lang.String} object.
+	 */
 	public void assertTextPresent( String expected, String value ) {
 		if ( value == null || !value.contains( expected ) ) {
 			fail( "expected presence of '" + expected + "' but was '" + value + "'" );

@@ -34,9 +34,12 @@ import org.springframework.security.web.authentication.switchuser.SwitchUserFilt
 import org.springframework.security.web.authentication.switchuser.SwitchUserGrantedAuthority;
 
 /**
+ * <p>SwitchUserImpl class.</p>
+ *
  * @author rrlorent
  * Basic implementation of edu.uiowa.icts.delegate.DelegateService.
  * Extend this class if you wish to have more information other than username in the switched session.
+ * @version $Id: $
  */
 public class SwitchUserImpl implements DelegateService {
 
@@ -44,6 +47,7 @@ public class SwitchUserImpl implements DelegateService {
 
 	private String usernameParameter = "j_username";
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean checkAuthentication( HttpServletRequest request ) throws AuthenticationException {
 
@@ -65,6 +69,7 @@ public class SwitchUserImpl implements DelegateService {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean checkExitAuthentication( HttpServletRequest request ) throws AuthenticationException {
 
@@ -85,10 +90,20 @@ public class SwitchUserImpl implements DelegateService {
 		return false;
 	}
 
+	/**
+	 * <p>Getter for the field <code>usernameParameter</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getUsernameParameter() {
 		return usernameParameter;
 	}
 
+	/**
+	 * <p>Setter for the field <code>usernameParameter</code>.</p>
+	 *
+	 * @param usernameParameter a {@link java.lang.String} object.
+	 */
 	public void setUsernameParameter( String usernameParameter ) {
 		this.usernameParameter = usernameParameter;
 	}

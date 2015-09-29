@@ -35,6 +35,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+/**
+ * <p>DataTable class.</p>
+ *
+ * @author schappetj
+ * @version $Id: $
+ */
 @JsonInclude( JsonInclude.Include.NON_NULL )
 @JsonPropertyOrder( { "recordsFiltered", "data", "draw", "recordsTotal" } )
 public class DataTable {
@@ -57,16 +63,27 @@ public class DataTable {
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+	/**
+	 * <p>Constructor for DataTable.</p>
+	 */
 	public DataTable() {
 
 	}
 
+	/**
+	 * <p>Constructor for DataTable.</p>
+	 *
+	 * @param draw a {@link java.lang.String} object.
+	 * @param error a {@link java.lang.String} object.
+	 */
 	public DataTable( String draw, String error ) {
 		this.draw = draw;
 		this.error = error;
 	}
 
 	/**
+	 * <p>Getter for the field <code>recordsFiltered</code>.</p>
+	 *
 	 * @return The recordsFiltered
 	 */
 	@JsonProperty( "recordsFiltered" )
@@ -75,6 +92,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Setter for the field <code>recordsFiltered</code>.</p>
+	 *
 	 * @param recordsFiltered The recordsFiltered
 	 */
 	@JsonProperty( "recordsFiltered" )
@@ -83,6 +102,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Getter for the field <code>data</code>.</p>
+	 *
 	 * @return The data
 	 */
 	@JsonProperty( "data" )
@@ -91,6 +112,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Setter for the field <code>data</code>.</p>
+	 *
 	 * @param data The data
 	 */
 	@JsonProperty( "data" )
@@ -99,6 +122,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Getter for the field <code>draw</code>.</p>
+	 *
 	 * @return The draw
 	 */
 	@JsonProperty( "draw" )
@@ -107,6 +132,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Setter for the field <code>draw</code>.</p>
+	 *
 	 * @param draw The draw
 	 */
 	@JsonProperty( "draw" )
@@ -115,6 +142,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Getter for the field <code>recordsTotal</code>.</p>
+	 *
 	 * @return The recordsTotal
 	 */
 	@JsonProperty( "recordsTotal" )
@@ -123,6 +152,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Setter for the field <code>recordsTotal</code>.</p>
+	 *
 	 * @param recordsTotal The recordsTotal
 	 */
 	@JsonProperty( "recordsTotal" )
@@ -130,22 +161,36 @@ public class DataTable {
 		this.recordsTotal = recordsTotal;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString( this );
 	}
 
+	/**
+	 * <p>Getter for the field <code>additionalProperties</code>.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {
 		return this.additionalProperties;
 	}
 
+	/**
+	 * <p>setAdditionalProperty.</p>
+	 *
+	 * @param name a {@link java.lang.String} object.
+	 * @param value a {@link java.lang.Object} object.
+	 */
 	@JsonAnySetter
 	public void setAdditionalProperty( String name, Object value ) {
 		this.additionalProperties.put( name, value );
 	}
 
 	/**
+	 * <p>Getter for the field <code>error</code>.</p>
+	 *
 	 * @return The error
 	 */
 	@JsonProperty( "error" )
@@ -154,6 +199,8 @@ public class DataTable {
 	}
 
 	/**
+	 * <p>Setter for the field <code>error</code>.</p>
+	 *
 	 * @param error The error
 	 */
 	@JsonProperty( "error" )

@@ -40,12 +40,9 @@ import java.util.ResourceBundle;
  * /some/pkg/Resource
  * /some/pkg/Resource.properties
  * </pre>
- * 
- * @param name classpath resource name [may not be null]
- * @param loader classloader through which to load the resource [null is equivalent to the application loader]
- * 
- * @return resource converted to java.util.Properties [may be null if the resource was not found and THROW_ON_LOAD_FAILURE is false]
- * @throws IllegalArgumentException if the resource was not found and THROW_ON_LOAD_FAILURE is true
+ *
+ * @author schappetj
+ * @version $Id: $
  */
 public abstract class PropertyLoader {
 	
@@ -53,6 +50,13 @@ public abstract class PropertyLoader {
 	private static final boolean LOAD_AS_RESOURCE_BUNDLE = false;
 	private static final String SUFFIX = ".properties";
 	
+	/**
+	 * <p>loadProperties.</p>
+	 *
+	 * @param name a {@link java.lang.String} object.
+	 * @param loader a {@link java.lang.ClassLoader} object.
+	 * @return a {@link java.util.Properties} object.
+	 */
 	public static Properties loadProperties( String name, ClassLoader loader ) {
 		
 		if ( name == null ){
@@ -123,6 +127,9 @@ public abstract class PropertyLoader {
 	/**
 	 * A convenience overload of {@link #loadProperties(String, ClassLoader)}
 	 * that uses the current thread's context classloader.
+	 *
+	 * @param name a {@link java.lang.String} object.
+	 * @return a {@link java.util.Properties} object.
 	 */
 	public static Properties loadProperties( final String name ) {
 		return loadProperties( name, Thread.currentThread().getContextClassLoader() );

@@ -21,39 +21,72 @@ package edu.uiowa.icts.datatable;
  */
 
 /**
+ * <p>DataTableSearch class.</p>
+ *
  * @author rrlorent
  * @since May 11, 2015
+ * @version $Id: $
  */
 public class DataTableSearch {
 
 	private String value;
 	private Boolean regex;
 
+	/**
+	 * <p>Constructor for DataTableSearch.</p>
+	 */
 	public DataTableSearch() {
 		// default no argument constructor required for jackson
 	}
 
+	/**
+	 * <p>Constructor for DataTableSearch.</p>
+	 *
+	 * @param value a {@link java.lang.String} object.
+	 * @param regex a {@link java.lang.Boolean} object.
+	 */
 	public DataTableSearch( String value, Boolean regex ) {
 		this.value = value;
 		this.regex = regex;
 	}
 
+	/**
+	 * <p>Getter for the field <code>value</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getValue() {
 		return value;
 	}
 
+	/**
+	 * <p>Setter for the field <code>value</code>.</p>
+	 *
+	 * @param value a {@link java.lang.String} object.
+	 */
 	public void setValue( String value ) {
 		this.value = value;
 	}
 
+	/**
+	 * <p>Getter for the field <code>regex</code>.</p>
+	 *
+	 * @return a {@link java.lang.Boolean} object.
+	 */
 	public Boolean getRegex() {
 		return regex;
 	}
 
+	/**
+	 * <p>Setter for the field <code>regex</code>.</p>
+	 *
+	 * @param regex a {@link java.lang.Boolean} object.
+	 */
 	public void setRegex( Boolean regex ) {
 		this.regex = regex;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
